@@ -67,9 +67,12 @@ const isDark = ref(false);
           </svg>
         </div>
         <figure class="px-10 mt-10">
-          <swiper :modules="modules" :slides-per-view="1" :space-between="10" :scrollbar="{ draggable: true }"
-            :pagination="{ el: '.swiper-pagination', clickable: true }" @swiper="onSwiper" @slideChange="onSlideChange"
-            ref="mySwiper">
+          <swiper :modules="[Pagination]" :slides-per-view="1" :space-between="10" :pagination="{
+            el: '.swiper-pagination',
+            clickable: true,
+            bulletActiveClass: 'swiper-pagination-bullet-active',
+            bulletClass: 'swiper-pagination-bullet',
+          }" @swiper="onSwiper" @slideChange="onSlideChange" ref="mySwiper">
             <swiper-slide @click="goToNextSlide">
               <img src="./assets/img/taned_one.webp" alt="Taned1"
                 class="rounded-xl w-[304px] h-[305.34px]" /></swiper-slide>
@@ -78,8 +81,9 @@ const isDark = ref(false);
             <swiper-slide @click="goToNextSlide"><img src="./assets/img/taned_three.webp" alt="Taned3"
                 class="rounded-xl" /></swiper-slide>
           </swiper>
+          <!-- Here we add the pagination container -->
+          <div class="swiper-pagination"></div>
         </figure>
-
         <div class="items-center text-center card-body">
           <h2 class="card-title" :class="isDark ? 'text-white' : 'text-black'">
             ParkSeoGame
@@ -92,7 +96,8 @@ const isDark = ref(false);
             <!-- Dislike Icon -->
             <button
               class="duration-300 bg-red-300 border-red-300 hover:bg-red-600 hover:border-red-600 btn btn-circle btn-lg hover:scale-125">
-              <svg class="text-red-700" xmlns="http://www.w3.org/2000/svg" width="2.6em" height="2.6em" viewBox="0 0 512 512">
+              <svg class="text-red-700" xmlns="http://www.w3.org/2000/svg" width="2.6em" height="2.6em"
+                viewBox="0 0 512 512">
                 <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"
                   d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192s192-86 192-192Z" />
                 <path fill="currentColor"
@@ -102,7 +107,8 @@ const isDark = ref(false);
             <!-- SuperLike Icon -->
             <button
               class="duration-300 bg-yellow-200 border-yellow-200 hover:bg-yellow-300 hover:border-yellow-300 btn btn-circle btn-lg hover:scale-125">
-              <svg class="text-yellow-400" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 24 24">
+              <svg class="text-yellow-400" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em"
+                viewBox="0 0 24 24">
                 <path fill="currentColor"
                   d="M12 16q1.2 0 2.138-.712T15.5 13.45h-7q.425 1.125 1.363 1.838T12 16m-2.5-4q.625 0 1.063-.437T11 10.5q0-.625-.437-1.062T9.5 9q-.625 0-1.062.438T8 10.5q0 .625.438 1.063T9.5 12m5 0q.625 0 1.063-.437T16 10.5q0-.625-.437-1.062T14.5 9q-.625 0-1.062.438T13 10.5q0 .625.438 1.063T14.5 12M7.625 6.4L12 .725L16.375 6.4l6.85 2.3l-4.325 6.125l.175 6.825L12 19.675L4.925 21.65L5.1 14.8L.8 8.7z" />
               </svg>
@@ -110,7 +116,8 @@ const isDark = ref(false);
             <!-- Heart Icon -->
             <button
               class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125">
-              <svg class="text-green-600" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 1200 1200">
+              <svg class="text-green-600" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em"
+                viewBox="0 0 1200 1200">
                 <path fill="currentColor"
                   d="M600 0C268.629 0 0 268.629 0 600s268.629 600 600 600s600-268.629 600-600S931.371 0 600 0m132.789 343.503c71.295-1.114 135.772 37.646 166.337 103.724c28.273 87.356 4.612 176.225-45.251 243.199c-32.912 45.417-72.247 84.584-112.462 118.807c-36.997 34.439-119.808 102.591-141.755 104.483c-19.397-3.708-41.173-25.678-56.573-36.968c-86.534-65.781-179.667-145.742-226.899-233.207c-39.601-83.97-39.673-187.864 21.96-252.241c79.917-72.048 200.39-57.946 261.512 17.325c16.415-21.295 36.605-38.066 60.562-50.267c24.279-9.69 48.803-14.483 72.569-14.855" />
               </svg>
@@ -193,4 +200,31 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  opacity: 0.5;
+  margin: 0 2px;
+  /* Spacing between bullets */
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: red;
+  /* Highlight the active bullet */
+}
+
+/* Absolute positioning for pagination container */
+.swiper-pagination {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 14rem;
+
+}
+</style>
