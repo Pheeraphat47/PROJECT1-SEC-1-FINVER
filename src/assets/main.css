@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
 body {
-	background-color: rgb(243, 216, 254);
-	/* Set the default light mode backgroudcolor */
-	height: 100vh;  
+	height: 100vh;
 }
-
-

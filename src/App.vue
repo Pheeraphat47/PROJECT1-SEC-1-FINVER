@@ -4,7 +4,6 @@ import { ref } from "vue"
 const isDark = ref(false)
 const isFlipped = ref(false);
 
-
 //description
 const showDescriptions = ref(false);
 const descriptions = ref({
@@ -17,6 +16,7 @@ const toggleDescriptions = () => {
   showDescriptions.value = !showDescriptions.value;
   isFlipped.value = !isFlipped.value;
 };
+let count = ref(0);
 
 </script>
 
@@ -33,7 +33,7 @@ const toggleDescriptions = () => {
       <!-- toggle BG Change -->
       <div class="flex justify-end">
         <label class="swap swap-rotate">
-          <input type="checkbox" class="theme-controller" v-model="isDark" @click="isDark = !isDark" />
+          <input type="checkbox" class="theme-controller" value="dracula" />
           <!-- sun icon -->
           <svg class="w-10 h-10 text-orange-400 fill-current swap-off" xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24">
@@ -72,14 +72,14 @@ const toggleDescriptions = () => {
   <!-- Heart modal-->
   <div class="mt-5 ml-6">
     <button class="duration-300 bg-pink-500 hover:bg-pink-700 btn btn-circle btn-lg hover:scale-125"
-      onclick="mymodal.showModal()">
+      onclick="modal.showModal()">
       <svg class="text-pink-200" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
         <path fill="currentColor"
           d="m11 19.654l-1.156-1.042q-2.28-2.087-3.799-3.593q-1.518-1.506-2.413-2.679q-.895-1.173-1.264-2.146Q2 9.221 2 8.225q0-1.908 1.296-3.201Q4.592 3.731 6.5 3.731q1.32 0 2.475.672q1.156.672 2.025 1.96q.87-1.288 2.025-1.96q1.156-.672 2.475-.672q1.817 0 3.063 1.172q1.245 1.172 1.402 2.878q-.442-.143-.896-.202q-.454-.06-.913-.06q-2.183.02-3.794 1.52q-1.612 1.501-1.612 3.923q0 .988.362 1.976q.361.987 1.1 1.781q-.533.483-1.17 1.069q-.638.585-1.284 1.181zm6.95-4.19l-2.138-2.114l.713-.708l1.425 1.42l3.525-3.545l.713.708z" />
       </svg>
     </button>
   </div>
-  <dialog id="mymodal" class="modal">
+  <dialog id="modal" class="modal">
     <div class="modal-box">
       <h3 class="font-bold text-lg text-center">Liked</h3>
       <div class="flex justify-center">
@@ -96,10 +96,10 @@ const toggleDescriptions = () => {
     </form>
   </dialog>
   <!-- Main Content -->
-  <div class="flex justify-center transition-all duration-500 ease-in-out" :class="isDark ? 'dark-mode' : ''">
+  <div class="flex justify-center transition-all duration-500 ease-in-out">
     <div class="flex justify-center p-5 pt-[5em]">
       <!-- Card  -->
-      <div class="shadow-xl card w-96 bg-base-100" :class="isDark ? 'bg-gray-400' : 'bg-white '">
+      <div class="shadow-xl card w-96 bg-base-100">
         <div class="h-96 carousel carousel-vertical rounded-box">
           <div class="carousel-item h-full">
             <img src="./assets/img/taned_one.webp" alt="Taned1" class="rounded-xl" width="385px" />
@@ -139,8 +139,8 @@ const toggleDescriptions = () => {
           >
 
         <div class="items-center text-center card-body">
-          <h2 class="card-title" :class="isDark ? 'text-white' : 'text-black'">
 
+          <h2 class="col-span-2 card-title" :class="isDark ? 'text-white' : 'text-black'">
             ParkSeoGame
           </h2>
           <!-- Dropdown -->
@@ -170,7 +170,7 @@ const toggleDescriptions = () => {
               <p v-for="(description, key) in descriptions" :key="key" :class="isDark ? 'text-white' : 'text-black '">{{ description }}</p>
             </div>
           <!-- Dislike Icon -->
-          <div class="col-span-3 gap-5 pt-4 card-actions flex justify-center">
+          <div class="col-span-3 gap-5 pt-4 card-actions flex justify-center">  
             <button
               class="duration-300 bg-red-300 border-red-300 hover:bg-red-600 hover:border-red-600 btn btn-circle btn-lg hover:scale-125 cursor-pointer">
               <svg class="text-red-800 mt-1" xmlns="http://www.w3.org/2000/svg" width="2.9em" height="2.9em"
@@ -190,15 +190,13 @@ const toggleDescriptions = () => {
             </button>
             <!-- Heart Icon -->
             <button
-              class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125"
-              onclick="mymodal.showModal()" on-click="">
+              class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125">
               <svg class="text-green-600 mt-1" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em"
                 viewBox="0 0 24 24">
                 <path fill="currentColor"
                   d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
               </svg>
             </button>
-            <!-- Modal Popup-->
           </div>
         </div>
       </div>
@@ -206,11 +204,4 @@ const toggleDescriptions = () => {
   </div>
 </template>
 
-<style scoped>
-.dark-mode {
-  background-color: #1a202c;
-  /* Set the dark mode background color */
-  color: #dcdcdc;
-  /* Set the dark mode text color */
-}
-</style>
+<style scoped></style>
