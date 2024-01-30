@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from "vue";
 
-const isDark = ref(false);
-
 let count = ref(0);
 </script>
 
@@ -19,7 +17,7 @@ let count = ref(0);
       <!-- toggle BG Change -->
       <div class="flex justify-end">
         <label class="swap swap-rotate">
-          <input type="checkbox" class="theme-controller" v-model="isDark" @click="isDark = !isDark" />
+          <input type="checkbox" class="theme-controller" value="dracula" />
           <!-- sun icon -->
           <svg class="w-10 h-10 text-orange-400 fill-current swap-off" xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24">
@@ -58,14 +56,14 @@ let count = ref(0);
   <!-- Heart modal-->
   <div class="mt-5 ml-6">
     <button class="duration-300 bg-pink-500 hover:bg-pink-700 btn btn-circle btn-lg hover:scale-125"
-      onclick="mymodal.showModal()">
+      onclick="modal.showModal()">
       <svg class="text-pink-200" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
         <path fill="currentColor"
           d="m11 19.654l-1.156-1.042q-2.28-2.087-3.799-3.593q-1.518-1.506-2.413-2.679q-.895-1.173-1.264-2.146Q2 9.221 2 8.225q0-1.908 1.296-3.201Q4.592 3.731 6.5 3.731q1.32 0 2.475.672q1.156.672 2.025 1.96q.87-1.288 2.025-1.96q1.156-.672 2.475-.672q1.817 0 3.063 1.172q1.245 1.172 1.402 2.878q-.442-.143-.896-.202q-.454-.06-.913-.06q-2.183.02-3.794 1.52q-1.612 1.501-1.612 3.923q0 .988.362 1.976q.361.987 1.1 1.781q-.533.483-1.17 1.069q-.638.585-1.284 1.181zm6.95-4.19l-2.138-2.114l.713-.708l1.425 1.42l3.525-3.545l.713.708z" />
       </svg>
     </button>
   </div>
-  <dialog id="mymodal" class="modal">
+  <dialog id="modal" class="modal">
     <div class="modal-box">
       <h3 class="font-bold text-lg text-center">Liked</h3>
       <div class="flex justify-center">
@@ -82,10 +80,10 @@ let count = ref(0);
     </form>
   </dialog>
   <!-- Main Content -->
-  <div class="flex justify-center transition-all duration-500 ease-in-out" :class="isDark ? 'dark-mode' : ''">
+  <div class="flex justify-center transition-all duration-500 ease-in-out">
     <div class="flex justify-center p-5 pt-[5em]">
       <!-- Card  -->
-      <div class="shadow-xl card w-96 bg-base-100" :class="isDark ? 'bg-gray-400' : 'bg-white '">
+      <div class="shadow-xl card w-96 bg-base-100">
         <div class="h-96 carousel carousel-vertical rounded-box">
           <div class="carousel-item h-full">
             <img src="./assets/img/taned_one.webp" alt="Taned1" class="rounded-xl" width="385px" />
@@ -98,12 +96,8 @@ let count = ref(0);
           </div>
         </div>
         <div class="items-center text-center card-body">
-          <h2 class="card-title" :class="isDark ? 'text-white' : 'text-black'">
-            ParkSeoGame
-          </h2>
-          <p :class="isDark ? 'text-white' : 'text-black'">
-            The most handsome guy in KMUTT
-          </p>
+          <h2 class="card-title">ParkSeoGame</h2>
+          <p>The most handsome guy in KMUTT</p>
 
           <div class="justify-end gap-5 pt-4 card-actions">
             <!-- Dislike Icon -->
@@ -140,11 +134,4 @@ let count = ref(0);
   </div>
 </template>
 
-<style scoped>
-.dark-mode {
-  background-color: #1a202c;
-  /* Set the dark mode background color */
-  color: #dcdcdc;
-  /* Set the dark mode text color */
-}
-</style>
+<style scoped></style>
