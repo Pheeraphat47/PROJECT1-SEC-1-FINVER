@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "age": 28,
+    "bio": "I love hiking and exploring new places. Looking for someone who shares the same adventurous spirit!",
+    "profilePicture": "https://example.com/profiles/alice.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Bob Smith",
+    "age": 24,
+    "bio": "Movie enthusiast and foodie. Let's grab a coffee and discuss our favorite films!",
+    "profilePicture": "https://example.com/profiles/bob.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Eva Rodriguez",
+    "age": 30,
+    "bio": "Passionate about art and culture. Searching for a creative soul to share experiences with.",
+    "profilePicture": "https://example.com/profiles/eva.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Chris Williams",
+    "age": 26,
+    "bio": "Fitness freak and sports enthusiast. Looking for a workout partner and someone to catch the game with.",
+    "profilePicture": "https://example.com/profiles/chris.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Sophie Brown",
+    "age": 22,
+    "bio": "Bookworm and aspiring writer. Let's have deep conversations over a cup of tea.",
+    "profilePicture": "https://example.com/profiles/sophie.jpg"
+  }
+]
