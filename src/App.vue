@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from "vue";
+
 const isDark = ref(false);
+
+let count = ref(0);
 </script>
 
 <template>
@@ -52,12 +55,37 @@ const isDark = ref(false);
       </div>
     </div>
   </div>
+  <!-- Heart modal-->
+  <div class="mt-5 ml-6">
+    <button class="duration-300 bg-pink-500 hover:bg-pink-700 btn btn-circle btn-lg hover:scale-125"
+      onclick="mymodal.showModal()">
+      <svg class="text-pink-200" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="m11 19.654l-1.156-1.042q-2.28-2.087-3.799-3.593q-1.518-1.506-2.413-2.679q-.895-1.173-1.264-2.146Q2 9.221 2 8.225q0-1.908 1.296-3.201Q4.592 3.731 6.5 3.731q1.32 0 2.475.672q1.156.672 2.025 1.96q.87-1.288 2.025-1.96q1.156-.672 2.475-.672q1.817 0 3.063 1.172q1.245 1.172 1.402 2.878q-.442-.143-.896-.202q-.454-.06-.913-.06q-2.183.02-3.794 1.52q-1.612 1.501-1.612 3.923q0 .988.362 1.976q.361.987 1.1 1.781q-.533.483-1.17 1.069q-.638.585-1.284 1.181zm6.95-4.19l-2.138-2.114l.713-.708l1.425 1.42l3.525-3.545l.713.708z" />
+      </svg>
+    </button>
+  </div>
+  <dialog id="mymodal" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg text-center">Liked</h3>
+      <div class="flex justify-center">
+        <p>
+          <svg class="text-pink-500 mt-1" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
+          </svg>
+        </p>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
   <!-- Main Content -->
   <div class="flex justify-center transition-all duration-500 ease-in-out" :class="isDark ? 'dark-mode' : ''">
     <div class="flex justify-center p-5 pt-[5em]">
       <!-- Card  -->
       <div class="shadow-xl card w-96 bg-base-100" :class="isDark ? 'bg-gray-400' : 'bg-white '">
-       
         <div class="h-96 carousel carousel-vertical rounded-box">
           <div class="carousel-item h-full">
             <img src="./assets/img/taned_one.webp" alt="Taned1" class="rounded-xl" width="385px" />
@@ -81,12 +109,10 @@ const isDark = ref(false);
             <!-- Dislike Icon -->
             <button
               class="duration-300 bg-red-300 border-red-300 hover:bg-red-600 hover:border-red-600 btn btn-circle btn-lg hover:scale-125 cursor-pointer">
-              <svg class="text-red-700" xmlns="http://www.w3.org/2000/svg" width="2.6em" height="2.6em"
-                viewBox="0 0 512 512">
-                <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"
-                  d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192s192-86 192-192Z" />
+              <svg class="text-red-800 mt-1" xmlns="http://www.w3.org/2000/svg" width="2.9em" height="2.9em"
+                viewBox="0 0 24 24">
                 <path fill="currentColor"
-                  d="M333.2 297.69c18.28-23.39 27.06-47.43 26.79-73.37c-.31-31.06-25.22-56.33-55.53-56.33c-20.4 0-35 10.64-44.11 20.42a5.93 5.93 0 0 1-8.7 0c-9.11-9.78-23.71-20.42-44.11-20.42L206 168a4 4 0 0 0-2.75 6.84l124 123.21a3.92 3.92 0 0 0 5.95-.36M158.84 221a4 4 0 0 0-6.82 2.72v.64c-.28 27.1 9.31 52.13 29.3 76.5c9.38 11.44 26.4 29.73 65.7 56.41a15.93 15.93 0 0 0 18 0c5.15-3.49 9.9-6.84 14.31-10a4 4 0 0 0 .46-6.07ZM336 368a15.92 15.92 0 0 1-11.31-4.69l-176-176a16 16 0 0 1 22.62-22.62l176 176A16 16 0 0 1 336 368" />
+                  d="M12.025 20.675q-2.696-2.702-4.443-4.546q-1.747-1.844-2.766-3.19q-1.018-1.347-1.417-2.37Q3 9.546 3 8.5q0-2.088 1.456-3.544T8 3.5q.952 0 1.848.326q.896.326 1.625.947L9.827 10.5h3.058l-.754 8.067L15.192 8.5h-3.038l1.486-4.454q.53-.273 1.12-.41q.592-.136 1.202-.136q2.088 0 3.544 1.456T20.962 8.5q0 1.065-.431 2.123T19.06 13.06q-1.04 1.378-2.756 3.2q-1.716 1.822-4.279 4.416" />
               </svg>
             </button>
             <!-- SuperLike Icon -->
@@ -100,13 +126,15 @@ const isDark = ref(false);
             </button>
             <!-- Heart Icon -->
             <button
-              class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125">
-              <svg class="text-green-600" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em"
-                viewBox="0 0 1200 1200">
+              class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125"
+              onclick="mymodal.showModal()" on-click="">
+              <svg class="text-green-600 mt-1" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em"
+                viewBox="0 0 24 24">
                 <path fill="currentColor"
-                  d="M600 0C268.629 0 0 268.629 0 600s268.629 600 600 600s600-268.629 600-600S931.371 0 600 0m132.789 343.503c71.295-1.114 135.772 37.646 166.337 103.724c28.273 87.356 4.612 176.225-45.251 243.199c-32.912 45.417-72.247 84.584-112.462 118.807c-36.997 34.439-119.808 102.591-141.755 104.483c-19.397-3.708-41.173-25.678-56.573-36.968c-86.534-65.781-179.667-145.742-226.899-233.207c-39.601-83.97-39.673-187.864 21.96-252.241c79.917-72.048 200.39-57.946 261.512 17.325c16.415-21.295 36.605-38.066 60.562-50.267c24.279-9.69 48.803-14.483 72.569-14.855" />
+                  d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
               </svg>
             </button>
+            <!-- Modal Popup-->
           </div>
         </div>
       </div>
