@@ -115,7 +115,7 @@ const isDark = ref(false);
           <img
             src="./assets/img/taned_two.webp"
             alt="Taned2"
-            class="rounded-xl"
+            class="rounded-x1"
           />
 
           <img
