@@ -1,6 +1,21 @@
 <script setup>
-import { ref } from "vue";
-const isDark = ref(false);
+import { ref } from "vue"
+const isDark = ref(false)
+const isFlipped = ref(false);
+
+
+//description
+const showDescriptions = ref(false);
+const descriptions = ref({
+  profile: "View and edit your profile",
+  settings: "Adjust your account settings",
+  logout: "Sign out of your account",
+});
+
+const toggleDescriptions = () => {
+  showDescriptions.value = !showDescriptions.value;
+  isFlipped.value = !isFlipped.value;
+};
 </script>
 
 <template>
@@ -124,16 +139,42 @@ const isDark = ref(false);
             class="rounded-xl"
           />
         </figure>
-        <div class="items-center text-center card-body">
-          <h2 class="card-title" :class="isDark ? 'text-white' : 'text-black'">
+        <div class="grid grid-cols-3 card-body">
+          <!-- Name -->
+          <h2
+            class="col-span-2 card-title"
+            :class="isDark ? 'text-white' : 'text-black'"
+          >
             ParkSeoGame
           </h2>
-          <p :class="isDark ? 'text-white' : 'text-black'">
+          <!-- Dropdown -->
+          <button
+            class="col-span-1 flex justify-end items-end dropdown dropdown-end "
+            @click="toggleDescriptions"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2.5em"
+              height="2.5em"
+              viewBox="0 0 24 24"
+              :class="{ 'rotate-180': isFlipped }"
+            >
+              <path
+              :fill="isDark ? 'white' : 'black'"
+                d="M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0"
+              />
+            </svg>
+          </button>
+          <!-- Desc -->
+          <p class="col-span-3" :class="isDark ? 'text-white' : 'text-black'">
             The most handsome guy in KMUTT
           </p>
-
-          <div class="justify-end gap-5 pt-4 card-actions">
-            <!-- Dislike Icon -->
+          <!-- Hidden Desc -->
+            <div v-if="showDescriptions" class="col-span-3 max-h-[200px] overflow-y-auto">
+              <p v-for="(description, key) in descriptions" :key="key" :class="isDark ? 'text-white' : 'text-black '">{{ description }}</p>
+            </div>
+          <!-- Dislike Icon -->
+          <div class="col-span-3 gap-5 pt-4 card-actions flex justify-center">
             <button
               class="duration-300 bg-red-300 border-red-300 hover:bg-red-600 hover:border-red-600 btn btn-circle btn-lg hover:scale-125 cursor-pointer"
             >
