@@ -11,7 +11,33 @@ const toggleDescriptions = () => {
 	isFlipped.value = !isFlipped.value;
 };
 let count = ref(0);
+const isDropdownVisible = ref(false);
 
+const toggleDropdown = () => {
+  isDropdownVisible.value = !isDropdownVisible.value;
+};
+
+const closeDropdown = () => {
+  isDropdownVisible.value = false;
+};
+const isLoginModalOpen = ref(false);
+const username = ref('');
+const password = ref('');
+
+const openLoginModal = () => {
+  isLoginModalOpen.value = false;
+  console.log(username.value)
+  console.log(password.value)
+};
+
+const closeLoginModal = () => {
+  isLoginModalOpen.value = false;
+  // Optionally, you may want to clear the form fields here
+  username.value=''
+  password.value=''
+  console.log(username.value)
+  console.log(password.value)
+};
 
 
 const profiles = profilesData.profiles;
@@ -47,25 +73,55 @@ const profiles = profilesData.profiles;
 			</div>
 
 			<!-- Account Icon -->
-			<div className="dropdown dropdown-end">
-				<div tabIndex="{0}" role="button" className="btn btn-ghost btn-circle avatar">
-					<div className="w-10 rounded-full">
-						<img alt="Tailwind CSS Navbar component"
-							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-					</div>
-				</div>
-				<ul tabIndex="{0}"
-					className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-					<li>
-						<a className="justify-between">
-							Profile
-							<span className="badge">New</span>
-						</a>
-					</li>
-					<li><a>Settings</a></li>
-					<li><a>Logout</a></li>
-				</ul>
-			</div>
+			<div>
+        <div @click="toggleDropdown" tabIndex="0" role="button" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full">
+            <img alt="Tailwind CSS Navbar component"
+              src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          </div>
+        </div>
+        <ul v-show="isDropdownVisible" @click.away="closeDropdown" tabIndex="0"
+          class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+          <li>
+            <a class="justify-between">
+              Profile
+              <span class="badge">New</span>
+            </a>
+          </li>
+          <li><a>Settings</a></li>
+          <li><a @click="isLoginModalOpen = true">Login</a></li>
+        </ul>
+      </div>
+      <div>
+
+        <!-- Login Modal -->
+        <div v-if="isLoginModalOpen" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div class="bg-white z-0 p-6 rounded shadow-md w-96">
+            <h2 class="text-2xl font-bold mb-4 flex justify-center">FINVER🫵</h2>
+
+            <!-- Your login form goes here -->
+            <form @submit.prevent="login">
+              <div class="mb-4">
+                <label for="username" class="block text-sm font-semibold text-gray-600 ">Username:</label>
+                <input type="text" id="username" v-model.trim="username"
+                  class="w-full p-2 border border-gray-300 rounded bg-white placeholder:italic placeholder:text-slate-400" placeholder="Enter Username">
+              </div>
+
+              <div class="mb-4">
+                <label for="password" class="block text-sm font-semibold text-gray-600">Password:</label>
+                <input type="password" id="password" v-model.trim="password"
+                  class="w-full p-2 border border-gray-300 rounded bg-white placeholder:italic placeholder:text-slate-400" placeholder="Enter Password">
+              </div>
+
+              <button @click="openLoginModal" type="button" class="bg-blue-500 text-white p-2 rounded">Login</button>
+            </form>
+
+            <button @click="closeLoginModal" class="mt-4 text-gray-600">Close</button>
+          </div>
+        </div>
+
+
+      </div>
 		</div>
 	</div>
 	<!-- Heart modal-->
