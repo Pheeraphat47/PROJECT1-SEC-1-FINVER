@@ -41,6 +41,21 @@ const closeLoginModal = () => {
 
 
 const profiles = profilesData.profiles;
+const dislikeProfile = () => {
+    // Remove the current profile from the array
+    profiles.splice(0, 1);
+
+    // Optionally, check if there are more profiles remaining
+    if (profiles.length === 0) {
+        // Handle the case when there are no more profiles
+        // You might want to show a message or fetch more profiles
+        console.log("No more profiles");
+        return;
+    }
+
+    // Toggle the descriptions and update the flipped state
+    toggleDescriptions();
+};
 
 </script>
 
@@ -194,8 +209,9 @@ const profiles = profilesData.profiles;
 									<p><span class="font-bold">Interested:</span> {{ profile.interested }}</p>
 								</div>
 								<!-- Dislike Icon -->
+								
 								<div class="col-span-3 gap-[3em] pt-4 card-actions flex justify-center">
-									<button
+									<button @click ="dislikeProfile"
 										class="duration-300 bg-red-300 border-red-300 hover:bg-red-600 hover:border-red-600 btn btn-circle btn-lg hover:scale-125 cursor-pointer">
 										<svg class="text-red-800 mt-1" xmlns="http://www.w3.org/2000/svg" width="2.9em"
 											height="2.9em" viewBox="0 0 24 24">
@@ -203,8 +219,6 @@ const profiles = profilesData.profiles;
 												d="M12.025 20.675q-2.696-2.702-4.443-4.546q-1.747-1.844-2.766-3.19q-1.018-1.347-1.417-2.37Q3 9.546 3 8.5q0-2.088 1.456-3.544T8 3.5q.952 0 1.848.326q.896.326 1.625.947L9.827 10.5h3.058l-.754 8.067L15.192 8.5h-3.038l1.486-4.454q.53-.273 1.12-.41q.592-.136 1.202-.136q2.088 0 3.544 1.456T20.962 8.5q0 1.065-.431 2.123T19.06 13.06q-1.04 1.378-2.756 3.2q-1.716 1.822-4.279 4.416" />
 										</svg>
 									</button>
-
-
 									<!-- SuperLike Icon -->
 									<button
 										class="duration-300 bg-yellow-200 border-yellow-200 hover:bg-yellow-300 hover:border-yellow-300 btn btn-circle btn-lg hover:scale-125">
@@ -232,7 +246,6 @@ const profiles = profilesData.profiles;
 			</div>
 		</div>
 	</div>
-
 	<!-- Main Content-->
 </template>
 
