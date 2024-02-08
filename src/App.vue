@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import profilesData from '../data/Users.json';
+import profilesData from "../data/Users.json";
 
 //description
 const showDescriptions = ref(false);
@@ -14,49 +14,92 @@ let count = ref(0);
 const isDropdownVisible = ref(false);
 
 const toggleDropdown = () => {
-  isDropdownVisible.value = !isDropdownVisible.value;
+	isDropdownVisible.value = !isDropdownVisible.value;
 };
 
 const closeDropdown = () => {
-  isDropdownVisible.value = false;
+	isDropdownVisible.value = false;
 };
 const isLoginModalOpen = ref(false);
-const username = ref('');
-const password = ref('');
+const username = ref("");
+const password = ref("");
 
 const openLoginModal = () => {
-  isLoginModalOpen.value = false;
-  console.log(username.value)
-  console.log(password.value)
+	isLoginModalOpen.value = false;
+	console.log(username.value);
+	console.log(password.value);
 };
 
 const closeLoginModal = () => {
-  isLoginModalOpen.value = false;
-  // Optionally, you may want to clear the form fields here
-  username.value=''
-  password.value=''
-  console.log(username.value)
-  console.log(password.value)
+	isLoginModalOpen.value = false;
+	// Optionally, you may want to clear the form fields here
+	username.value = "";
+	password.value = "";
+	console.log(username.value);
+	console.log(password.value);
 };
 
+const heartCount = ref(0);
+const incrementHeartCount = () => {
+	heartCount.value++;
+	// Remove the current profile from the array
+	profiles.splice(0, 1);
+	// Optionally, check if there are more profiles remaining
+	if (profiles.length === 0) {
+		// Handle the case when there are no more profiles
+		// You might want to show a message or fetch more profiles
+		console.log("No more profiles");
+		return;
+	}
+};
 
-const profiles = profilesData.profiles;
 const dislikeProfile = () => {
-    // Remove the current profile from the array
-    profiles.splice(0, 1);
-
-    // Optionally, check if there are more profiles remaining
-    if (profiles.length === 0) {
-        // Handle the case when there are no more profiles
-        // You might want to show a message or fetch more profiles
-        console.log("No more profiles");
-        return;
-    }
-
-    // Toggle the descriptions and update the flipped state
-    toggleDescriptions();
+	heartCount.value++;
+	heartCount.value--;
+	// Remove the current profile from the array
+	profiles.splice(0, 1);
+	// Optionally, check if there are more profiles remaining
+	if (profiles.length === 0) {
+		// Handle the case when there are no more profiles
+		// You might want to show a message or fetch more profiles
+		console.log("No more profiles");
+		return;
+	}
+	// Toggle the descriptions and update the flipped state
+	showDescriptions.value = false;
 };
+const profiles = profilesData.profiles;
 
+// Data property to track current gender
+// const currentGender = ref("all"); // Initially showing all profiles
+
+// // Method to toggle between genders
+// const toggleGender = () => {
+// 	if (currentGender.value === "all") {
+// 		currentGender.value = "male";
+// 	} else if (currentGender.value === "male") {
+// 		currentGender.value = "female";
+// 	} else {
+// 		currentGender.value = "all";
+// 	}
+// };
+
+// // Method for Male Gender
+// const changeGenderToMale = () => {
+// 	currentGender.value = "male";
+// 	console.log("Gender = Male");
+// };
+
+// // Computed property to filter profiles based on current gender
+// const filteredProfiles = computed(() => {
+// 	if (currentGender.value === "all") {
+// 		return profiles.value;
+// 	} else {
+// 		return profiles.value.filter(
+// 			(profile) => profile.gender === currentGender.value
+// 		);
+// 	}
+// });
 </script>
 
 <template>
@@ -89,54 +132,58 @@ const dislikeProfile = () => {
 
 			<!-- Account Icon -->
 			<div>
-        <div @click="toggleDropdown" tabIndex="0" role="button" class="btn btn-ghost btn-circle avatar">
-          <div class="w-10 rounded-full">
-            <img alt="Tailwind CSS Navbar component"
-              src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-          </div>
-        </div>
-        <ul v-show="isDropdownVisible" @click.away="closeDropdown" tabIndex="0"
-          class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-          <li>
-            <a class="justify-between">
-              Profile
-              <span class="badge">New</span>
-            </a>
-          </li>
-          <li><a>Settings</a></li>
-          <li><a @click="isLoginModalOpen = true">Login</a></li>
-        </ul>
-      </div>
-      <div>
+				<div @click="toggleDropdown" tabIndex="0" role="button" class="btn btn-ghost btn-circle avatar">
+					<div class="w-10 rounded-full">
+						<img alt="Tailwind CSS Navbar component"
+							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+					</div>
+				</div>
+				<ul v-show="isDropdownVisible" @click.away="closeDropdown" tabIndex="0"
+					class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+					<li>
+						<a class="justify-between">
+							Profile
+							<span class="badge">New</span>
+						</a>
+					</li>
+					<li><a>Settings</a></li>
+					<li><a @click="isLoginModalOpen = true">Login</a></li>
+				</ul>
+			</div>
+			<div>
+				<!-- Login Modal -->
+				<div v-if="isLoginModalOpen"
+					class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+					<div class="bg-white z-0 p-6 rounded shadow-md w-96">
+						<h2 class="text-2xl font-bold mb-4 flex justify-center">FINVER🫵</h2>
 
-        <!-- Login Modal -->
-        <div v-if="isLoginModalOpen" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div class="bg-white z-0 p-6 rounded shadow-md w-96">
-            <h2 class="text-2xl font-bold mb-4 flex justify-center">FINVER🫵</h2>
+						<!-- Your login form goes here -->
+						<form @submit.prevent="login">
+							<div class="mb-4">
+								<label for="username" class="block text-sm font-semibold text-gray-600">Username:</label>
+								<input type="text" id="username" v-model.trim="username"
+									class="w-full p-2 border border-gray-300 rounded bg-white placeholder:italic placeholder:text-slate-400"
+									placeholder="Enter Username" />
+							</div>
 
-            <!-- Your login form goes here -->
-            <form @submit.prevent="login">
-              <div class="mb-4">
-                <label for="username" class="block text-sm font-semibold text-gray-600 ">Username:</label>
-                <input type="text" id="username" v-model.trim="username"
-                  class="w-full p-2 border border-gray-300 rounded bg-white placeholder:italic placeholder:text-slate-400" placeholder="Enter Username">
-              </div>
+							<div class="mb-4">
+								<label for="password" class="block text-sm font-semibold text-gray-600">Password:</label>
+								<input type="password" id="password" v-model.trim="password"
+									class="w-full p-2 border border-gray-300 rounded bg-white placeholder:italic placeholder:text-slate-400"
+									placeholder="Enter Password" />
+							</div>
 
-              <div class="mb-4">
-                <label for="password" class="block text-sm font-semibold text-gray-600">Password:</label>
-                <input type="password" id="password" v-model.trim="password"
-                  class="w-full p-2 border border-gray-300 rounded bg-white placeholder:italic placeholder:text-slate-400" placeholder="Enter Password">
-              </div>
+							<button @click="openLoginModal" type="button" class="bg-blue-500 text-white p-2 rounded">
+								Login
+							</button>
+						</form>
 
-              <button @click="openLoginModal" type="button" class="bg-blue-500 text-white p-2 rounded">Login</button>
-            </form>
-
-            <button @click="closeLoginModal" class="mt-4 text-gray-600">Close</button>
-          </div>
-        </div>
-
-
-      </div>
+						<button @click="closeLoginModal" class="mt-4 text-gray-600">
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- Heart modal-->
@@ -151,7 +198,8 @@ const dislikeProfile = () => {
 	</div>
 	<dialog id="modal" class="modal">
 		<div class="modal-box">
-			<h3 class="font-bold text-lg text-center">Liked</h3>
+			<h3 class="font-bold text-lg text-center">Liked {{ heartCount }}</h3>
+
 			<div class="flex justify-center">
 				<p>
 					<svg class="text-pink-500 mt-1" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em"
@@ -169,79 +217,121 @@ const dislikeProfile = () => {
 	<!-- Main Content -->
 	<div class="flex justify-center items-center h-screen">
 		<div class="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box">
+		
 			<div v-for="(profile, index) in profiles" :key="profile.id" class="carousel-item">
-				<div class="flex justify-center transition-all duration-500 ease-in-out">
-					<div class="flex justify-center p-5 pt-[5em]">
-						<!-- Card  -->
-						<div class="shadow-xl card w-96 bg-base-100">
-							<div class="h-96 carousel carousel-vertical rounded-t-xl">
-								<div v-for="(picture, pictureIndex) in profile.profilePicture" :key="pictureIndex"
-									class="carousel-item h-full">
-									<img :src="picture" :alt="`${profile.name} Image ${pictureIndex + 1}`"
-										class="rounded-t-xl" width="385px" />
+					<div class="flex justify-center transition-all duration-500 ease-in-out">
+						<div class="flex justify-center p-5 pt-[5em]">
+							<!-- Card  -->
+							<div class="shadow-xl card w-96 bg-base-100">
+								<div class="h-96 carousel carousel-vertical rounded-t-xl">
+									<div v-for="(picture, pictureIndex) in profile.profilePicture" :key="pictureIndex"
+										class="carousel-item h-full">
+										<img :src="picture" :alt="`${profile.name} Image ${pictureIndex + 1}`"
+											class="rounded-t-xl" width="385px" />
+									</div>
 								</div>
-							</div>
 
-							<!-- Name -->
-							<div class="grid grid-cols-3 card-body">
-								<h2 class="col-span-2 card-title">{{ profile.name }} &nbsp;{{ profile.age }}</h2>								
-								<!-- Dropdown -->
-								<button class="col-span-1 flex justify-end items-end dropdown dropdown-end"
-									@click="toggleDescriptions">
-									<svg xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em" viewBox="0 0 24 24"
-										:class="{ 'rotate-180': isFlipped }">
-										<path fill="currentColor"
-											d="M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0" />
-									</svg>
-								</button>
-								<!-- Desc -->
-								<p class="col-span-3"><span class="font-bold">Bio:</span> {{ profile.bio }}</p>
-								<!-- Hidden Desc -->
-								<div v-if="showDescriptions" class="col-span-3 max-h-[200px] overflow-y-auto">
-									<p><span class="font-bold">Dating Goal:</span> {{ profile.datingGoal }}</p>
-									<p><span class="font-bold">Lifestyle:</span> {{ profile.lifestyle }}</p>
-									<p><span class="font-bold">Location:</span> {{ profile.location }}</p>
-									<p><span class="font-bold">Height:</span> {{ profile.height }}</p>
-									<p><span class="font-bold">Language:</span> {{ profile.language }}</p>
-									<p><span class="font-bold">Education:</span> {{ profile.education }}</p>
-									<p><span class="font-bold">MBTI:</span> {{ profile.mbti }}</p>
-									<p><span class="font-bold">Hobby:</span> {{ profile.loveStyle }}</p>
-									<p><span class="font-bold">Interested:</span> {{ profile.interested }}</p>
-								</div>
-								<!-- Dislike Icon -->
-								
-								<div class="col-span-3 gap-[3em] pt-4 card-actions flex justify-center">
-									<button @click ="dislikeProfile"
-										class="duration-300 bg-red-300 border-red-300 hover:bg-red-600 hover:border-red-600 btn btn-circle btn-lg hover:scale-125 cursor-pointer">
-										<svg class="text-red-800 mt-1" xmlns="http://www.w3.org/2000/svg" width="2.9em"
-											height="2.9em" viewBox="0 0 24 24">
+								<!-- Name -->
+								<div class="grid grid-cols-3 card-body">
+									<h2 class="col-span-2 card-title">
+										{{ profile.name }} &nbsp;{{ profile.age }}
+									</h2>
+									<!-- Dropdown -->
+									<button class="col-span-1 flex justify-end items-end dropdown dropdown-end"
+										@click="toggleDescriptions">
+										<svg xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em"
+											viewBox="0 0 24 24" :class="{ 'rotate-180': isFlipped }">
 											<path fill="currentColor"
-												d="M12.025 20.675q-2.696-2.702-4.443-4.546q-1.747-1.844-2.766-3.19q-1.018-1.347-1.417-2.37Q3 9.546 3 8.5q0-2.088 1.456-3.544T8 3.5q.952 0 1.848.326q.896.326 1.625.947L9.827 10.5h3.058l-.754 8.067L15.192 8.5h-3.038l1.486-4.454q.53-.273 1.12-.41q.592-.136 1.202-.136q2.088 0 3.544 1.456T20.962 8.5q0 1.065-.431 2.123T19.06 13.06q-1.04 1.378-2.756 3.2q-1.716 1.822-4.279 4.416" />
+												d="M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0" />
 										</svg>
 									</button>
-									<!-- SuperLike Icon -->
-									<button
-										class="duration-300 bg-yellow-200 border-yellow-200 hover:bg-yellow-300 hover:border-yellow-300 btn btn-circle btn-lg hover:scale-125">
-										<svg class="text-yellow-400" xmlns="http://www.w3.org/2000/svg" width="3em"
+									<!-- Desc -->
+									<p class="col-span-3">
+										<span class="font-bold">Bio:</span> {{ profile.bio }}
+									</p>
+									<!-- Hidden Desc -->
+									<div v-if="showDescriptions" class="col-span-3 max-h-[200px] overflow-y-auto">
+										<p>
+											<span class="font-bold">Dating Goal:</span>
+											{{ profile.datingGoal }}
+										</p>
+										<p>
+											<span class="font-bold">Lifestyle:</span>
+											{{ profile.lifestyle }}
+										</p>
+										<p>
+											<span class="font-bold">Location:</span>
+											{{ profile.location }}
+										</p>
+										<p>
+											<span class="font-bold">Height:</span>
+											{{ profile.height }}
+										</p>
+										<p>
+											<span class="font-bold">Language:</span>
+											{{ profile.language }}
+										</p>
+										<p>
+											<span class="font-bold">Education:</span>
+											{{ profile.education }}
+										</p>
+										<p>
+											<span class="font-bold">MBTI:</span> {{ profile.mbti }}
+										</p>
+										<p>
+											<span class="font-bold">Hobby:</span>
+											{{ profile.loveStyle }}
+										</p>
+										<p>
+											<span class="font-bold">Interested:</span>
+											{{ profile.interested }}
+										</p>
+									</div>
+									<!-- Dislike Icon -->
+									<div class="col-span-3 gap-[3em] pt-4 card-actions flex justify-center">
+										<button @click="dislikeProfile"
+											class="duration-300 bg-red-300 border-red-300 hover:bg-red-600 hover:border-red-600 btn btn-circle btn-lg hover:scale-125 cursor-pointer">
+											<svg class="text-red-800 mt-1" xmlns="http://www.w3.org/2000/svg" width="2.9em"
+												height="2.9em" viewBox="0 0 24 24">
+												<path fill="currentColor"
+													d="M12.025 20.675q-2.696-2.702-4.443-4.546q-1.747-1.844-2.766-3.19q-1.018-1.347-1.417-2.37Q3 9.546 3 8.5q0-2.088 1.456-3.544T8 3.5q.952 0 1.848.326q.896.326 1.625.947L9.827 10.5h3.058l-.754 8.067L15.192 8.5h-3.038l1.486-4.454q.53-.273 1.12-.41q.592-.136 1.202-.136q2.088 0 3.544 1.456T20.962 8.5q0 1.065-.431 2.123T19.06 13.06q-1.04 1.378-2.756 3.2q-1.716 1.822-4.279 4.416" />
+											</svg>
+										</button>
+										<!-- Swap Gender Icon -->
+										<button @click="changeGenderToMale"
+											class="duration-300 bg-yellow-200 border-yellow-200 hover:bg-yellow-300 hover:border-yellow-300 btn btn-circle btn-lg hover:scale-125">
+											<!-- <svg class="text-yellow-400" xmlns="http://www.w3.org/2000/svg" width="3em"
 											height="3em" viewBox="0 0 24 24">
 											<path fill="currentColor"
 												d="M12 16q1.2 0 2.138-.712T15.5 13.45h-7q.425 1.125 1.363 1.838T12 16m-2.5-4q.625 0 1.063-.437T11 10.5q0-.625-.437-1.062T9.5 9q-.625 0-1.062.438T8 10.5q0 .625.438 1.063T9.5 12m5 0q.625 0 1.063-.437T16 10.5q0-.625-.437-1.062T14.5 9q-.625 0-1.062.438T13 10.5q0 .625.438 1.063T14.5 12M7.625 6.4L12 .725L16.375 6.4l6.85 2.3l-4.325 6.125l.175 6.825L12 19.675L4.925 21.65L5.1 14.8L.8 8.7z" />
-										</svg>
-									</button>
-									<!-- Heart Icon -->
-									<button
-										class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125"
-										onclick="mymodal.showModal()" on-click="">
-										<svg class="text-green-600 mt-1" xmlns="http://www.w3.org/2000/svg" width="3em"
-											height="3em" viewBox="0 0 24 24">
-											<path fill="currentColor"
-												d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
-										</svg>
-									</button>
+										</svg> -->
+											<!-- Male Icon -->
+											<!-- <svg xmlns="http://www.w3.org/2000/svg" width="3.5em" height="3.5em"
+												viewBox="0 0 256 256">
+												<path fill="#4fb1ee"
+													d="M152 140a36 36 0 1 1-36-36a36 36 0 0 1 36 36m64-100v176a16 16 0 0 1-16 16H56a16 16 0 0 1-16-16V40a16 16 0 0 1 16-16h144a16 16 0 0 1 16 16m-24 32a8 8 0 0 0-8-8h-32a8 8 0 0 0 0 16h12.69l-18 18A52.08 52.08 0 1 0 158 109.35l18-18V104a8 8 0 0 0 16 0Z" />
+											</svg> -->
+											<!-- Female Icon -->
+											<!-- <svg xmlns="http://www.w3.org/2000/svg" width="3.5em" height="3.5em"
+												viewBox="0 0 256 256">
+												<path fill="#e160dd"
+													d="M128 144a40 40 0 1 1 40-40a40 40 0 0 1-40 40m88-104v176a16 16 0 0 1-16 16H56a16 16 0 0 1-16-16V40a16 16 0 0 1 16-16h144a16 16 0 0 1 16 16m-80 136v-16.58a56 56 0 1 0-16 0V176H96a8 8 0 0 0 0 16h24v16a8 8 0 0 0 16 0v-16h24a8 8 0 0 0 0-16Z" />
+											</svg> -->
+										</button>
+										<!-- Heart Icon -->
+										<button @click="incrementHeartCount"
+											class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125">
+											<svg class="text-green-600 mt-1" xmlns="http://www.w3.org/2000/svg" width="3em"
+												height="3em" viewBox="0 0 24 24">
+												<path fill="currentColor"
+													d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
+											</svg>
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
