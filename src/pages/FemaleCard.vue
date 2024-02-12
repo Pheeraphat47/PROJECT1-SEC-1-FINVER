@@ -78,12 +78,12 @@ const dislikeProfile = () => {
 
 	<!-- Main Content -->
 	<div class="flex items-center justify-center h-screen">
-		<div class="max-w-md p-4 space-x-4 carousel carousel-center bg-neutral rounded-box">
+		<div class="max-w-md p-4 space-x-4 carousel carousel-center rounded-box">
 			<div v-for="(profile, index) in femaleProfiles" :key="profile.id" class="carousel-item">
 				<div class="flex justify-center transition-all duration-500 ease-in-out">
 					<div class="flex justify-center p-5 pt-[5em]">
 						<!-- Card  -->
-						<div class="shadow-xl card w-96 bg-base-100">
+						<div class="shadow-xl bg-rose-100 card w-96">
 							<div class="h-96 carousel carousel-vertical rounded-t-xl">
 								<div v-for="(picture, pictureIndex) in profile.profilePicture" :key="pictureIndex"
 									class="h-full carousel-item">

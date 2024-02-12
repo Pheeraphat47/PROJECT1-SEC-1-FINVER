@@ -36,10 +36,7 @@ const closeLoginModal = () => {
 		<div className="flex-1">
 			<a className="btn btn-ghost text-3xl">FINVER</a>
 		</div>
-		<div className="flex-none gap-2">
-			<div className="form-control">
-				<input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-			</div>
+		<div className="flex-none gap-5">		
 			<!-- toggle BG Change -->
 			<div class="flex justify-end">
 				<label class="swap swap-rotate">
@@ -83,7 +80,7 @@ const closeLoginModal = () => {
 				<div v-if="isLoginModalOpen"
 					class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
 					<div class="z-0 p-6 bg-white rounded shadow-md w-96">
-						<h2 class="flex justify-center mb-4 text-2xl font-bold">FINVER🫵</h2>
+						<h2 class="flex justify-center mb-4 text-3xl font-bold">FINVER</h2>
 
 						<!-- Your login form goes here -->
 						<form @submit.prevent="login">
