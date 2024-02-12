@@ -24,4 +24,6 @@ import Gender from "./pages/Gender.vue";
 	
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

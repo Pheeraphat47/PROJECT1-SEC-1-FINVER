@@ -2,11 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  height: max-content;
+html{
+  scroll-behavior: smooth;  
 }
 
-::-webkit-scrollbar{
+body {
+  height: max-content; 
+}
+
+
+::-webkit-scrollbar {
   width: 0.5em;
   height: 0.25em;
 }
@@ -16,13 +21,11 @@ body {
   border-radius: 100vw;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: hotpink;
   border-radius: 100vw;
 }
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
   background: palevioletred;
 }
-
-

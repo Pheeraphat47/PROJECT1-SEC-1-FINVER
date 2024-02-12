@@ -1,13 +1,14 @@
 <script setup>
 import { ref } from "vue";
+
 const isDropdownVisible = ref(false);
 
 const toggleDropdown = () => {
-  isDropdownVisible.value = !isDropdownVisible.value;
+	isDropdownVisible.value = !isDropdownVisible.value;
 };
 
 const closeDropdown = () => {
-  isDropdownVisible.value = false;
+	isDropdownVisible.value = false;
 };
 
 const isLoginModalOpen = ref(false);
@@ -28,15 +29,34 @@ const closeLoginModal = () => {
 	console.log(username.value);
 	console.log(password.value);
 };
+
+
+const isNavbarWhite = ref(true);
+
+window.addEventListener("scroll", () => {
+    // Get the scroll position
+    const scrollPosition = window.scrollY;
+
+    // Change the background color based on the scroll position
+    isNavbarWhite.value = scrollPosition < 50;
+});
 </script>
 
 <template>
- <!-- Navbar-->
- <div className="navbar pt-3">
-		<div className="flex-1">
-			<a className="btn btn-ghost text-3xl">FINVER</a>
+	<!-- Navbar-->
+	<div class="sticky top-0 z-50 pt-3 navbar" :class="{ 'bg-pink-100': isNavbarWhite, 'bg-pink-300': !isNavbarWhite }">
+		<div class="flex-1">
+			<a class="text-3xl text-pink-900 btn btn-ghost">FINVER</a>
 		</div>
-		<div className="flex-none gap-5">		
+		<div class="flex-none gap-5">
+			<div>
+				<ul class="flex gap-10 text-xl font-semibold text-pink-900">
+					<li class="cursor-pointer "><a href="#home">Home</a></li>
+					<li class="cursor-pointer"><a href="#features">Feature</a></li>
+					<li class="cursor-pointer"><a href="#Team">OurTeam</a></li>
+					<li class="cursor-pointer"><a href="#FAQ">FAQ</a></li>
+				</ul>
+			</div>
 			<!-- toggle BG Change -->
 			<div class="flex justify-end">
 				<label class="swap swap-rotate">
@@ -113,4 +133,9 @@ const closeLoginModal = () => {
 	</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+html {
+  scroll-behavior: smooth;
+}
+</style>
