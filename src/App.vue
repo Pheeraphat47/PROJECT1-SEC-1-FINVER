@@ -6,13 +6,19 @@ import MaleCard from "./pages/MaleCard.vue";
 import Gender from "./pages/Gender.vue";
 
 
+
+
 </script>
 
 <template>
 	<!-- <Navbar/> -->
-	<Gender/>
+	
 	<!-- <FemaleCard/>
 	<MaleCard/> -->
+	
+	<RouterView />
+	
+	
     
 	
 	
