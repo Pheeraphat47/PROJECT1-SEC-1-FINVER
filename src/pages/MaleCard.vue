@@ -8,6 +8,8 @@ const maleProfiles = maleProfilesData.maleProfiles;
 const showDescriptions = ref(false);
 const isFlipped = ref(false);
 
+const likedProfiles = ref([]);
+
 const toggleDescriptions = () => {
 	showDescriptions.value = !showDescriptions.value;
 	isFlipped.value = !isFlipped.value;
@@ -15,10 +17,12 @@ const toggleDescriptions = () => {
 
 // let count = ref(0);
 const heartCount = ref(0);
-const incrementHeartCount = () => {
+const incrementHeartCount = (profileIndex) => {
 	heartCount.value++;
-	// Remove the current profile from the array
-	maleProfiles.splice(0, 1);
+	// เพิ่มโปรไฟล์ที่ถูก like เข้าไปใน likedProfiles
+	likedProfiles.value.push(maleProfiles[profileIndex]);
+	// ลบโปรไฟล์ที่ถูก like ออกจาก femaleProfiles
+	maleProfiles.splice(profileIndex, 1);
 	// Optionally, check if there are more profiles remaining
 	if (maleProfiles.length === 0) {
 		// Handle the case when there are no more profiles
@@ -70,6 +74,15 @@ const dislikeProfile = () => {
 							d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
 					</svg>
 				</p>
+			</div>
+
+				<!-- แสดงรายชื่อและรูปโปรไฟล์ของคนที่ได้รับการไลค์ไปแล้ว -->
+				<div class="flex flex-col items-center justify-center gap-5 mt-5 cursor-pointer">
+				<div v-for="(profile, index) in likedProfiles" :key="index" class="chat-bubble">
+					<img v-if="profile.profilePicture && profile.profilePicture.length > 0" :src="profile.profilePicture[0]"
+						:alt="profile.name" class="profile-pic">
+					<div class="chat-text">{{ profile.name }}</div>
+				</div>
 			</div>
 		</div>
 		<form method="dialog" class="modal-backdrop">
@@ -161,7 +174,7 @@ const dislikeProfile = () => {
 										</svg>
                                     </button>									
 									<!-- Heart Icon -->
-									<button @click="incrementHeartCount"
+									<button @click="incrementHeartCount(index)"
 										class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125">
 										<svg class="mt-1 text-green-600" xmlns="http://www.w3.org/2000/svg" width="3em"
 											height="3em" viewBox="0 0 24 24">
@@ -182,4 +195,38 @@ const dislikeProfile = () => {
 	
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s ease;
+}
+
+.show {
+	max-height: 200px;
+	/* ปรับค่าตามความต้องการ */
+}
+
+/* CSS สำหรับแสดงผลเหมือนกล่องแชทในแอป Messenger */
+.flex {
+	width: 100%;
+}
+
+.chat-bubble {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.profile-pic {
+	border-radius: 50%;
+	width: 3em;
+}
+
+.chat-text {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+</style>
