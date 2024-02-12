@@ -1,0 +1,104 @@
+{
+  "maleProfiles": [
+    {
+      "id": 1,
+      "name": "Jack Thompson",
+      "age": 29,
+      "Gender": "Male",
+      "datingGoal": "Seeking a partner for outdoor adventures and intellectual conversations.",
+      "bio": "Enthusiastic rock climber and avid reader.",
+      "lifestyle": "Passionate about exploring nature and expanding my mind.",
+      "location": "Portland",
+      "height": "6'1\"",
+      "language": "English",
+      "education": "Bachelor's degree in Environmental Science",
+      "mbti": "ENFP",
+      "loveStyle": "Spontaneous and affectionate",
+      "interested": "Rock climbing, hiking, discussing philosophy",
+      "profilePicture": [
+        "../src/assets/img/male/person1/Jack_1.webp",
+        "../src/assets/img/male/person1/Jack_2.webp"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Maxwell Harris",
+      "age": 35,
+      "Gender": "Male",
+      "datingGoal": "Looking for a partner who shares a passion for music and travel.",
+      "bio": "Musician and travel enthusiast.",
+      "lifestyle": "Dedicated to creating and experiencing music around the world.",
+      "location": "Nashville",
+      "height": "5'10\"",
+      "language": "English",
+      "education": "Self-taught musician",
+      "mbti": "ISFP",
+      "loveStyle": "Creative and compassionate",
+      "interested": "Playing music, traveling, attending concerts",
+      "profilePicture": [
+        "../src/assets/img/male/person2/Max_1.webp",
+        "../src/assets/img/male/person2/Max_2.webp"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Ethan White",
+      "age": 27,
+      "Gender": "Male",
+      "datingGoal": "Let's have meaningful conversations while exploring new cuisines.",
+      "bio": "Foodie and amateur chef.",
+      "lifestyle": "Passionate about trying new foods and cooking experiments.",
+      "location": "Austin",
+      "height": "5'11\"",
+      "language": "English",
+      "education": "Bachelor's degree in Culinary Arts",
+      "mbti": "ISTJ",
+      "loveStyle": "Stable and reliable",
+      "interested": "Cooking, trying new restaurants, watching cooking shows",
+      "profilePicture": [
+        "../src/assets/img/male/person3/Ethan_1.webp",
+        "../src/assets/img/male/person3/Ethan_2.webp"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Lucas Martinez",
+      "age": 31,
+      "Gender": "Male",
+      "datingGoal": "Seeking a partner for spontaneous road trips and deep conversations.",
+      "bio": "Adventure seeker and aspiring writer.",
+      "lifestyle": "Embracing the unknown and seeking inspiration on the open road.",
+      "location": "Denver",
+      "height": "6'0\"",
+      "language": "English",
+      "education": "Bachelor's degree in Creative Writing",
+      "mbti": "ENFJ",
+      "loveStyle": "Compassionate and adventurous",
+      "interested": "Road trips, writing, discussing life's mysteries",
+      "profilePicture": [
+        "../src/assets/img/male/person4/Lucas_1.webp",
+        "../src/assets/img/male/person4/Lucas_2.webp"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Owen Kim",
+      "age": 33,
+      "Gender": "Male",
+      "datingGoal": "Looking for someone who shares a love for technology and gaming.",
+      "bio": "Tech enthusiast and avid gamer.",
+      "lifestyle": "Immersed in the world of technology and virtual realities.",
+      "location": "San Francisco",
+      "height": "5'9\"",
+      "language": "English and Korean",
+      "education": "Master's degree in Computer Science",
+      "mbti": "INTP",
+      "loveStyle": "Analytical and curious",
+      "interested": "Gaming, coding, exploring new gadgets",
+      "profilePicture": [
+        "../src/assets/img/male/person5/Owen_1.webp",
+        "../src/assets/img/male/person5/Owen_2.webp"
+      ]
+    }
+  ]
+}

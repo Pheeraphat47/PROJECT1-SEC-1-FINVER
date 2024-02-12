@@ -1,0 +1,104 @@
+{
+  "femaleProfiles": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "age": 28,
+      "Gender": "Female",
+      "datingGoal": "Looking for someone who shares the same adventurous spirit!",
+      "bio": "I love hiking and exploring new places.",
+      "lifestyle": "Active lifestyle with a passion for outdoor activities.",
+      "location": "Texas",
+      "height": "5'6\"",
+      "language": "English",
+      "education": "Bachelor's degree",
+      "mbti": "ENFP",
+      "loveStyle": "Romantic and spontaneous",
+      "interested": "Exploring new places, outdoor activities, deep conversations",
+      "profilePicture": [
+        "../src/assets/img/female/person1/Alice_1.webp",
+        "../src/assets/img/female/person1/Alice_2.webp"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Eva Rodriguez",
+      "age": 30,
+      "Gender": "Female",
+      "datingGoal": "Searching for a creative soul to share experiences with.",
+      "bio": "Passionate about art and culture.",
+      "lifestyle": "Artistic lifestyle with a focus on creativity.",
+      "location": "Orlando",
+      "height": "5'8\"",
+      "language": "Spanish and English",
+      "education": "Master's degree in Fine Arts",
+      "mbti": "INFP",
+      "loveStyle": "Affectionate and nurturing",
+      "interested": "Art exhibitions, cultural events, deep conversations",
+      "profilePicture": [
+        "../src/assets/img/female/person2/Eva_1.webp",
+        "../src/assets/img/female/person2/Eva_2.webp"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Sophie Brown",
+      "age": 22,
+      "Gender": "Female",
+      "datingGoal": "Let's have deep conversations over a cup of tea.",
+      "bio": "Bookworm and aspiring writer.",
+      "lifestyle": "Intellectual lifestyle with a love for literature.",
+      "location": "San Francisco",
+      "height": "5'4\"",
+      "language": "English",
+      "education": "Currently studying literature",
+      "mbti": "INTJ",
+      "loveStyle": "Analytical and independent",
+      "interested": "Reading, writing, philosophical discussions",
+      "profilePicture": [
+        "../src/assets/img/female/person3/Sophie_1.webp",
+        "../src/assets/img/female/person3/Sophie_2.webp"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Olivia Davis",
+      "age": 26,
+      "Gender": "Female",
+      "datingGoal": "Seeking a partner for spontaneous adventures.",
+      "bio": "Lover of travel and trying new cuisines.",
+      "lifestyle": "Adventurous and spontaneous lifestyle.",
+      "location": "New York",
+      "height": "5'7\"",
+      "language": "English",
+      "education": "Bachelor's degree in Travel Management",
+      "mbti": "ESFP",
+      "loveStyle": "Fun-loving and energetic",
+      "interested": "Travel, food festivals, live music",
+      "profilePicture": [
+        "../src/assets/img/female/person4/Olivia_1.webp",
+        "../src/assets/img/female/person4/Olivia_2.webp"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Lily Chen",
+      "age": 29,
+      "Gender": "Female",
+      "datingGoal": "Looking for someone with a passion for technology and innovation.",
+      "bio": "Tech geek with a love for coding and gadgets.",
+      "lifestyle": "Tech-savvy lifestyle with a focus on innovation.",
+      "location": "Seattle",
+      "height": "5'5\"",
+      "language": "English and Mandarin",
+      "education": "Master's degree in Computer Science",
+      "mbti": "INTP",
+      "loveStyle": "Analytical and independent",
+      "interested": "Coding, tech meetups, exploring new gadgets",
+      "profilePicture": [
+        "../src/assets/img/female/person5/Lily_1.webp",
+        "../src/assets/img/female/person5/Lily_2.webp"
+      ]
+    }
+  ]
+}
