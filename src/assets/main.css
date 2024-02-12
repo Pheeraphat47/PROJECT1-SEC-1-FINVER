@@ -5,3 +5,24 @@
 body {
   height: max-content;
 }
+
+::-webkit-scrollbar{
+  width: 0.5em;
+  height: 0.25em;
+}
+
+::-webkit-scrollbar-track {
+  background: whitesmoke;
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb{
+  background: hotpink;
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: palevioletred;
+}
+
+
