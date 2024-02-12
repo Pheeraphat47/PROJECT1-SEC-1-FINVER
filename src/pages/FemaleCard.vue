@@ -10,8 +10,8 @@ const isFlipped = ref(false);
 
 const toggleDescriptions = () => {
 	showDescriptions.value = !showDescriptions.value;
-	isFlipped.value = !isFlipped.value;
 };
+
 
 // let count = ref(0);
 const heartCount = ref(0);
@@ -47,8 +47,7 @@ const dislikeProfile = () => {
 </script>
 
 <template>
-
-    <!-- Heart modal-->
+	<!-- Heart modal-->
 	<div class="mt-5 ml-6">
 		<button class="duration-300 bg-pink-500 hover:bg-pink-700 btn btn-circle btn-lg hover:scale-125"
 			onclick="modal.showModal()">
@@ -77,10 +76,9 @@ const dislikeProfile = () => {
 		</form>
 	</dialog>
 
-    <!-- Main Content -->
+	<!-- Main Content -->
 	<div class="flex items-center justify-center h-screen">
 		<div class="max-w-md p-4 space-x-4 carousel carousel-center bg-neutral rounded-box">
-
 			<div v-for="(profile, index) in femaleProfiles" :key="profile.id" class="carousel-item">
 				<div class="flex justify-center transition-all duration-500 ease-in-out">
 					<div class="flex justify-center p-5 pt-[5em]">
@@ -113,7 +111,8 @@ const dislikeProfile = () => {
 									<span class="font-bold">Bio:</span> {{ profile.bio }}
 								</p>
 								<!-- Hidden Desc -->
-								<div v-if="showDescriptions" class="col-span-3 max-h-[200px] overflow-y-auto">
+								<div class="col-span-3 max-h-[200px] overflow-y-auto transition-all duration-500 ease-in-out" :style="{ maxHeight: showDescriptions ? '200px' : '0' }">
+                
 									<p>
 										<span class="font-bold">Dating Goal:</span>
 										{{ profile.datingGoal }}
@@ -159,7 +158,7 @@ const dislikeProfile = () => {
 											<path fill="currentColor"
 												d="M12.025 20.675q-2.696-2.702-4.443-4.546q-1.747-1.844-2.766-3.19q-1.018-1.347-1.417-2.37Q3 9.546 3 8.5q0-2.088 1.456-3.544T8 3.5q.952 0 1.848.326q.896.326 1.625.947L9.827 10.5h3.058l-.754 8.067L15.192 8.5h-3.038l1.486-4.454q.53-.273 1.12-.41q.592-.136 1.202-.136q2.088 0 3.544 1.456T20.962 8.5q0 1.065-.431 2.123T19.06 13.06q-1.04 1.378-2.756 3.2q-1.716 1.822-4.279 4.416" />
 										</svg>
-                                    </button>									
+									</button>
 									<!-- Heart Icon -->
 									<button @click="incrementHeartCount"
 										class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125">
@@ -173,13 +172,21 @@ const dislikeProfile = () => {
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Main Content-->
-	
 </template>
 
-<style scoped></style>
+<style scoped>
+.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s ease;
+}
+
+.show {
+	max-height: 200px;
+	/* ปรับค่าตามความต้องการ */
+}</style>

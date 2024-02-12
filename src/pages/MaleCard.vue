@@ -13,7 +13,7 @@ const toggleDescriptions = () => {
 	isFlipped.value = !isFlipped.value;
 };
 
-let count = ref(0);
+// let count = ref(0);
 const heartCount = ref(0);
 const incrementHeartCount = () => {
 	heartCount.value++;
@@ -113,7 +113,7 @@ const dislikeProfile = () => {
 									<span class="font-bold">Bio:</span> {{ profile.bio }}
 								</p>
 								<!-- Hidden Desc -->
-								<div v-if="showDescriptions" class="col-span-3 max-h-[200px] overflow-y-auto">
+								<div class="col-span-3 max-h-[200px] overflow-y-auto transition-all duration-500 ease-in-out" :style="{ maxHeight: showDescriptions ? '200px' : '0' }">
 									<p>
 										<span class="font-bold">Dating Goal:</span>
 										{{ profile.datingGoal }}
