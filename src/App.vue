@@ -12,7 +12,7 @@ const closeDropdown = () => {
 	isDropdownVisible.value = false;
 };
 
-const isLoginModalOpen = ref(false);
+const isLoginModalOpen = ref(true);
 const username = ref("");
 const password = ref("");
 
@@ -21,16 +21,10 @@ const openLoginModal = () => {
 	console.log(username.value);
 	console.log(password.value);
 };
-
-const closeLoginModal = () => {
-	isLoginModalOpen.value = false;
-	// Optionally, you may want to clear the form fields here
-	username.value = "";
-	password.value = "";
-	console.log(username.value);
-	console.log(password.value);
-};
-
+const isShowProfleModal = ref(false)
+const openProfileModal = () => {
+	isShowProfleModal.value = false
+}
 
 const isNavbarWhite = ref(true);
 
@@ -139,54 +133,86 @@ const dislikeProfile = () => {
 				<ul v-show="isDropdownVisible" @click.away="closeDropdown" tabIndex="0"
 					class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
 					<li>
-						<a class="justify-between">
+						<a class="justify-between" @click="isShowProfleModal = true">
 							Profile
-							<span class="badge">New</span>
+							<span class="badge">{{ username }}</span>
 						</a>
 					</li>
 					<li><a>Settings</a></li>
-					<li><a @click="isLoginModalOpen = true">Login</a></li>
+					<li><a @click="isLoginModalOpen = true">Logout</a></li>
 				</ul>
 			</div>
 			<div>
 				<!-- Login Modal -->
 				<div v-if="isLoginModalOpen"
-					class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-					<div class="z-0 p-6 bg-white rounded shadow-md w-96">
-						<h2 class="flex justify-center mb-4 text-3xl font-bold">FINVER</h2>
+					class="fixed inset-0 z-50  flex items-center justify-center bg-black bg-opacity-50">
+					<div class="z-0 p-6  bg-white rounded shadow-md w-96">
+
+						<h2 class="flex justify-center mb-4 text-3xl text-black font-bold">FINVER</h2>
 
 						<!-- Your login form goes here -->
 						<form @submit.prevent="login">
 							<div class="mb-4">
 								<label for="username" class="block text-sm font-semibold text-gray-600">Username:</label>
 								<input type="text" id="username" v-model.trim="username"
-									class="w-full p-2 bg-white border border-gray-300 rounded placeholder:italic placeholder:text-slate-400"
+									class="w-full p-2 bg-white border border-gray-300 rounded placeholder:italic placeholder:text-slate-400 text-black"
 									placeholder="Enter Username" />
 							</div>
 
-							<div class="mb-4">
-								<label for="password" class="block text-sm font-semibold text-gray-600">Password:</label>
-								<input type="password" id="password" v-model.trim="password"
-									class="w-full p-2 bg-white border border-gray-300 rounded placeholder:italic placeholder:text-slate-400"
-									placeholder="Enter Password" />
-							</div>
+
 
 							<button @click="openLoginModal" type="button" class="p-2 text-white bg-blue-500 rounded">
 								Login
 							</button>
 						</form>
 
-						<button @click="closeLoginModal" class="mt-4 text-gray-600">
-							Close
-						</button>
+
+					</div>
+				</div>
+			</div>
+			<!-- Profile Modal -->
+			<div>
+				<div v-if="isShowProfleModal"
+					class="fixed inset-0 z-50  flex items-center justify-center bg-black bg-opacity-50">
+					<div class="z-0 p-6  bg-white rounded shadow-md w-96">
+						<div class="flex justify-end">
+							<button @click="openProfileModal" type="button" class="p-2 text-black ">
+								X
+							</button>
+						</div>
+						<h2 class="flex justify-center  mb-4 text-3xl font-bold text-black">Profile</h2>
+						
+						<div class="w-28  mx-auto ">
+						<img alt="Tailwind CSS Navbar component"
+							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" class=" rounded-full" />
+						</div>
+						<div class="mb-4 ">
+							<label for="username" class="block text-center text-sm font-semibold text-gray-600 pt-3">Username: {{ username
+							}}</label>
+						</div>
+
+
+
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+
 	<!-- Section Landing Page -->
-	<section class="px-6 pt-8 pb-12 sm:pt-20 md:pb-16 lg:pb-0 2xl:pt-28" id="home">
+	<section class="px-6 pt-8 pb-12 sm:pt-10 md:pb-16 lg:pb-0 2xl:pt-28" id="home">
+		<!-- Buble Chat -->
+		<div class="chat chat-start">
+			<div class="chat-image avatar">
+				<div class="w-10 rounded-full">
+					<img alt="Tailwind CSS chat bubble"
+						src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+				</div>
+			</div>
+			<div class="chat-bubble">Hi "{{ username }}"</div>
+		</div>
 		<div class="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
 			<div class="flex flex-col justify-center p-6 text-center rounded-sm lg:flex-1 lg:max-w-xl lg:text-left">
 				<h1 class="text-5xl font-bold leading-none sm:text-7xl">
@@ -304,8 +330,8 @@ const dislikeProfile = () => {
 				</div>
 
 				<!-- แสดงรายชื่อและรูปโปรไฟล์ของคนที่ได้รับการไลค์ไปแล้ว -->
-				<div class="chat flex-col items-center justify-center gap-5 mt-5 cursor-pointer">
-					<div v-for="(profile, index) in likedProfiles" :key="index" class="chat-bubble">
+				<div class="chats flex-col items-center justify-center gap-5 mt-5 cursor-pointer">
+					<div v-for="(profile, index) in likedProfiles" :key="index" class="chat-bubbles">
 						<img v-if="profile.profilePicture && profile.profilePicture.length > 0"
 							:src="profile.profilePicture[0]" :alt="profile.name" class="profile-pic">
 						<div class="chat-text">{{ profile.name }}</div>
@@ -325,7 +351,7 @@ const dislikeProfile = () => {
 					<div class="flex justify-center transition-all duration-500 ease-in-out">
 						<div class="flex justify-center p-5 pt-[5em]">
 							<!-- Card  -->
-							<div class="shadow-xl bg-rose-100 card w-96">
+							<div class="shadow-xl bg-rose-100 card w-96 text-black">
 								<div class="h-96 carousel carousel-vertical rounded-t-xl">
 									<div v-for="(picture, pictureIndex) in profile.profilePicture" :key="pictureIndex"
 										class="h-full carousel-item">
@@ -623,15 +649,15 @@ const dislikeProfile = () => {
 
 .show {
 	max-height: 200px;
-	
+
 }
 
 /* CSS for chat */
-.chat {
+.chats {
 	width: 100%;
 }
 
-.chat-bubble {
+.chat-bubbles {
 	display: flex;
 	align-items: center;
 	width: 100%;
