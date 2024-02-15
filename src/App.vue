@@ -87,12 +87,20 @@ const dislikeProfile = () => {
 	showDescriptions.value = false;
 };
 
+const refreshPage = () => {
+	window.location.reload();
+	// Reloads the current page
+};
+
+const thanks = () => {
+
+}
 </script>
 
 <template>
 	<!-- Navbar-->
 	<div class="sticky top-0 z-50 pt-3 navbar" :class="{ 'bg-pink-100': isNavbarWhite, 'bg-pink-300': !isNavbarWhite }">
-		<div class="flex-1">
+		<div @click="refreshPage" class="flex-1">
 			<a class="text-3xl text-pink-900 btn btn-ghost">FINVER</a>
 		</div>
 		<div class="flex-none gap-5">
@@ -237,13 +245,13 @@ const dislikeProfile = () => {
 	</section>
 
 	<section class="p-4 lg:p-8" id="features">
-		<div class="container mx-auto space-y-20 lg:space-y-36">
+		<div class="container mx-auto mt-12 space-y-20 lg:space-y-36">
 			<div class="flex flex-col max-w-xl mx-auto overflow-hidden rounded-md lg:max-w-full lg:flex-row min-h-96">
 				<div
 					class="flex items-center justify-center flex-1 px-4 mb-8 lg:flex-3 h-72 lg:justify-start sm:h-80 lg:h-96 lg:mb-0">
 					<!---->
-					<picture alt="" class="object-contain">
-						<source type="image/svg" srcset=""><img src="./assets/icons/Tinder.svg" alt="TinderReferences"
+					<picture alt="" class="object-contain ml-44">
+						<source type="image/svg" srcset=""><img src="./assets/icons/Finver.png" alt="FinverIcon"
 							class="w-96 h-72 lg:h-96 aspect-video">
 					</picture><!---->
 				</div>
@@ -345,13 +353,37 @@ const dislikeProfile = () => {
 		</dialog>
 
 		<!-- Main Content -->
-		<div class="flex items-center justify-center">
+		<div v-if="Profiles.length === 0" class="flex items-center justify-center">
+			<div class="card w-96 shadow-xl">
+				<div class="card-body flex justify-center items-center border-8 border-red-300">
+					<form action="" class="">
+						<label for="review" class="flex justify-center">Add Your Review</label>
+						<input type="text" name="review" id="review" class="text-center border-pink-400 border-4"
+							placeholder="Type here">
+					</form>
+					<div class="rating rating-lg">
+						<input type="radio" name="rating-10" class="rating-hidden" />
+						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
+						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
+						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
+						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
+						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
+					</div>
+					<div class="card-actions">
+						<button class="btn btn-primary mb-2">Review</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div v-else class="flex items-center justify-center">
 			<div class="max-w-md p-4 space-x-4 carousel carousel-center rounded-box">
-				<div v-for="(profile, index) in Profiles" :key="profile.id" class="carousel-item">
+				<div v-for="(profile, index) in Profiles" :key="profile.id" class="">
 					<div class="flex justify-center transition-all duration-500 ease-in-out">
 						<div class="flex justify-center p-5 pt-[5em]">
 							<!-- Card  -->
+
 							<div class="shadow-xl bg-rose-100 card w-96 text-black">
+
 								<div class="h-96 carousel carousel-vertical rounded-t-xl">
 									<div v-for="(picture, pictureIndex) in profile.profilePicture" :key="pictureIndex"
 										class="h-full carousel-item">
@@ -480,11 +512,8 @@ const dislikeProfile = () => {
 								</div>
 							</div>
 							<div>
-								<div class="flex text-xs flex-start badge badge-secondary badge-outline">Team Leader
-								</div>
 								<p class="pt-2 leading-7 text-gray-800 text-start dark:text-white">
-									Beta Microsoft Learn Student Ambassadors , Frontend Developer Intern at Innovasive
-									Co., Ltd. Student from SIT KMUTT IT#28
+									Student from SIT KMUTT IT#28
 								</p>
 							</div>
 						</div>
