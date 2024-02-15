@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 
-
 const isDropdownVisible = ref(false);
 
 const toggleDropdown = () => {
@@ -14,17 +13,19 @@ const closeDropdown = () => {
 
 const isLoginModalOpen = ref(true);
 const username = ref("");
-const password = ref("");
 
 const openLoginModal = () => {
-	isLoginModalOpen.value = false;
-	console.log(username.value);
-	console.log(password.value);
+	if (username.value === null || username.value === "undefined" || username.value === "") {
+		alert("Please Enter Your Username");
+	} else {
+		isLoginModalOpen.value = false;
+		console.log(username.value);
+	}
 };
-const isShowProfleModal = ref(false)
+const isShowProfileModal = ref(false);
 const openProfileModal = () => {
-	isShowProfleModal.value = false
-}
+	isShowProfileModal.value = false;
+};
 
 const isNavbarWhite = ref(true);
 
@@ -35,7 +36,6 @@ window.addEventListener("scroll", () => {
 	// Change the background color based on the scroll position
 	isNavbarWhite.value = scrollPosition < 50;
 });
-
 
 import ProfilesData from "../data/Data.json";
 
@@ -49,8 +49,6 @@ const toggleDescriptions = () => {
 };
 
 const likedProfiles = ref([]);
-
-
 
 // let count = ref(0);
 const heartCount = ref(0);
@@ -69,7 +67,6 @@ const incrementHeartCount = (profileIndex) => {
 		return;
 	}
 };
-
 
 const dislikeProfile = () => {
 	heartCount.value++;
@@ -92,9 +89,7 @@ const refreshPage = () => {
 	// Reloads the current page
 };
 
-const thanks = () => {
-
-}
+const thanks = () => { };
 </script>
 
 <template>
@@ -106,7 +101,7 @@ const thanks = () => {
 		<div class="flex-none gap-5">
 			<div>
 				<ul class="flex gap-10 text-xl font-semibold text-pink-900">
-					<li class="cursor-pointer "><a href="#home">Home</a></li>
+					<li class="cursor-pointer"><a href="#home">Home</a></li>
 					<li class="cursor-pointer"><a href="#features">Feature</a></li>
 					<li class="cursor-pointer"><a href="#Team">OurTeam</a></li>
 					<li class="cursor-pointer"><a href="#FAQ">FAQ</a></li>
@@ -141,7 +136,7 @@ const thanks = () => {
 				<ul v-show="isDropdownVisible" @click.away="closeDropdown" tabIndex="0"
 					class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
 					<li>
-						<a class="justify-between" @click="isShowProfleModal = true">
+						<a class="justify-between" @click="isShowProfileModal = true">
 							Profile
 							<span class="badge">{{ username }}</span>
 						</a>
@@ -153,61 +148,55 @@ const thanks = () => {
 			<div>
 				<!-- Login Modal -->
 				<div v-if="isLoginModalOpen"
-					class="fixed inset-0 z-50  flex items-center justify-center bg-black bg-opacity-50">
-					<div class="z-0 p-6  bg-white rounded shadow-md w-96">
-
-						<h2 class="flex justify-center mb-4 text-3xl text-black font-bold">FINVER</h2>
-
+					class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+					<div class="z-0 p-6 bg-white rounded shadow-md w-96">
+						<h2 class="flex justify-center mb-4 text-3xl text-black font-bold">
+							FINVER
+						</h2>
 						<!-- Your login form goes here -->
 						<form @submit.prevent="login">
 							<div class="mb-4">
 								<label for="username" class="block text-sm font-semibold text-gray-600">Username:</label>
 								<input type="text" id="username" v-model.trim="username"
 									class="w-full p-2 bg-white border border-gray-300 rounded placeholder:italic placeholder:text-slate-400 text-black"
-									placeholder="Enter Username" />
+									placeholder="Enter Your Username" />
 							</div>
-
-
-
 							<button @click="openLoginModal" type="button" class="p-2 text-white bg-blue-500 rounded">
 								Login
 							</button>
 						</form>
-
-
 					</div>
 				</div>
 			</div>
 			<!-- Profile Modal -->
 			<div>
-				<div v-if="isShowProfleModal"
-					class="fixed inset-0 z-50  flex items-center justify-center bg-black bg-opacity-50">
-					<div class="z-0 p-6  bg-white rounded shadow-md w-96">
+				<div v-if="isShowProfileModal"
+					class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+					<div class="z-0 p-6 bg-white rounded shadow-md w-96">
 						<div class="flex justify-end">
-							<button @click="openProfileModal" type="button" class="p-2 text-black ">
+							<button @click="openProfileModal" type="button" class="p-2 text-black">
 								X
 							</button>
 						</div>
-						<h2 class="flex justify-center  mb-4 text-3xl font-bold text-black">Profile</h2>
-						
-						<div class="w-28  mx-auto ">
-						<img alt="Tailwind CSS Navbar component"
-							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" class=" rounded-full" />
+						<h2 class="flex justify-center mb-4 text-3xl font-bold text-black">
+							Profile
+						</h2>
+
+						<div class="w-28 mx-auto">
+							<img alt="Tailwind CSS Navbar component"
+								src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+								class="rounded-full" />
 						</div>
-						<div class="mb-4 ">
-							<label for="username" class="block text-center text-sm font-semibold text-gray-600 pt-3">Username: {{ username
-							}}</label>
+						<div class="mb-4">
+							<label for="username"
+								class="block text-center text-sm font-semibold text-gray-600 pt-3">Username: {{ username
+								}}</label>
 						</div>
-
-
-
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Section Landing Page -->
 	<section class="px-6 pt-8 pb-12 sm:pt-10 md:pb-16 lg:pb-0 2xl:pt-28" id="home">
@@ -224,24 +213,28 @@ const thanks = () => {
 		<div class="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
 			<div class="flex flex-col justify-center p-6 text-center rounded-sm lg:flex-1 lg:max-w-xl lg:text-left">
 				<h1 class="text-5xl font-bold leading-none sm:text-7xl">
-					Kickstart your next Dating in minutes with <span class="text-pink-400">FINVER</span>
+					Kickstart your next Dating in minutes with
+					<span class="text-pink-400">FINVER</span>
 				</h1>
-				<p class="mt-6 mb-8 text-lg sm:mb-12"> <span class="font-bold text-pink-400"> FINVER </span>is a DatingApp
-					Simulator project for INT203 Clientside Web programming II Subject This is our first group project build
-					by using Vuejs3 , tailwindcss and Daisy UI </p>
+				<p class="mt-6 mb-8 text-lg sm:mb-12">
+					<span class="font-bold text-pink-400"> FINVER </span>is a DatingApp
+					Simulator project for INT203 Clientside Web programming II Subject
+					This is our first group project build by using Vuejs3 , tailwindcss
+					and Daisy UI
+				</p>
 				<div
 					class="flex items-center justify-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
 					<a href="#Finver" class="px-8 py-3 text-lg font-semibold bg-pink-400 rounded button">
-						Get Started </a>
+						Get Started
+					</a>
 				</div>
 			</div>
 			<div
 				class="flex items-center justify-center flex-shrink-0 p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
 				<img src="./assets/icons/Couple.svg" alt="couplepicture"
-					class="object-contain w-auto h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 aspect-square">
+					class="object-contain w-auto h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 aspect-square" />
 			</div>
 		</div>
-
 	</section>
 
 	<section class="p-4 lg:p-8" id="features">
@@ -251,29 +244,35 @@ const thanks = () => {
 					class="flex items-center justify-center flex-1 px-4 mb-8 lg:flex-3 h-72 lg:justify-start sm:h-80 lg:h-96 lg:mb-0">
 					<!---->
 					<picture alt="" class="object-contain ml-44">
-						<source type="image/svg" srcset=""><img src="./assets/icons/Finver.png" alt="FinverIcon"
-							class="w-96 h-72 lg:h-96 aspect-video">
+						<source type="image/svg" srcset="" />
+						<img src="./assets/icons/Finver.png" alt="FinverIcon" class="w-96 h-72 lg:h-96 aspect-video" />
 					</picture><!---->
 				</div>
-				<div class="flex flex-col justify-center flex-1 px-6 lg:flex-2"><span
-						class="mb-2 text-base font-semibold tracking-widest uppercase text-rose-500"> A Dating App
-						Playground</span>
-					<h2 class="text-3xl font-bold"> Features base on Tinder App , But just <span
-							class="text-pink-400">Frontend</span></h2>
+				<div class="flex flex-col justify-center flex-1 px-6 lg:flex-2">
+					<span class="mb-2 text-base font-semibold tracking-widest uppercase text-rose-500">
+						A Dating App Playground</span>
+					<h2 class="text-3xl font-bold">
+						Features base on Tinder App , But just
+						<span class="text-pink-400">Frontend</span>
+					</h2>
 					<h3 class="mt-3 text-lg font-bold">
-						The main features of my app are as follows:</h3>
+						The main features of my app are as follows:
+					</h3>
 
 					<ul class="mx-4 my-3 list-disc">
-
-						<li>Users can select the gender they are interested in and view profiles of individuals they find
-							interesting. They have the option to either like or dislike profiles.</li>
 						<li>
-							The system keeps track of the number of likes received by a profile
+							Users can select the gender they are interested in and view
+							profiles of individuals they find interesting. They have the
+							option to either like or dislike profiles.
 						</li>
 						<li>
-							Names and profile pictures of individuals who have been liked by the user are displayed.
+							The system keeps track of the number of likes received by a
+							profile
 						</li>
-
+						<li>
+							Names and profile pictures of individuals who have been liked by
+							the user are displayed.
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -284,35 +283,38 @@ const thanks = () => {
 					class="flex items-center justify-center flex-1 px-4 mb-8 lg:flex-3 h-72 lg:justify-end sm:h-80 lg:h-96 lg:mb-0">
 					<!---->
 					<picture alt="" class="object-contain">
-						<source type="image/svg" srcset=""><img src="./assets/icons/Subfeature.svg" alt="Sub Features"
-							class="object-contain w-80 h-72 lg:h-96 aspect-video">
+						<source type="image/svg" srcset="" />
+						<img src="./assets/icons/Subfeature.svg" alt="Sub Features"
+							class="object-contain w-80 h-72 lg:h-96 aspect-video" />
 					</picture><!---->
 				</div>
-				<div class="flex flex-col justify-center flex-1 px-6 lg:flex-2"><span
-						class="mb-2 text-base font-semibold tracking-widest uppercase text-violet-400 "> Additional Features
+				<div class="flex flex-col justify-center flex-1 px-6 lg:flex-2">
+					<span class="mb-2 text-base font-semibold tracking-widest uppercase text-violet-400">
+						Additional Features
 					</span>
-					<h2 class="text-3xl font-bold">More for additional features that we want to show</h2>
+					<h2 class="text-3xl font-bold">
+						More for additional features that we want to show
+					</h2>
 					<ul class="mx-4 my-3 list-disc">
-						<li>Routing System: Utilizing vue-router version 4 to navigate to different pages seamlessly within
-							the app.</li>
-						<li>Basic Login System: A basic login system that displays the user's username while they are
-							actively using the app.</li>
-						<li>Dark Mode: An optional dark mode feature that users can toggle for a different visual
-							experience.</li>
+						<li>
+							Routing System: Utilizing vue-router version 4 to navigate to
+							different pages seamlessly within the app.
+						</li>
+						<li>
+							Basic Login System: A basic login system that displays the user's
+							username while they are actively using the app.
+						</li>
+						<li>
+							Dark Mode: An optional dark mode feature that users can toggle for
+							a different visual experience.
+						</li>
 					</ul>
 				</div>
 			</div>
-
-
-
-
 		</div>
-
-
 	</section>
 
 	<section id="Finver">
-
 		<!-- Heart modal-->
 		<div class="mt-10 lg:ml-52">
 			<button class="duration-300 bg-pink-500 hover:bg-pink-700 btn btn-circle btn-lg hover:scale-125"
@@ -326,7 +328,6 @@ const thanks = () => {
 		<dialog id="modal" class="modal">
 			<div class="modal-box">
 				<h3 class="text-lg font-bold text-center">Liked {{ heartCount }}</h3>
-
 				<div class="flex justify-center">
 					<p>
 						<svg class="mt-1 text-pink-500" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em"
@@ -338,14 +339,13 @@ const thanks = () => {
 				</div>
 
 				<!-- แสดงรายชื่อและรูปโปรไฟล์ของคนที่ได้รับการไลค์ไปแล้ว -->
-				<div class="chats flex-col items-center justify-center gap-5 mt-5 cursor-pointer">
-					<div v-for="(profile, index) in likedProfiles" :key="index" class="chat-bubbles">
+				<div class="chats flex-col items-center justify-center gap-5 cursor-pointer">
+					<div v-for="(profile, index) in likedProfiles" :key="index" class="chat-bubbles m-2">
 						<img v-if="profile.profilePicture && profile.profilePicture.length > 0"
-							:src="profile.profilePicture[0]" :alt="profile.name" class="profile-pic">
+							:src="profile.profilePicture[0]" :alt="profile.name" class="profile-pic" />
 						<div class="chat-text">{{ profile.name }}</div>
 					</div>
 				</div>
-
 			</div>
 			<form method="dialog" class="modal-backdrop">
 				<button>close</button>
@@ -359,7 +359,7 @@ const thanks = () => {
 					<form action="" class="">
 						<label for="review" class="flex justify-center">Add Your Review</label>
 						<input type="text" name="review" id="review" class="text-center border-pink-400 border-4"
-							placeholder="Type here">
+							placeholder="Type here" />
 					</form>
 					<div class="rating rating-lg">
 						<input type="radio" name="rating-10" class="rating-hidden" />
@@ -370,7 +370,18 @@ const thanks = () => {
 						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
 					</div>
 					<div class="card-actions">
-						<button class="btn btn-primary mb-2">Review</button>
+						<button class="btn" onclick="my_modal_3.showModal()">Submit</button>
+						<dialog id="my_modal_3" class="modal">
+							<div class="modal-box">
+								<form method="dialog">
+									<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+										✕
+									</button>
+								</form>
+								<h3 class="font-bold text-lg">Thank you for your submit!</h3>
+								<p class="py-4">Press ESC key or click on ✕ button to close</p>
+							</div>
+						</dialog>
 					</div>
 				</div>
 			</div>
@@ -381,9 +392,7 @@ const thanks = () => {
 					<div class="flex justify-center transition-all duration-500 ease-in-out">
 						<div class="flex justify-center p-5 pt-[5em]">
 							<!-- Card  -->
-
 							<div class="shadow-xl bg-rose-100 card w-96 text-black">
-
 								<div class="h-96 carousel carousel-vertical rounded-t-xl">
 									<div v-for="(picture, pictureIndex) in profile.profilePicture" :key="pictureIndex"
 										class="h-full carousel-item">
@@ -413,7 +422,6 @@ const thanks = () => {
 									<!-- Hidden Desc -->
 									<div class="col-span-3 max-h-[200px] overflow-y-auto transition-all duration-500 ease-in-out"
 										:style="{ maxHeight: showDescriptions ? '200px' : '0' }">
-
 										<p>
 											<span class="font-bold">Dating Goal:</span>
 											{{ profile.datingGoal }}
@@ -478,7 +486,6 @@ const thanks = () => {
 			</div>
 		</div>
 		<!-- Main Content-->
-
 	</section>
 
 	<section class="p-10 lg:p-24" id="Team">
@@ -486,9 +493,12 @@ const thanks = () => {
 			class="relative pt-12 pb-24 text-center md:pt-24 after:absolute after:inset-x-0 after:-bottom-8 lg:after:-bottom-16 after:pointer-events-none dark:after:from-slate-900 dark:after:via-slate-900/95">
 			<!-- Title -->
 			<div class="max-w-2xl mx-auto mb-10 text-center lg:mb-14">
-				<h2 class="text-3xl font-bold lg:text-5xl lg:leading-tight dark:text-white">Our <span
-						class="text-rose-400 dark:text-rose-600">Team</span></h2>
-				<p class="mt-5">Meet the dedicated team behind Finver, the dating app simulator</p>
+				<h2 class="text-3xl font-bold lg:text-5xl lg:leading-tight dark:text-white">
+					Our <span class="text-rose-400 dark:text-rose-600">Team</span>
+				</h2>
+				<p class="mt-5">
+					Meet the dedicated team behind Finver, the dating app simulator
+				</p>
 			</div>
 			<!-- End Title -->
 
@@ -504,10 +514,11 @@ const thanks = () => {
 								<div class="flex items-center mb-5 gap-x-3">
 									<img class="inline-block rounded-full h-9 w-9"
 										src="https://s3-alpha.figma.com/profile/6b687fac-8efb-43bc-95f0-2e7a2807ed30"
-										alt="Image Description">
+										alt="Image Description" />
 									<div class="grow">
-										<p class="font-semibold text-gray-800 dark:text-white">Pheeraphat
-											Dherachaisuphakij</p>
+										<p class="font-semibold text-gray-800 dark:text-white">
+											Pheeraphat Dherachaisuphakij
+										</p>
 									</div>
 								</div>
 							</div>
@@ -528,9 +539,11 @@ const thanks = () => {
 								<div class="flex items-center mb-5 gap-x-3">
 									<img class="inline-block rounded-full h-9 w-9"
 										src="https://ph-avatars.imgix.net/5011220/9cb91dbe-4699-48fe-b4f5-9c70c69181f9"
-										alt="Image Description">
+										alt="Image Description" />
 									<div class="grow">
-										<p class="font-semibold text-gray-800 dark:text-white">Taned Thanyapanich</p>
+										<p class="font-semibold text-gray-800 dark:text-white">
+											Taned Thanyapanich
+										</p>
 									</div>
 								</div>
 							</div>
@@ -549,13 +562,13 @@ const thanks = () => {
 								<div class="flex items-center mb-5 gap-x-3">
 									<img class="inline-block rounded-full h-9 w-9"
 										src="https://s3-alpha.figma.com/profile/6b8a7cf2-08ac-4c50-b931-4c533a8a0731"
-										alt="Image Description">
+										alt="Image Description" />
 									<div class="grow">
-										<p class="font-semibold text-gray-800 dark:text-white">Nateetarn Likitwiwatpong
+										<p class="font-semibold text-gray-800 dark:text-white">
+											Nateetarn Likitwiwatpong
 										</p>
 									</div>
 								</div>
-
 							</div>
 							<p class="leading-7 text-gray-800 text-start dark:text-white">
 								Student from SIT KMUTT IT#28
@@ -563,8 +576,6 @@ const thanks = () => {
 						</div>
 					</div>
 					<!-- End Card -->
-
-
 				</div>
 				<!-- End Col -->
 
@@ -578,9 +589,10 @@ const thanks = () => {
 								<div class="flex items-center mb-5 gap-x-3">
 									<img class="inline-block rounded-full h-9 w-9"
 										src="https://pbs.twimg.com/profile_images/1738985748978876416/FMpE71i5_400x400.jpg"
-										alt="Image Description">
+										alt="Image Description" />
 									<div class="grow">
-										<p class="font-semibold text-gray-800 dark:text-white">Nateetarn Likitwiwatpong
+										<p class="font-semibold text-gray-800 dark:text-white">
+											Nateetarn Likitwiwatpong
 										</p>
 									</div>
 								</div>
@@ -600,12 +612,13 @@ const thanks = () => {
 								<div class="flex items-center mb-5 gap-x-3">
 									<img class="inline-block rounded-full h-9 w-9"
 										src="https://s3-alpha.figma.com/profile/52084af6-a7ab-4c70-ae99-9346239293cf"
-										alt="Image Description">
+										alt="Image Description" />
 									<div class="grow">
-										<p class="font-semibold text-gray-800 dark:text-white">Jiraplus Chanpong</p>
+										<p class="font-semibold text-gray-800 dark:text-white">
+											Jiraplus Chanpong
+										</p>
 									</div>
 								</div>
-
 							</div>
 							<p class="leading-7 text-gray-800 text-start dark:text-white">
 								Student from SIT KMUTT IT#28
@@ -613,8 +626,6 @@ const thanks = () => {
 						</div>
 					</div>
 					<!-- End Card -->
-
-
 				</div>
 				<!-- End Col -->
 			</div>
@@ -625,15 +636,17 @@ const thanks = () => {
 	<section class="p-10 lg:p-24" id="FAQ">
 		<!-- Title -->
 		<div class="max-w-2xl mx-auto mb-10 text-center lg:mb-14">
-			<p class="p-2 text-sm font-semibold tracking-wider text-center uppercase text-rose-400"> How it works </p>
-			<h2 class="mb-12 text-4xl font-bold leading-none text-center sm:text-4xl"> Frequently Asked Questions </h2>
+			<p class="p-2 text-sm font-semibold tracking-wider text-center uppercase text-rose-400">
+				How it works
+			</p>
+			<h2 class="mb-12 text-4xl font-bold leading-none text-center sm:text-4xl">
+				Frequently Asked Questions
+			</h2>
 		</div>
 		<div class="w-full join join-vertical">
 			<div class="border collapse collapse-arrow join-item border-base-300">
 				<input type="radio" name="my-accordion-4" checked="checked" />
-				<div class="text-xl font-medium collapse-title">
-					How can I Play?
-				</div>
+				<div class="text-xl font-medium collapse-title">How can I Play?</div>
 				<div class="collapse-content">
 					<p>Just click get started</p>
 				</div>
@@ -678,7 +691,6 @@ const thanks = () => {
 
 .show {
 	max-height: 200px;
-
 }
 
 /* CSS for chat */
