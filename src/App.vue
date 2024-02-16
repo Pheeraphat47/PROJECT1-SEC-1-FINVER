@@ -22,6 +22,12 @@ const openLoginModal = () => {
 		console.log(username.value);
 	}
 };
+
+const closeLoginModal = () => {
+	isLoginModalOpen.value = false;
+	username.value = ""
+}
+
 const isShowProfileModal = ref(false);
 const openProfileModal = () => {
 	isShowProfileModal.value = false;
@@ -88,8 +94,6 @@ const refreshPage = () => {
 	window.location.reload();
 	// Reloads the current page
 };
-
-const thanks = () => { };
 </script>
 
 <template>
@@ -149,10 +153,13 @@ const thanks = () => { };
 				<!-- Login Modal -->
 				<div v-if="isLoginModalOpen"
 					class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-					<div class="z-0 p-6 bg-white rounded shadow-md w-96">
-						<h2 class="flex justify-center mb-4 text-3xl text-black font-bold">
-							FINVER
-						</h2>
+					<div class="z-0 p-6 bg-white rounded shadow-md w-96 scale-150">
+						<div class="relative">
+							<div class="absolute top-0 right-0">
+								<button @click="closeLoginModal" class="btn btn-ghost btn-sm btn-circle hover:bg-red-400">✕</button>
+							</div>
+						</div>
+							<h2 class="mb-4 text-3xl text-black font-bold">FINVER</h2>
 						<!-- Your login form goes here -->
 						<form @submit.prevent="login">
 							<div class="mb-4">
@@ -164,6 +171,7 @@ const thanks = () => { };
 							<button @click="openLoginModal" type="button" class="p-2 text-white bg-blue-500 rounded">
 								Login
 							</button>
+							
 						</form>
 					</div>
 				</div>
@@ -354,35 +362,24 @@ const thanks = () => { };
 
 		<!-- Main Content -->
 		<div v-if="Profiles.length === 0" class="flex items-center justify-center">
-			<div class="card w-96 shadow-xl">
+			<div class="card w-96 shadow-xl h-">
 				<div class="card-body flex justify-center items-center border-8 border-red-300">
-					<form action="" class="">
-						<label for="review" class="flex justify-center">Add Your Review</label>
-						<input type="text" name="review" id="review" class="text-center border-pink-400 border-4"
-							placeholder="Type here" />
+					<form class="flex flex-col justify-center items-center gap-3">
+						<label for="review" class="text-4xl font-bold leading-none pb-2">Add Your Review</label>
+						<textarea class="bg-rose-200 text-xl font-bold p-2" name="review" id="review" cols="25"
+							rows="5"></textarea>
+						<div class="rating rating-lg">
+							<input type="radio" name="rating-10" class="rating-hidden" />
+							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
+							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
+							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" checked />
+							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
+							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
+						</div>
+						<div class="card-actions">
+							<button type="submit" class="btn">Submit</button>
+						</div>
 					</form>
-					<div class="rating rating-lg">
-						<input type="radio" name="rating-10" class="rating-hidden" />
-						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
-						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
-						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
-						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
-						<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
-					</div>
-					<div class="card-actions">
-						<button class="btn" onclick="my_modal_3.showModal()">Submit</button>
-						<dialog id="my_modal_3" class="modal">
-							<div class="modal-box">
-								<form method="dialog">
-									<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-										✕
-									</button>
-								</form>
-								<h3 class="font-bold text-lg">Thank you for your submit!</h3>
-								<p class="py-4">Press ESC key or click on ✕ button to close</p>
-							</div>
-						</dialog>
-					</div>
 				</div>
 			</div>
 		</div>
