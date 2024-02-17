@@ -32,6 +32,7 @@ const closeloginmodal = () => {
 }
 
 const isShowProfileModal = ref(false)
+
 const openProfileModal = () => {
 	isShowProfileModal.value = false
 }
@@ -135,6 +136,7 @@ onMounted(() => {
 	// Add resize listener to update mobileView when window size changes
 	window.addEventListener("resize", handleView)
 })
+
 </script>
 
 <template>
@@ -391,6 +393,7 @@ onMounted(() => {
 							<button @click="openLoginModal" type="button" class="p-2 text-white bg-blue-500 rounded">
 								Login
 							</button>
+							
 						</form>
 					</div>
 				</div>
