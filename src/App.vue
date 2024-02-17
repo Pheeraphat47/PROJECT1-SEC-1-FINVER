@@ -163,7 +163,7 @@ onMounted(() => {
 				</svg>
 			</label>
 			<audio controls class="hidden" ref="player">
-				<source src="./assets/music/sample.mp3" />
+				<source src="./assets/music/cute_music.mp3" />
 			</audio>
 			<!-- toggle BG Change -->
 			<div class="flex justify-end mr-2 mb-4">
@@ -328,7 +328,7 @@ onMounted(() => {
 					</svg>
 				</label>
 				<audio controls class="hidden" ref="player">
-					<source src="./assets/music/sample.mp3" />
+					<source src="./assets/music/cute_music.mp3" />
 				</audio>
 			</div>
 			<!-- toggle BG Change -->
@@ -730,7 +730,7 @@ onMounted(() => {
 				<!-- Col -->
 				<div class="space-y-4 xl:space-y-6">
 					<!-- Card -->
-					<div
+					<div	
 						class="flex flex-col bg-white border border-gray-200 rounded-xl dark:bg-slate-900 dark:border-gray-700">
 						<div class="p-4 md:p-6">
 							<div class="flex justify-between">
