@@ -1,108 +1,306 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue"
 
-const isDropdownVisible = ref(false);
+const isDropdownVisible = ref(false)
 
 const toggleDropdown = () => {
-	isDropdownVisible.value = !isDropdownVisible.value;
-};
-
-const closeDropdown = () => {
-	isDropdownVisible.value = false;
-};
-
-const isLoginModalOpen = ref(true);
-const username = ref("");
-
-const openLoginModal = () => {
-	if (username.value === null || username.value === "undefined" || username.value === "") {
-		alert("Please Enter Your Username");
-	} else {
-		isLoginModalOpen.value = false;
-		console.log(username.value);
-	}
-};
-
-const closeLoginModal = () => {
-	isLoginModalOpen.value = false;
-	username.value = ""
+	isDropdownVisible.value = !isDropdownVisible.value
 }
 
-const isShowProfileModal = ref(false);
-const openProfileModal = () => {
-	isShowProfileModal.value = false;
-};
+const closeDropdown = () => {
+	isDropdownVisible.value = false
+}
 
-const isNavbarWhite = ref(true);
+const isLoginModalOpen = ref(true)
+const username = ref("")
+
+const openLoginModal = () => {
+	if (
+		username.value === null ||
+		username.value === "undefined" ||
+		username.value === ""
+	) {
+		alert("Please Enter Your Username")
+	} else {
+		isLoginModalOpen.value = false
+		console.log(username.value)
+	}
+}
+
+const closeloginmodal = () => {
+	isLoginModalOpen.value = false
+}
+
+const isShowProfileModal = ref(false)
+
+const openProfileModal = () => {
+	isShowProfileModal.value = false
+}
+
+const isNavbarWhite = ref(true)
 
 window.addEventListener("scroll", () => {
 	// Get the scroll position
-	const scrollPosition = window.scrollY;
+	const scrollPosition = window.scrollY
 
 	// Change the background color based on the scroll position
-	isNavbarWhite.value = scrollPosition < 50;
-});
+	isNavbarWhite.value = scrollPosition < 50
+})
 
-import ProfilesData from "../data/Data.json";
+import ProfilesData from "../data/Data.json"
 
-const Profiles = ProfilesData.Profiles;
+const Profiles = ProfilesData.Profiles
 
-const showDescriptions = ref(false);
-const isFlipped = ref(false);
+const showDescriptions = ref(false)
+const isFlipped = ref(false)
 
 const toggleDescriptions = () => {
-	showDescriptions.value = !showDescriptions.value;
-};
+	showDescriptions.value = !showDescriptions.value
+}
 
-const likedProfiles = ref([]);
+const likedProfiles = ref([])
 
 // let count = ref(0);
-const heartCount = ref(0);
+const heartCount = ref(0)
 
 const incrementHeartCount = (profileIndex) => {
-	heartCount.value++;
+	heartCount.value++
 	// เพิ่มโปรไฟล์ที่ถูก like เข้าไปใน likedProfiles
-	likedProfiles.value.push(Profiles[profileIndex]);
+	likedProfiles.value.push(Profiles[profileIndex])
 	// ลบโปรไฟล์ที่ถูก like ออกจาก femaleProfiles
-	Profiles.splice(profileIndex, 1);
+	Profiles.splice(profileIndex, 1)
 	// Optionally, check if there are more profiles remaining
 	if (Profiles.length === 0) {
 		// Handle the case when there are no more profiles
 		// You might want to show a message or fetch more profiles
-		console.log("No more profiles");
-		return;
+		console.log("No more profiles")
+		return
 	}
-};
+}
 
 const dislikeProfile = () => {
-	heartCount.value++;
-	heartCount.value--;
+	heartCount.value++
+	heartCount.value--
 	// Remove the current profile from the array
-	Profiles.splice(0, 1);
+	Profiles.splice(0, 1)
 	// Optionally, check if there are more profiles remaining
 	if (Profiles.length === 0) {
 		// Handle the case when there are no more profiles
 		// You might want to show a message or fetch more profiles
-		console.log("No more profiles");
-		return;
+		console.log("No more profiles")
+		return
 	}
 	// Toggle the descriptions and update the flipped state
-	showDescriptions.value = false;
-};
+	showDescriptions.value = false
+}
 
 const refreshPage = () => {
-	window.location.reload();
+	window.location.reload()
 	// Reloads the current page
-};
+}
+
+const thanks = () => { }
+
+// Music Icon
+const player = ref("")
+const isPlaying = ref(false)
+
+const getMusic = () => {
+	console.log("get Music...")
+	isPlaying.value = !isPlaying.value
+	if (isPlaying.value) player.value.play()
+	else player.value.pause()
+}
+
+// Navbar 768px
+// For Navbar 1
+const mobileView1 = ref(false)
+const showNav = ref(false)
+
+// For Navbar 2
+const mobileView2 = ref(false)
+
+//For responsive 768px
+const handleView = () => {
+	mobileView1.value = window.innerWidth <= 768
+	mobileView2.value = window.innerWidth <= 768
+}
+
+const toggleNav = () => {
+	showNav.value = !showNav.value
+}
+
+// Call handleView when component is mounted
+onMounted(() => {
+	handleView()
+	// Add resize listener to update mobileView when window size changes
+	window.addEventListener("resize", handleView)
+})
+
 </script>
 
 <template>
-	<!-- Navbar-->
-	<div class="sticky top-0 z-50 pt-3 navbar" :class="{ 'bg-pink-100': isNavbarWhite, 'bg-pink-300': !isNavbarWhite }">
+	<!-- Navbar 1 -->
+	<div class="sticky top-0 z-50 pt-3 navbar gap-3" :class="{
+		hidden: !mobileView1 && !showNav,
+		'': isNavbarWhite,
+		'bg-pink-300': !isNavbarWhite,
+	}">
+		<!-- Music Icon -->
+		<div class="absolute top-0 right-0 mr-4 mt-4">
+			<label class="swap swap-rotate mr-2 mb-4" @change="getMusic">
+				<input type="checkbox" />
+				<svg class="swap-off" xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em" viewBox="0 0 24 24">
+					<path fill="currentColor"
+						d="M9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.42Z" />
+					<path fill="currentColor"
+						d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12m11-9.5A9.5 9.5 0 0 0 2.5 12a9.5 9.5 0 0 0 9.5 9.5a9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5" />
+				</svg>
+				<svg class="swap-on" xmlns="http://www.w3.org/2000/svg" width="2.6em" height="2.6em" viewBox="0 0 32 32">
+					<path fill="currentColor" d="M14 10h-2v12h2zm6 0h-2v12h2z" />
+					<path fill="currentColor"
+						d="M16 4A12 12 0 1 1 4 16A12 12 0 0 1 16 4m0-2a14 14 0 1 0 14 14A14 14 0 0 0 16 2" />
+				</svg>
+			</label>
+			<audio controls class="hidden" ref="player">
+				<source src="./assets/music/sample.mp3" />
+			</audio>
+			<!-- toggle BG Change -->
+			<div class="flex justify-end mr-2 mb-4">
+				<label class="swap swap-rotate">
+					<input type="checkbox" class="theme-controller" value="dracula" />
+					<!-- sun icon -->
+					<svg class="w-10 h-10 text-orange-400 fill-current swap-off" xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24">
+						<path
+							d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+					</svg>
+					<!-- moon icon -->
+					<svg class="w-10 h-10 fill-current swap-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+						<path
+							d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+					</svg>
+				</label>
+			</div>
+			<!-- Account Icon -->
+			<div>
+				<div @click="toggleDropdown" tabIndex="0" role="button" class="btn btn-ghost btn-circle avatar mr-2 mb-4">
+					<div class="w-10 rounded-full">
+						<img alt="Tailwind CSS Navbar component"
+							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+					</div>
+				</div>
+				<ul v-show="isDropdownVisible" @click.away="closeDropdown" tabIndex="0"
+					class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+					<li>
+						<a class="justify-between" @click="isShowProfileModal = true">
+							Profile
+							<span class="badge">{{ username }}</span>
+						</a>
+					</li>
+					<li><a>Settings</a></li>
+					<li><a @click="isLoginModalOpen = true">Logout</a></li>
+				</ul>
+			</div>
+			<!-- Login Modal -->
+			<div v-if="isLoginModalOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+				<div class="z-0 p-6 bg-white rounded shadow-md w-96 md:w-96">
+					<div class="flex justify-end">
+						<button @click="closeloginmodal" type="button" class="p-2 text-black">
+							X
+						</button>
+					</div>
+					<h2 class="flex justify-center mb-4 text-3xl text-black font-bold">
+						FINVER
+					</h2>
+					<!-- Your login form goes here -->
+					<form @submit.prevent="login">
+						<div class="mb-4">
+							<label for="username" class="block text-sm font-semibold text-gray-600">Username:</label>
+							<input type="text" id="username" v-model.trim="username"
+								class="w-full p-2 bg-white border border-gray-300 rounded placeholder:italic placeholder:text-slate-400 text-black"
+								placeholder="Enter Your Username" />
+						</div>
+						<button @click="openLoginModal" type="button" class="p-2 text-white bg-blue-500 rounded">
+							Login
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Profile Modal -->
+		<div>
+			<div v-if="isShowProfileModal"
+				class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+				<div class="z-0 p-6 bg-white rounded shadow-md w-96">
+					<div class="flex justify-end">
+						<button @click="openProfileModal" type="button" class="p-2 text-black">
+							X
+						</button>
+					</div>
+					<h2 class="flex justify-center mb-4 text-3xl font-bold text-black">
+						Profile
+					</h2>
+
+					<div class="w-28 mx-auto">
+						<img alt="Tailwind CSS Navbar component"
+							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+							class="rounded-full" />
+					</div>
+					<div class="mb-4">
+						<label for="username" class="block text-center text-sm font-semibold text-gray-600 pt-3">Username:
+							{{ username }}</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="flex justify-between items-center">
+			<button @click="toggleNav" class="focus:outline-none">
+				<!-- Hamburger Icon -->
+				<svg class="cursor-pointer m-3 sticky top-0 z-50" xmlns="http://www.w3.org/2000/svg" width="1.5em"
+					height="1.5em" viewBox="0 0 16 16">
+					<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+						stroke-width="1.5" d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5" />
+				</svg>
+			</button>
+			<div @click="refreshPage" class="flex justify-center items-center flex-grow">
+				<a class="text-3xl text-pink-900 btn btn-ghost">FINVER</a>
+			</div>
+		</div>
+		<!-- Dropdown Menu -->
+		<transition name="fade">
+			<div v-show="showNav && mobileView2" class="absolute top-16 left-0 w-full flex justify-center items-center"
+				:class="{
+					'bg-fuchsia-200': isNavbarWhite,
+					'bg-pink-200': !isNavbarWhite,
+				}">
+				<ul class="py-4 px-2 text-center">
+					<li>
+						<a href="#home" class="block py-2 text-xl">Home</a>
+					</li>
+					<li>
+						<a href="#features" class="block py-2 text-xl">Feature</a>
+					</li>
+					<li>
+						<a href="#Team" class="block py-2 text-xl">Our Team</a>
+					</li>
+					<li>
+						<a href="#FAQ" class="block py-2 text-xl">FAQ</a>
+					</li>
+				</ul>
+			</div>
+		</transition>
+	</div>
+	<!-- Navbar 2-->
+	<div class="sticky top-0 z-50 pt-3 navbar" :class="{ '': isNavbarWhite, 'bg-pink-300': !isNavbarWhite }"
+		v-show="!mobileView1 && !showNav">
 		<div @click="refreshPage" class="flex-1">
 			<a class="text-3xl text-pink-900 btn btn-ghost">FINVER</a>
 		</div>
-		<div class="flex-none gap-5">
+
+		<!-- Responsive Navigation Links -->
+		<div class="flex gap-5">
 			<div>
 				<ul class="flex gap-10 text-xl font-semibold text-pink-900">
 					<li class="cursor-pointer"><a href="#home">Home</a></li>
@@ -110,6 +308,28 @@ const refreshPage = () => {
 					<li class="cursor-pointer"><a href="#Team">OurTeam</a></li>
 					<li class="cursor-pointer"><a href="#FAQ">FAQ</a></li>
 				</ul>
+			</div>
+			<!-- toggle Music On/Off-->
+			<div class="flex justify-end">
+				<label class="swap swap-rotate" @change="getMusic">
+					<input type="checkbox" />
+					<svg class="swap-off ml-1 mt-[7px]" xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em"
+						viewBox="0 0 24 24">
+						<path fill="currentColor"
+							d="M9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.42Z" />
+						<path fill="currentColor"
+							d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12m11-9.5A9.5 9.5 0 0 0 2.5 12a9.5 9.5 0 0 0 9.5 9.5a9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5" />
+					</svg>
+					<svg class="swap-on ml-1 mt-[7px]" xmlns="http://www.w3.org/2000/svg" width="2.6em" height="2.6em"
+						viewBox="0 0 32 32">
+						<path fill="currentColor" d="M14 10h-2v12h2zm6 0h-2v12h2z" />
+						<path fill="currentColor"
+							d="M16 4A12 12 0 1 1 4 16A12 12 0 0 1 16 4m0-2a14 14 0 1 0 14 14A14 14 0 0 0 16 2" />
+					</svg>
+				</label>
+				<audio controls class="hidden" ref="player">
+					<source src="./assets/music/sample.mp3" />
+				</audio>
 			</div>
 			<!-- toggle BG Change -->
 			<div class="flex justify-end">
@@ -153,13 +373,15 @@ const refreshPage = () => {
 				<!-- Login Modal -->
 				<div v-if="isLoginModalOpen"
 					class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-					<div class="z-0 p-6 bg-white rounded shadow-md w-96 scale-150">
-						<div class="relative">
-							<div class="absolute top-0 right-0">
-								<button @click="closeLoginModal" class="btn btn-ghost btn-sm btn-circle hover:bg-red-400">✕</button>
-							</div>
+					<div class="z-0 p-6 bg-white rounded shadow-md w-96 md:w-96">
+						<div class="flex justify-end">
+							<button @click="closeloginmodal" type="button" class="p-2 text-black">
+								X
+							</button>
 						</div>
-							<h2 class="mb-4 text-3xl text-black font-bold">FINVER</h2>
+						<h2 class="flex justify-center mb-4 text-3xl text-black font-bold">
+							FINVER
+						</h2>
 						<!-- Your login form goes here -->
 						<form @submit.prevent="login">
 							<div class="mb-4">
@@ -250,11 +472,10 @@ const refreshPage = () => {
 			<div class="flex flex-col max-w-xl mx-auto overflow-hidden rounded-md lg:max-w-full lg:flex-row min-h-96">
 				<div
 					class="flex items-center justify-center flex-1 px-4 mb-8 lg:flex-3 h-72 lg:justify-start sm:h-80 lg:h-96 lg:mb-0">
-					<!---->
-					<picture alt="" class="object-contain ml-44">
+					<picture alt="" class="object-contain">
 						<source type="image/svg" srcset="" />
 						<img src="./assets/icons/Finver.png" alt="FinverIcon" class="w-96 h-72 lg:h-96 aspect-video" />
-					</picture><!---->
+					</picture>
 				</div>
 				<div class="flex flex-col justify-center flex-1 px-6 lg:flex-2">
 					<span class="mb-2 text-base font-semibold tracking-widest uppercase text-rose-500">
@@ -289,12 +510,11 @@ const refreshPage = () => {
 				class="flex flex-col max-w-xl mx-auto overflow-hidden rounded-md lg:max-w-full lg:mx-0 lg:flex-row-reverse min-h-96">
 				<div
 					class="flex items-center justify-center flex-1 px-4 mb-8 lg:flex-3 h-72 lg:justify-end sm:h-80 lg:h-96 lg:mb-0">
-					<!---->
 					<picture alt="" class="object-contain">
 						<source type="image/svg" srcset="" />
 						<img src="./assets/icons/Subfeature.svg" alt="Sub Features"
 							class="object-contain w-80 h-72 lg:h-96 aspect-video" />
-					</picture><!---->
+					</picture>
 				</div>
 				<div class="flex flex-col justify-center flex-1 px-6 lg:flex-2">
 					<span class="mb-2 text-base font-semibold tracking-widest uppercase text-violet-400">
@@ -324,156 +544,177 @@ const refreshPage = () => {
 
 	<section id="Finver">
 		<!-- Heart modal-->
-		<div class="mt-10 lg:ml-52">
-			<button class="duration-300 bg-pink-500 hover:bg-pink-700 btn btn-circle btn-lg hover:scale-125"
-				onclick="modal.showModal()">
-				<svg class="text-pink-200" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-					<path fill="currentColor"
-						d="m11 19.654l-1.156-1.042q-2.28-2.087-3.799-3.593q-1.518-1.506-2.413-2.679q-.895-1.173-1.264-2.146Q2 9.221 2 8.225q0-1.908 1.296-3.201Q4.592 3.731 6.5 3.731q1.32 0 2.475.672q1.156.672 2.025 1.96q.87-1.288 2.025-1.96q1.156-.672 2.475-.672q1.817 0 3.063 1.172q1.245 1.172 1.402 2.878q-.442-.143-.896-.202q-.454-.06-.913-.06q-2.183.02-3.794 1.52q-1.612 1.501-1.612 3.923q0 .988.362 1.976q.361.987 1.1 1.781q-.533.483-1.17 1.069q-.638.585-1.284 1.181zm6.95-4.19l-2.138-2.114l.713-.708l1.425 1.42l3.525-3.545l.713.708z" />
-				</svg>
-			</button>
-		</div>
-		<dialog id="modal" class="modal">
-			<div class="modal-box">
-				<h3 class="text-lg font-bold text-center">Liked {{ heartCount }}</h3>
-				<div class="flex justify-center">
-					<p>
-						<svg class="mt-1 text-pink-500" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em"
+		<div class="flex items-center justify-center">
+			<div>
+				<div class="mr-11">
+					<button class="duration-300 bg-pink-500 hover:bg-pink-700 btn btn-circle btn-lg hover:scale-125"
+						onclick="modal.showModal()">
+						<svg class="text-pink-200" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
 							viewBox="0 0 24 24">
 							<path fill="currentColor"
-								d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
+								d="m11 19.654l-1.156-1.042q-2.28-2.087-3.799-3.593q-1.518-1.506-2.413-2.679q-.895-1.173-1.264-2.146Q2 9.221 2 8.225q0-1.908 1.296-3.201Q4.592 3.731 6.5 3.731q1.32 0 2.475.672q1.156.672 2.025 1.96q.87-1.288 2.025-1.96q1.156-.672 2.475-.672q1.817 0 3.063 1.172q1.245 1.172 1.402 2.878q-.442-.143-.896-.202q-.454-.06-.913-.06q-2.183.02-3.794 1.52q-1.612 1.501-1.612 3.923q0 .988.362 1.976q.361.987 1.1 1.781q-.533.483-1.17 1.069q-.638.585-1.284 1.181zm6.95-4.19l-2.138-2.114l.713-.708l1.425 1.42l3.525-3.545l.713.708z" />
 						</svg>
-					</p>
+					</button>
 				</div>
+				<dialog id="modal" class="modal">
+					<div class="modal-box">
+						<h3 class="text-lg font-bold text-center">
+							Liked {{ heartCount }}
+						</h3>
+						<div class="flex justify-center">
+							<p>
+								<svg class="mt-1 text-pink-500" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em"
+									viewBox="0 0 24 24">
+									<path fill="currentColor"
+										d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
+								</svg>
+							</p>
+						</div>
 
-				<!-- แสดงรายชื่อและรูปโปรไฟล์ของคนที่ได้รับการไลค์ไปแล้ว -->
-				<div class="chats flex-col items-center justify-center gap-5 cursor-pointer">
-					<div v-for="(profile, index) in likedProfiles" :key="index" class="chat-bubbles m-2">
-						<img v-if="profile.profilePicture && profile.profilePicture.length > 0"
-							:src="profile.profilePicture[0]" :alt="profile.name" class="profile-pic" />
-						<div class="chat-text">{{ profile.name }}</div>
+						<!-- แสดงรายชื่อและรูปโปรไฟล์ของคนที่ได้รับการไลค์ไปแล้ว -->
+						<div class="chats flex-col items-center justify-center gap-5 cursor-pointer">
+							<div v-for="(profile, index) in likedProfiles" :key="index" class="chat-bubbles m-2">
+								<img v-if="profile.profilePicture && profile.profilePicture.length > 0
+									" :src="profile.profilePicture[0]" :alt="profile.name" class="profile-pic" />
+								<div class="chat-text">{{ profile.name }}</div>
+							</div>
+						</div>
 					</div>
-				</div>
+					<form method="dialog" class="modal-backdrop">
+						<button>close</button>
+					</form>
+				</dialog>
 			</div>
-			<form method="dialog" class="modal-backdrop">
-				<button>close</button>
-			</form>
-		</dialog>
-
-		<!-- Main Content -->
-		<div v-if="Profiles.length === 0" class="flex items-center justify-center">
-			<div class="card w-96 shadow-xl h-">
-				<div class="card-body flex justify-center items-center border-8 border-red-300">
-					<form class="flex flex-col justify-center items-center gap-3">
-						<label for="review" class="text-4xl font-bold leading-none pb-2">Add Your Review</label>
-						<textarea class="bg-rose-200 text-xl font-bold p-2" name="review" id="review" cols="25"
-							rows="5"></textarea>
+			<!-- Main Content -->
+			<div v-if="Profiles.length === 0">
+				<div class="card w-96 shadow-xl">
+					<div class="card-body flex justify-center items-center border-8 border-red-300">
+						<form action="" class="">
+							<label for="review" class="flex justify-center">Add Your Review</label>
+							<input type="text" name="review" id="review" class="text-center border-pink-400 border-4"
+								placeholder="Type here" />
+						</form>
 						<div class="rating rating-lg">
 							<input type="radio" name="rating-10" class="rating-hidden" />
 							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
 							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
-							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" checked />
+							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
 							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
 							<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
 						</div>
 						<div class="card-actions">
-							<button type="submit" class="btn">Submit</button>
+							<button class="btn" onclick="my_modal_3.showModal()">
+								Submit
+							</button>
+							<dialog id="my_modal_3" class="modal">
+								<div class="modal-box">
+									<form method="dialog">
+										<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+											✕
+										</button>
+									</form>
+									<h3 class="font-bold text-lg">Thank you for your submit!</h3>
+									<p class="py-4">
+										Press ESC key or click on ✕ button to close
+									</p>
+								</div>
+							</dialog>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div v-else class="flex items-center justify-center">
-			<div class="max-w-md p-4 space-x-4 carousel carousel-center rounded-box">
-				<div v-for="(profile, index) in Profiles" :key="profile.id" class="">
-					<div class="flex justify-center transition-all duration-500 ease-in-out">
-						<div class="flex justify-center p-5 pt-[5em]">
-							<!-- Card  -->
-							<div class="shadow-xl bg-rose-100 card w-96 text-black">
-								<div class="h-96 carousel carousel-vertical rounded-t-xl">
-									<div v-for="(picture, pictureIndex) in profile.profilePicture" :key="pictureIndex"
-										class="h-full carousel-item">
-										<img :src="picture" :alt="`${profile.name} Image ${pictureIndex + 1}`"
-											class="rounded-t-xl" width="385px" />
+			<div v-else class="flex items-center justify-center">
+				<div class="max-w-md p-4 space-x-4 carousel carousel-center rounded-box">
+					<div v-for="(profile, index) in Profiles" :key="profile.id" class="">
+						<div class="flex justify-center transition-all duration-500 ease-in-out">
+							<div class="flex justify-center p-5 pt-[5em]">
+								<!-- Card  -->
+								<div class="shadow-xl bg-rose-100 card w-96 text-black">
+									<div class="h-96 carousel carousel-vertical rounded-t-xl">
+										<div v-for="(picture, pictureIndex) in profile.profilePicture" :key="pictureIndex"
+											class="h-full carousel-item">
+											<img :src="picture" :alt="`${profile.name} Image ${pictureIndex + 1}`"
+												class="rounded-t-xl" width="385px" />
+										</div>
 									</div>
-								</div>
 
-								<!-- Name -->
-								<div class="grid grid-cols-3 card-body">
-									<h2 class="col-span-2 card-title">
-										{{ profile.name }} &nbsp;{{ profile.age }}
-									</h2>
-									<!-- Dropdown -->
-									<button class="flex items-end justify-end col-span-1 dropdown dropdown-end"
-										@click="toggleDescriptions">
-										<svg xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em"
-											viewBox="0 0 24 24" :class="{ 'rotate-180': isFlipped }">
-											<path fill="currentColor"
-												d="M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0" />
-										</svg>
-									</button>
-									<!-- Desc -->
-									<p class="col-span-3">
-										<span class="font-bold">Bio:</span> {{ profile.bio }}
-									</p>
-									<!-- Hidden Desc -->
-									<div class="col-span-3 max-h-[200px] overflow-y-auto transition-all duration-500 ease-in-out"
-										:style="{ maxHeight: showDescriptions ? '200px' : '0' }">
-										<p>
-											<span class="font-bold">Dating Goal:</span>
-											{{ profile.datingGoal }}
-										</p>
-										<p>
-											<span class="font-bold">Lifestyle:</span>
-											{{ profile.lifestyle }}
-										</p>
-										<p>
-											<span class="font-bold">Location:</span>
-											{{ profile.location }}
-										</p>
-										<p>
-											<span class="font-bold">Height:</span>
-											{{ profile.height }}
-										</p>
-										<p>
-											<span class="font-bold">Language:</span>
-											{{ profile.language }}
-										</p>
-										<p>
-											<span class="font-bold">Education:</span>
-											{{ profile.education }}
-										</p>
-										<p>
-											<span class="font-bold">MBTI:</span> {{ profile.mbti }}
-										</p>
-										<p>
-											<span class="font-bold">Hobby:</span>
-											{{ profile.loveStyle }}
-										</p>
-										<p>
-											<span class="font-bold">Interested:</span>
-											{{ profile.interested }}
-										</p>
-									</div>
-									<!-- Dislike Icon -->
-									<div class="col-span-3 gap-[3em] pt-4 card-actions flex justify-center">
-										<button @click="dislikeProfile"
-											class="duration-300 bg-red-300 border-red-300 cursor-pointer hover:bg-red-600 hover:border-red-600 btn btn-circle btn-lg hover:scale-125">
-											<svg class="mt-1 text-red-800" xmlns="http://www.w3.org/2000/svg" width="2.9em"
-												height="2.9em" viewBox="0 0 24 24">
+									<!-- Name -->
+									<div class="grid grid-cols-3 card-body">
+										<h2 class="col-span-2 card-title">
+											{{ profile.name }} &nbsp;{{ profile.age }}
+										</h2>
+										<!-- Dropdown -->
+										<button class="flex items-end justify-end col-span-1 dropdown dropdown-end"
+											@click="toggleDescriptions">
+											<svg xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em"
+												viewBox="0 0 24 24" :class="{ 'rotate-180': isFlipped }">
 												<path fill="currentColor"
-													d="M12.025 20.675q-2.696-2.702-4.443-4.546q-1.747-1.844-2.766-3.19q-1.018-1.347-1.417-2.37Q3 9.546 3 8.5q0-2.088 1.456-3.544T8 3.5q.952 0 1.848.326q.896.326 1.625.947L9.827 10.5h3.058l-.754 8.067L15.192 8.5h-3.038l1.486-4.454q.53-.273 1.12-.41q.592-.136 1.202-.136q2.088 0 3.544 1.456T20.962 8.5q0 1.065-.431 2.123T19.06 13.06q-1.04 1.378-2.756 3.2q-1.716 1.822-4.279 4.416" />
+													d="M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0" />
 											</svg>
 										</button>
-										<!-- Heart Icon -->
-										<button @click="incrementHeartCount(index)"
-											class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125">
-											<svg class="mt-1 text-green-600" xmlns="http://www.w3.org/2000/svg" width="3em"
-												height="3em" viewBox="0 0 24 24">
-												<path fill="currentColor"
-													d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
-											</svg>
-										</button>
+										<!-- Desc -->
+										<p class="col-span-3">
+											<span class="font-bold">Bio:</span> {{ profile.bio }}
+										</p>
+										<!-- Hidden Desc -->
+										<div class="col-span-3 max-h-[200px] overflow-y-auto transition-all duration-500 ease-in-out"
+											:style="{ maxHeight: showDescriptions ? '200px' : '0' }">
+											<p>
+												<span class="font-bold">Dating Goal:</span>
+												{{ profile.datingGoal }}
+											</p>
+											<p>
+												<span class="font-bold">Lifestyle:</span>
+												{{ profile.lifestyle }}
+											</p>
+											<p>
+												<span class="font-bold">Location:</span>
+												{{ profile.location }}
+											</p>
+											<p>
+												<span class="font-bold">Height:</span>
+												{{ profile.height }}
+											</p>
+											<p>
+												<span class="font-bold">Language:</span>
+												{{ profile.language }}
+											</p>
+											<p>
+												<span class="font-bold">Education:</span>
+												{{ profile.education }}
+											</p>
+											<p>
+												<span class="font-bold">MBTI:</span> {{ profile.mbti }}
+											</p>
+											<p>
+												<span class="font-bold">Hobby:</span>
+												{{ profile.loveStyle }}
+											</p>
+											<p>
+												<span class="font-bold">Interested:</span>
+												{{ profile.interested }}
+											</p>
+										</div>
+										<!-- Dislike Icon -->
+										<div class="col-span-3 gap-[3em] pt-4 card-actions flex justify-center">
+											<button @click="dislikeProfile"
+												class="duration-300 bg-red-300 border-red-300 cursor-pointer hover:bg-red-600 hover:border-red-600 btn btn-circle btn-lg hover:scale-125">
+												<svg class="mt-1 text-red-800" xmlns="http://www.w3.org/2000/svg"
+													width="2.9em" height="2.9em" viewBox="0 0 24 24">
+													<path fill="currentColor"
+														d="M12.025 20.675q-2.696-2.702-4.443-4.546q-1.747-1.844-2.766-3.19q-1.018-1.347-1.417-2.37Q3 9.546 3 8.5q0-2.088 1.456-3.544T8 3.5q.952 0 1.848.326q.896.326 1.625.947L9.827 10.5h3.058l-.754 8.067L15.192 8.5h-3.038l1.486-4.454q.53-.273 1.12-.41q.592-.136 1.202-.136q2.088 0 3.544 1.456T20.962 8.5q0 1.065-.431 2.123T19.06 13.06q-1.04 1.378-2.756 3.2q-1.716 1.822-4.279 4.416" />
+												</svg>
+											</button>
+											<!-- Heart Icon -->
+											<button @click="incrementHeartCount(index)"
+												class="duration-300 bg-green-300 border-green-300 hover:bg-green-400 hover:border-green-400 btn btn-circle btn-lg hover:scale-125">
+												<svg class="mt-1 text-green-600" xmlns="http://www.w3.org/2000/svg"
+													width="3em" height="3em" viewBox="0 0 24 24">
+													<path fill="currentColor"
+														d="m12 19.654l-.758-.685q-2.448-2.236-4.05-3.829q-1.602-1.592-2.529-2.808q-.926-1.217-1.295-2.201Q3 9.146 3 8.15q0-1.908 1.296-3.204Q5.592 3.65 7.5 3.65q1.32 0 2.475.675T12 6.288Q12.87 5 14.025 4.325T16.5 3.65q1.908 0 3.204 1.296Q21 6.242 21 8.15q0 .996-.368 1.98q-.369.985-1.295 2.202q-.927 1.216-2.52 2.808q-1.592 1.593-4.06 3.83z" />
+												</svg>
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
