@@ -489,11 +489,7 @@ onMounted(() => {
 					</h3>
 
 					<ul class="mx-4 my-3 list-disc">
-						<li>
-							Users can select the gender they are interested in and view
-							profiles of individuals they find interesting. They have the
-							option to either like or dislike profiles.
-						</li>
+					
 						<li>
 							The system keeps track of the number of likes received by a
 							profile
@@ -524,10 +520,7 @@ onMounted(() => {
 						More for additional features that we want to show
 					</h2>
 					<ul class="mx-4 my-3 list-disc">
-						<li>
-							Routing System: Utilizing vue-router version 4 to navigate to
-							different pages seamlessly within the app.
-						</li>
+						
 						<li>
 							Basic Login System: A basic login system that displays the user's
 							username while they are actively using the app.
@@ -815,7 +808,7 @@ onMounted(() => {
 										alt="Image Description" />
 									<div class="grow">
 										<p class="font-semibold text-gray-800 dark:text-white">
-											Nateetarn Likitwiwatpong
+											Kittichai Chimchai
 										</p>
 									</div>
 								</div>
@@ -871,7 +864,21 @@ onMounted(() => {
 				<input type="radio" name="my-accordion-4" checked="checked" />
 				<div class="text-xl font-medium collapse-title">How can I Play?</div>
 				<div class="collapse-content">
-					<p>Just click get started</p>
+					<ul class="font-bold">Navbar</ul>
+						<li>You can play music by clicking on the icon at the top right corner of our website.</li>
+						<li>You can change the theme color on the sun icon.</li>
+						<li>You can click on the user icon to view your profile or logout.</li>
+					
+						<ul class="font-bold">Main Content</ul>
+						<li>Click<span class="font-bold	">"Get Started"</span>to begin finding your date!</li>
+						<li>Click on the dropdown menu to view information about those people.</li>
+						<li>Click the <span class="font-bold	">green heart</span>   to like someone.</li>
+						<li>Click the <span class="font-bold	">red heart</span>   to pass on someone.</li>
+						<li>Click the <span class="font-bold	">pink heart</span>   to see who you likes</li>
+						
+				
+					
+	
 				</div>
 			</div>
 			<div class="border collapse collapse-arrow join-item border-base-300">
