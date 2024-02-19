@@ -296,13 +296,13 @@ onMounted(() => {
 	<div class="sticky top-0 z-50 pt-3 navbar" :class="{ '': isNavbarWhite, 'bg-pink-300': !isNavbarWhite }"
 		v-show="!mobileView1 && !showNav">
 		<div @click="refreshPage" class="flex-1">
-			<a class="text-3xl text-pink-900 btn btn-ghost">FINVER</a>
+			<a class="text-3xl text-pink-600 btn btn-ghost">FINVER</a>
 		</div>
 
 		<!-- Responsive Navigation Links -->
 		<div class="flex gap-5">
 			<div>
-				<ul class="flex gap-10 text-xl font-semibold text-pink-900">
+				<ul class="flex gap-10 text-xl font-semibold text-pink-600">
 					<li class="cursor-pointer"><a href="#home">Home</a></li>
 					<li class="cursor-pointer"><a href="#features">Feature</a></li>
 					<li class="cursor-pointer"><a href="#Team">OurTeam</a></li>
@@ -537,9 +537,9 @@ onMounted(() => {
 
 	<section id="Finver">
 		<!-- Heart modal-->
-		<div class="flex items-center justify-center">
+		<div class="flex flex-col md:flex-row items-center justify-center">
 			<div>
-				<div class="mr-11">
+				<div>
 					<button class="duration-300 bg-pink-500 hover:bg-pink-700 btn btn-circle btn-lg hover:scale-125"
 						onclick="modal.showModal()">
 						<svg class="text-pink-200" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
