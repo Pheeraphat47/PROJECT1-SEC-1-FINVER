@@ -393,7 +393,7 @@ onMounted(() => {
 							<button @click="openLoginModal" type="button" class="p-2 text-white bg-blue-500 rounded">
 								Login
 							</button>
-							
+
 						</form>
 					</div>
 				</div>
@@ -489,7 +489,7 @@ onMounted(() => {
 					</h3>
 
 					<ul class="mx-4 my-3 list-disc">
-					
+
 						<li>
 							The system keeps track of the number of likes received by a
 							profile
@@ -520,7 +520,7 @@ onMounted(() => {
 						More for additional features that we want to show
 					</h2>
 					<ul class="mx-4 my-3 list-disc">
-						
+
 						<li>
 							Basic Login System: A basic login system that displays the user's
 							username while they are actively using the app.
@@ -565,13 +565,17 @@ onMounted(() => {
 						</div>
 
 						<!-- แสดงรายชื่อและรูปโปรไฟล์ของคนที่ได้รับการไลค์ไปแล้ว -->
-						<div class="chats flex-col items-center justify-center gap-5 cursor-pointer">
-							<div v-for="(profile, index) in likedProfiles" :key="index" class="chat-bubbles m-2">
-								<img v-if="profile.profilePicture && profile.profilePicture.length > 0
-									" :src="profile.profilePicture[0]" :alt="profile.name" class="profile-pic" />
+						<div class="chats flex-col items-center justify-center gap-5 cursor-pointer p-1 mt-5">
+							<a v-for="(profile, index) in likedProfiles" :key="index" :href="profile.link" target="_blank"
+								class="chat-bubbles mt-5 bg-pink-600 p-3 rounded-lg text-white">
+								<img v-if="profile.profilePicture && profile.profilePicture.length > 0"
+									:src="profile.profilePicture[0]" :alt="profile.name" class="profile-pic" />
 								<div class="chat-text">{{ profile.name }}</div>
-							</div>
+							</a>
 						</div>
+
+
+
 					</div>
 					<form method="dialog" class="modal-backdrop">
 						<button>close</button>
@@ -584,8 +588,8 @@ onMounted(() => {
 					<div class="card-body flex justify-center items-center border-8 border-red-300">
 						<form class="flex flex-col justify-center items-center gap-3">
 							<label for="review" class="text-4xl font-bold leading-none pb-2">Add Your Review</label>
-							<textarea class="bg-rose-200 text-xl font-bold p-2 text-black" name="review" id="review" cols="25"
-								rows="5"></textarea>
+							<textarea class="bg-rose-200 text-xl font-bold p-2 text-black" name="review" id="review"
+								cols="25" rows="5"></textarea>
 							<div class="rating rating-lg">
 								<input type="radio" name="rating-10" class="rating-hidden" />
 								<input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2" />
@@ -723,7 +727,7 @@ onMounted(() => {
 				<!-- Col -->
 				<div class="space-y-4 xl:space-y-6">
 					<!-- Card -->
-					<div	
+					<div
 						class="flex flex-col bg-white border border-gray-200 rounded-xl dark:bg-slate-900 dark:border-gray-700">
 						<div class="p-4 md:p-6">
 							<div class="flex justify-between">
@@ -865,20 +869,20 @@ onMounted(() => {
 				<div class="text-xl font-medium collapse-title">How can I Play?</div>
 				<div class="collapse-content">
 					<ul class="font-bold">Navbar</ul>
-						<li>You can play music by clicking on the icon at the top right corner of our website.</li>
-						<li>You can change the theme color on the sun icon.</li>
-						<li>You can click on the user icon to view your profile or logout.</li>
-					
-						<ul class="font-bold">Main Content</ul>
-						<li>Click<span class="font-bold	">"Get Started"</span>to begin finding your date!</li>
-						<li>Click on the dropdown menu to view information about those people.</li>
-						<li>Click the <span class="font-bold	">green heart</span>   to like someone.</li>
-						<li>Click the <span class="font-bold	">red heart</span>   to pass on someone.</li>
-						<li>Click the <span class="font-bold	">pink heart</span>   to see who you likes</li>
-						
-				
-					
-	
+					<li>You can play music by clicking on the icon at the top right corner of our website.</li>
+					<li>You can change the theme color on the sun icon.</li>
+					<li>You can click on the user icon to view your profile or logout.</li>
+
+					<ul class="font-bold">Main Content</ul>
+					<li>Click<span class="font-bold	">"Get Started"</span>to begin finding your date!</li>
+					<li>Click on the dropdown menu to view information about those people.</li>
+					<li>Click the <span class="font-bold	">green heart</span> to like someone.</li>
+					<li>Click the <span class="font-bold	">red heart</span> to pass on someone.</li>
+					<li>Click the <span class="font-bold	">pink heart</span> to see who you likes</li>
+
+
+
+
 				</div>
 			</div>
 			<div class="border collapse collapse-arrow join-item border-base-300">
