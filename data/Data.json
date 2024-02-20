@@ -18,7 +18,8 @@
             "profilePicture": [
                 "../src/assets/img/female/person1/Alice_1.webp",
                 "../src/assets/img/female/person1/Alice_2.webp"
-            ]
+            ],
+            "link": "https://c.ai/c/dbbfGKP08QWKN7ATQAu5qLrvmHNb9Xiuzx0t86COLGY"
         },
         {
             "id": 2,
@@ -38,7 +39,8 @@
             "profilePicture": [
                 "../src/assets/img/female/person3/Sophie_1.webp",
                 "../src/assets/img/female/person3/Sophie_2.webp"
-            ]
+            ],
+            "link": "https://c.ai/c/PVge4zQKCaUh0tHEMeIQ9B3_6hUnFQps_sehbo88YvY"
         },
         {
             "id": 3,
@@ -58,7 +60,8 @@
             "profilePicture": [
                 "../src/assets/img/male/person2/Max_1.webp",
                 "../src/assets/img/male/person2/Max_2.webp"
-            ]
+            ],
+            "link": "https://c.ai/c/n3gMmDgPod6PLoh75j0N6rV8h3SpVgF2JL5m2KAHuoU"
         },
         {
             "id": 4,
@@ -78,7 +81,8 @@
             "profilePicture": [
                 "../src/assets/img/male/person5/Owen_1.webp",
                 "../src/assets/img/male/person5/Owen_2.webp"
-            ]
+            ],
+            "link": "https://c.ai/c/bD9KHoS75AeG7aKu6mUc8Ko0XZ3Ssngx_IWvcCiQTFo"
         },
         {
             "id": 5,
@@ -98,7 +102,8 @@
             "profilePicture": [
                 "../src/assets/img/female/person4/Olivia_1.webp",
                 "../src/assets/img/female/person4/Olivia_2.webp"
-            ]
+            ],
+            "link": "https://c.ai/c/BhpS_RWkXdGafJGap9g4qpKHaCXj3INVPYSwMDiOPKc"
         },
         {
             "id": 6,
@@ -118,7 +123,8 @@
             "profilePicture": [
                 "../src/assets/img/female/person5/Lily_1.webp",
                 "../src/assets/img/female/person5/Lily_2.webp"
-            ]
+            ],
+            "link": "https://c.ai/c/uUkuum9s4ru_TEwUfdxsOycFzzwrkbLiGizmhNajiZM"
         },
         {
             "id": 7,
@@ -139,6 +145,8 @@
                 "../src/assets/img/male/person1/Jack_1.webp",
                 "../src/assets/img/male/person1/Jack_2.webp"
             ]
+            ,
+            "link": "https://c.ai/c/-bjbbOL5V7dM5QpDr7CoINiBUhyAWupHVVDo-e6SgmM"
         },
         {
             "id": 8,
@@ -158,7 +166,8 @@
             "profilePicture": [
                 "../src/assets/img/female/person2/Eva_1.webp",
                 "../src/assets/img/female/person2/Eva_2.webp"
-            ]
+            ],
+            "link": "https://c.ai/c/8nW8i-KtKfS1u2JieM8P0Zg3FuNt9lgUX-WQLNl9dKo"
         },
         {
             "id": 9,
@@ -178,7 +187,8 @@
             "profilePicture": [
                 "../src/assets/img/male/person3/Ethan_1.webp",
                 "../src/assets/img/male/person3/Ethan_2.webp"
-            ]
+            ],
+            "link": "https://c.ai/c/WAM7qRbqxLCnNoHEhnxImA00Y3cBuauvCJu5lGA2O50"
         },
         {
             "id": 10,
@@ -198,7 +208,8 @@
             "profilePicture": [
                 "../src/assets/img/male/person4/Lucas_1.webp",
                 "../src/assets/img/male/person4/Lucas_2.webp"
-            ]
+            ],
+            "link": "https://c.ai/c/ZHANTh7q1OzDQTlGTfP7NLwVyV5TKpoapk0Qe-L4-i8"
         }
     ]
 }
