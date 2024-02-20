@@ -16,9 +16,10 @@
             "loveStyle": "Romantic and spontaneous",
             "interested": "Exploring new places, outdoor activities, deep conversations",
             "profilePicture": [
-                "../src/assets/img/female/person1/Alice_1.webp",
-                "../src/assets/img/female/person1/Alice_2.webp"
-            ]
+                "img/female/person1/Alice_1.webp",
+                "img/female/person1/Alice_2.webp"
+            ],
+            "link": "https://c.ai/c/dbbfGKP08QWKN7ATQAu5qLrvmHNb9Xiuzx0t86COLGY"
         },
         {
             "id": 2,
@@ -36,9 +37,10 @@
             "loveStyle": "Analytical and independent",
             "interested": "Reading, writing, philosophical discussions",
             "profilePicture": [
-                "../src/assets/img/female/person3/Sophie_1.webp",
-                "../src/assets/img/female/person3/Sophie_2.webp"
-            ]
+                "img/female/person3/Sophie_1.webp",
+                "img/female/person3/Sophie_2.webp"
+            ],
+            "link": "https://c.ai/c/PVge4zQKCaUh0tHEMeIQ9B3_6hUnFQps_sehbo88YvY"
         },
         {
             "id": 3,
@@ -56,9 +58,10 @@
             "loveStyle": "Creative and compassionate",
             "interested": "Playing music, traveling, attending concerts",
             "profilePicture": [
-                "../src/assets/img/male/person2/Max_1.webp",
-                "../src/assets/img/male/person2/Max_2.webp"
-            ]
+                "img/male/person2/Max_1.webp",
+                "img/male/person2/Max_2.webp"
+            ],
+            "link": "https://c.ai/c/n3gMmDgPod6PLoh75j0N6rV8h3SpVgF2JL5m2KAHuoU"
         },
         {
             "id": 4,
@@ -76,9 +79,10 @@
             "loveStyle": "Analytical and curious",
             "interested": "Gaming, coding, exploring new gadgets",
             "profilePicture": [
-                "../src/assets/img/male/person5/Owen_1.webp",
-                "../src/assets/img/male/person5/Owen_2.webp"
-            ]
+                "img/male/person5/Owen_1.webp",
+                "img/male/person5/Owen_2.webp"
+            ],
+            "link": "https://c.ai/c/bD9KHoS75AeG7aKu6mUc8Ko0XZ3Ssngx_IWvcCiQTFo"
         },
         {
             "id": 5,
@@ -96,9 +100,10 @@
             "loveStyle": "Fun-loving and energetic",
             "interested": "Travel, food festivals, live music",
             "profilePicture": [
-                "../src/assets/img/female/person4/Olivia_1.webp",
-                "../src/assets/img/female/person4/Olivia_2.webp"
-            ]
+                "img/female/person4/Olivia_1.webp",
+                "img/female/person4/Olivia_2.webp"
+            ],
+            "link": "https://c.ai/c/BhpS_RWkXdGafJGap9g4qpKHaCXj3INVPYSwMDiOPKc"
         },
         {
             "id": 6,
@@ -116,9 +121,10 @@
             "loveStyle": "Analytical and independent",
             "interested": "Coding, tech meetups, exploring new gadgets",
             "profilePicture": [
-                "../src/assets/img/female/person5/Lily_1.webp",
-                "../src/assets/img/female/person5/Lily_2.webp"
-            ]
+                "img/female/person5/Lily_1.webp",
+                "img/female/person5/Lily_2.webp"
+            ],
+            "link": "https://c.ai/c/uUkuum9s4ru_TEwUfdxsOycFzzwrkbLiGizmhNajiZM"
         },
         {
             "id": 7,
@@ -136,9 +142,11 @@
             "loveStyle": "Spontaneous and affectionate",
             "interested": "Rock climbing, hiking, discussing philosophy",
             "profilePicture": [
-                "../src/assets/img/male/person1/Jack_1.webp",
-                "../src/assets/img/male/person1/Jack_2.webp"
+                "img/male/person1/Jack_1.webp",
+                "img/male/person1/Jack_2.webp"
             ]
+            ,
+            "link": "https://c.ai/c/-bjbbOL5V7dM5QpDr7CoINiBUhyAWupHVVDo-e6SgmM"
         },
         {
             "id": 8,
@@ -156,9 +164,10 @@
             "loveStyle": "Affectionate and nurturing",
             "interested": "Art exhibitions, cultural events, deep conversations",
             "profilePicture": [
-                "../src/assets/img/female/person2/Eva_1.webp",
-                "../src/assets/img/female/person2/Eva_2.webp"
-            ]
+                "img/female/person2/Eva_1.webp",
+                "img/female/person2/Eva_2.webp"
+            ],
+            "link": "https://c.ai/c/8nW8i-KtKfS1u2JieM8P0Zg3FuNt9lgUX-WQLNl9dKo"
         },
         {
             "id": 9,
@@ -176,9 +185,10 @@
             "loveStyle": "Stable and reliable",
             "interested": "Cooking, trying new restaurants, watching cooking shows",
             "profilePicture": [
-                "../src/assets/img/male/person3/Ethan_1.webp",
-                "../src/assets/img/male/person3/Ethan_2.webp"
-            ]
+                "img/male/person3/Ethan_1.webp",
+                "img/male/person3/Ethan_2.webp"
+            ],
+            "link": "https://c.ai/c/WAM7qRbqxLCnNoHEhnxImA00Y3cBuauvCJu5lGA2O50"
         },
         {
             "id": 10,
@@ -196,9 +206,10 @@
             "loveStyle": "Compassionate and adventurous",
             "interested": "Road trips, writing, discussing life's mysteries",
             "profilePicture": [
-                "../src/assets/img/male/person4/Lucas_1.webp",
-                "../src/assets/img/male/person4/Lucas_2.webp"
-            ]
+                "img/male/person4/Lucas_1.webp",
+                "img/male/person4/Lucas_2.webp"
+            ],
+            "link": "https://c.ai/c/ZHANTh7q1OzDQTlGTfP7NLwVyV5TKpoapk0Qe-L4-i8"
         }
     ]
 }
