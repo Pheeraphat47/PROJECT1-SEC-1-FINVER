@@ -4,7 +4,7 @@
    ### Our Tech Stack that we use 😘
    [![My Skills](https://skillicons.dev/icons?i=vue,tailwind,vercel,git,vite)](https://skillicons.dev)  ![Additional](https://img.shields.io/badge/daisyUI-1ad1a5?style=for-the-badge&logo=daisyui&logoColor=white)
      <br>  
-## Click here [FinverWebDemo](https://project-1-sec-1-finver.vercel.app/)
+## Click here [FinverWebDemo](https://project-1-sec-1-finver.vercel.app/)   ,   [Video Feature Presentation](https://drive.google.com/drive/u/0/folders/1pV3C-8eom6bHX1eieiRF3NWL8FSLGMdr?q=parent:1pV3C-8eom6bHX1eieiRF3NWL8FSLGMdr)
    ***************
 ## Features
 ### The features of our app are as follows:
