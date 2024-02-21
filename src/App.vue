@@ -135,6 +135,27 @@ onMounted(() => {
   // Add resize listener to update mobileView when window size changes
   window.addEventListener("resize", handleView)
 })
+
+const selectedItem = ref(null)
+
+const faqItems = [
+    {
+        title: "How can I Play?",
+        content: "You can play music by clicking on the icon at the top right corner of our website. You can change the theme color on the sun icon. You can click on the user icon to view your profile or logout."
+    },
+    {
+        title: "Is your Project a Tinder Clone",
+        content: "It's likely a Tinder clone, but only the frontend is built."
+    },
+    {
+        title: "Why did we choose Tinder?",
+        content: "Pheeraphat or 'P' is mentioned as the pillar of the group."
+    }
+]
+
+const toggleAccordion = (index) => {
+      selectedItem.value = selectedItem.value === index ? null : index;
+    }
 </script>
 
 <template>
@@ -1110,6 +1131,22 @@ onMounted(() => {
 		</div>
 	</section>
 
+	<section class="p-10 lg:p-24" id="FAQ">
+    <!-- Title -->
+    <div class="max-w-2xl mx-auto mb-10 text-center lg:mb-14">
+      <p class="p-2 text-sm font-semibold tracking-wider text-center uppercase text-rose-400">How it works</p>
+      <h2 class="mb-12 text-4xl font-bold leading-none text-center sm:text-4xl">Frequently Asked Questions</h2>
+    </div>
+    <div class="w-full join join-vertical">
+      <div v-for="(item, index) in faqItems" :key="index" class="border collapse collapse-arrow join-item border-base-300">
+        <input type="radio" :id="'accordion-' + index" :name="'my-accordion-' + index" v-model="selectedItem" :value="index" />
+        <div class="text-xl font-medium collapse-title" @click="toggleAccordion(index)">{{ item.title }}</div>
+        <div class="collapse-content" v-show="selectedItem === index">
+          <p>{{ item.content }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped>
