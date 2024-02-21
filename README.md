@@ -68,24 +68,24 @@
 
 *************
 ## TEAM MEMBER
-- ###  65130500003 Kittichai Chimchai (13%)
-   * ทำระบบ Login เบื้องต้นสำหรับใส่ username ของผู้ใช้และแสดงผลในหน้าเว็บ
-   * ทำตัว Dropdown ข้างบนตรง Navigation bar
-   * ทำไฟล์ Readme สำหรับอธิบายตัว Project
-- ###  65130500011 Jiraplus Chanpong (17%)
-   * ทำ Responsive Navigaiton Bar
-   * เป็น UI Design หลักของโปรเจค ออกแบบสี Font ที่จะใช้ 
-   * เพิ่ม Feature เล่นเพลงใน Chat 
-- ###  65130500027 Taned Thanyapanich (20%)
-   * ตกแต่งและจัดวางองค์ประกอบต่างๆในหน้าเว็บ (CSS)
-   * ทำระบบ Review ให้กับผู้ใช้งาน
-   * คอยช่วยปรับปรุงแก้ไข Code ให้กับเพื่อนๆให้ Code ดีขึ้น และมี Structure
-- ###  65130500031 Nateetarn Likitwiwatphong (20%)
-   * ทำ Feature Like และ Dislike 
-   * ทำระบบการนับจำนวนการไลค์
-   * ร่วมช่วยทำระบบ Login เบื้องต้น
-- ###  65130500053 Pheeraphat Dherachaisuphakij (30%)
-   * ทำ Json file สำหรับใช้ในหน้าเว็บและดูเรื่องการแสดงผลข้อมูลในเว็บ (Text , Image , Icon)
-   * เพิ่มระบบในการจดจำคนที่เรากดไลค์ไปแล้วได้
-   * รับผิดชอบในการทำ UI Responsive ของเว็บทั้งหมด
-   * เป็นที่ปรึกษาหลักของเพื่อนในกลุ่ม และคอยรวม code จากเพื่อนคนอื่นและปรับปรุงแก้ไขจัดเรียงและ coding 
+- ### 65130500003 Kittichai Chimchai (13%)
+   * Develop a basic login system allowing users to input their username and display the result on the webpage
+   * Implement a dropdown menu on the top navigation bar
+   * Create a README file to explain the project
+- ### 65130500011 Jiraplus Chanpong (17%)
+   * Develop a responsive navigation bar
+   * Design the main UI of the project, including color scheme and font selection
+   * Implement a feature to play music within the chat
+- ### 65130500027 Taned Thanyapanich (20%)
+   * Decorate and arrange various components on the webpage.
+   * Implement a review system for users.
+   * Provide assistance in refining and enhancing code for peers, ensuring better code structure and quality.
+- ### 65130500031 Nateetarn Likitwiwatphong (20%)
+   * Implement Like and Dislike features
+   * Develop a system to count the number of likes
+   * Collaborate on creating a basic login system
+- ### 65130500053 Pheeraphat Dherachaisuphakij (30%)
+   * Create a JSON file for use on the webpage and demonstrate data presentation (Text, Image, Icon).
+   * Introduce a system to remember individuals we have liked.
+   * Take responsibility for ensuring the overall web UI responsiveness.
+   * Act as the primary consultant for peers in the group, consolidating code from other members and improving its organization, arrangement, and coding.
