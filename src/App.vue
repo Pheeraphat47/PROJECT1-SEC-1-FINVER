@@ -99,7 +99,6 @@ const refreshPage = () => {
 	// Reloads the current page
 }
 
-const thanks = () => { }
 
 // Music Icon
 const player = ref("")
