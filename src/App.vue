@@ -4,47 +4,47 @@ import { ref, onMounted } from "vue"
 const isDropdownVisible = ref(false)
 
 const toggleDropdown = () => {
-	isDropdownVisible.value = !isDropdownVisible.value
+  isDropdownVisible.value = !isDropdownVisible.value
 }
 
 const closeDropdown = () => {
-	isDropdownVisible.value = false
+  isDropdownVisible.value = false
 }
 
 const isLoginModalOpen = ref(true)
 const username = ref("")
 
 const openLoginModal = () => {
-	if (
-		username.value === null ||
-		username.value === "undefined" ||
-		username.value === ""
-	) {
-		alert("Please Enter Your Username")
-	} else {
-		isLoginModalOpen.value = false
-		console.log(username.value)
-	}
+  if (
+    username.value === null ||
+    username.value === "undefined" ||
+    username.value === ""
+  ) {
+    alert("Please Enter Your Username")
+  } else {
+    isLoginModalOpen.value = false
+    console.log(username.value)
+  }
 }
 
 const closeloginmodal = () => {
-	isLoginModalOpen.value = false
+  isLoginModalOpen.value = false
 }
 
 const isShowProfileModal = ref(false)
 
 const openProfileModal = () => {
-	isShowProfileModal.value = false
+  isShowProfileModal.value = false
 }
 
 const isNavbarWhite = ref(true)
 
 window.addEventListener("scroll", () => {
-	// Get the scroll position
-	const scrollPosition = window.scrollY
+  // Get the scroll position
+  const scrollPosition = window.scrollY
 
-	// Change the background color based on the scroll position
-	isNavbarWhite.value = scrollPosition < 50
+  // Change the background color based on the scroll position
+  isNavbarWhite.value = scrollPosition < 50
 })
 
 import ProfilesData from "../data/Data.json"
@@ -55,7 +55,7 @@ const showDescriptions = ref(false)
 const isFlipped = ref(false)
 
 const toggleDescriptions = () => {
-	showDescriptions.value = !showDescriptions.value
+  showDescriptions.value = !showDescriptions.value
 }
 
 const likedProfiles = ref([])
@@ -64,52 +64,52 @@ const likedProfiles = ref([])
 const heartCount = ref(0)
 
 const incrementHeartCount = (profileIndex) => {
-	heartCount.value++
-	// เพิ่มโปรไฟล์ที่ถูก like เข้าไปใน likedProfiles
-	likedProfiles.value.push(Profiles[profileIndex])
-	// ลบโปรไฟล์ที่ถูก like ออกจาก femaleProfiles
-	Profiles.splice(profileIndex, 1)
-	// Optionally, check if there are more profiles remaining
-	if (Profiles.length === 0) {
-		// Handle the case when there are no more profiles
-		// You might want to show a message or fetch more profiles
-		console.log("No more profiles")
-		return
-	}
+  heartCount.value++
+  // เพิ่มโปรไฟล์ที่ถูก like เข้าไปใน likedProfiles
+  likedProfiles.value.push(Profiles[profileIndex])
+  // ลบโปรไฟล์ที่ถูก like ออกจาก femaleProfiles
+  Profiles.splice(profileIndex, 1)
+  // Optionally, check if there are more profiles remaining
+  if (Profiles.length === 0) {
+    // Handle the case when there are no more profiles
+    // You might want to show a message or fetch more profiles
+    console.log("No more profiles")
+    return
+  }
 }
 
 const dislikeProfile = () => {
-	heartCount.value++
-	heartCount.value--
-	// Remove the current profile from the array
-	Profiles.splice(0, 1)
-	// Optionally, check if there are more profiles remaining
-	if (Profiles.length === 0) {
-		// Handle the case when there are no more profiles
-		// You might want to show a message or fetch more profiles
-		console.log("No more profiles")
-		return
-	}
-	// Toggle the descriptions and update the flipped state
-	showDescriptions.value = false
+  heartCount.value++
+  heartCount.value--
+  // Remove the current profile from the array
+  Profiles.splice(0, 1)
+  // Optionally, check if there are more profiles remaining
+  if (Profiles.length === 0) {
+    // Handle the case when there are no more profiles
+    // You might want to show a message or fetch more profiles
+    console.log("No more profiles")
+    return
+  }
+  // Toggle the descriptions and update the flipped state
+  showDescriptions.value = false
 }
 
 const refreshPage = () => {
-	window.location.reload()
-	// Reloads the current page
+  window.location.reload()
+  // Reloads the current page
 }
 
-const thanks = () => { }
+const thanks = () => {}
 
 // Music Icon
 const player = ref("")
 const isPlaying = ref(false)
 
 const getMusic = () => {
-	console.log("get Music...")
-	isPlaying.value = !isPlaying.value
-	if (isPlaying.value) player.value.play()
-	else player.value.pause()
+  console.log("get Music...")
+  isPlaying.value = !isPlaying.value
+  if (isPlaying.value) player.value.play()
+  else player.value.pause()
 }
 
 // Navbar 768px
@@ -122,311 +122,514 @@ const mobileView2 = ref(false)
 
 //For responsive 768px
 const handleView = () => {
-	mobileView1.value = window.innerWidth <= 768
-	mobileView2.value = window.innerWidth <= 768
+  mobileView1.value = window.innerWidth <= 768
+  mobileView2.value = window.innerWidth <= 768
 }
 
 const toggleNav = () => {
-	showNav.value = !showNav.value
+  showNav.value = !showNav.value
 }
 
 // Call handleView when component is mounted
 onMounted(() => {
-	handleView()
-	// Add resize listener to update mobileView when window size changes
-	window.addEventListener("resize", handleView)
+  handleView()
+  // Add resize listener to update mobileView when window size changes
+  window.addEventListener("resize", handleView)
 })
-
 </script>
 
 <template>
-	<!-- Navbar 1 -->
-	<div class="sticky top-0 z-50 pt-3 navbar gap-3" :class="{
-		hidden: !mobileView1 && !showNav,
-		'': isNavbarWhite,
-		'bg-pink-300': !isNavbarWhite,
-	}">
-		<!-- Music Icon -->
-		<div class="absolute top-0 right-0 mr-4 mt-4">
-			<label class="swap swap-rotate mr-2 mb-4" @change="getMusic">
-				<input type="checkbox" />
-				<svg class="swap-off" xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em" viewBox="0 0 24 24">
-					<path fill="currentColor"
-						d="M9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.42Z" />
-					<path fill="currentColor"
-						d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12m11-9.5A9.5 9.5 0 0 0 2.5 12a9.5 9.5 0 0 0 9.5 9.5a9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5" />
-				</svg>
-				<svg class="swap-on" xmlns="http://www.w3.org/2000/svg" width="2.6em" height="2.6em" viewBox="0 0 32 32">
-					<path fill="currentColor" d="M14 10h-2v12h2zm6 0h-2v12h2z" />
-					<path fill="currentColor"
-						d="M16 4A12 12 0 1 1 4 16A12 12 0 0 1 16 4m0-2a14 14 0 1 0 14 14A14 14 0 0 0 16 2" />
-				</svg>
-			</label>
-			<audio controls class="hidden" ref="player">
-				<source src="./assets/music/cute_music.mp3" />
-			</audio>
-			<!-- toggle BG Change -->
-			<div class="flex justify-end mr-2 mb-4">
-				<label class="swap swap-rotate">
-					<input type="checkbox" class="theme-controller" value="dracula" />
-					<!-- sun icon -->
-					<svg class="w-10 h-10 text-orange-400 fill-current swap-off" xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24">
-						<path
-							d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
-					</svg>
-					<!-- moon icon -->
-					<svg class="w-10 h-10 fill-current swap-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-						<path
-							d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
-					</svg>
-				</label>
-			</div>
-			<!-- Account Icon -->
-			<div>
-				<div @click="toggleDropdown" tabIndex="0" role="button" class="btn btn-ghost btn-circle avatar mr-2 mb-4">
-					<div class="w-10 rounded-full">
-						<img alt="Tailwind CSS Navbar component"
-							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-					</div>
-				</div>
-				<ul v-show="isDropdownVisible" @click.away="closeDropdown" tabIndex="0"
-					class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-					<li>
-						<a class="justify-between" @click="isShowProfileModal = true">
-							Profile
-							<span class="badge">{{ username }}</span>
-						</a>
-					</li>
-					<li><a>Settings</a></li>
-					<li><a @click="isLoginModalOpen = true">Logout</a></li>
-				</ul>
-			</div>
-			<!-- Login Modal -->
-			<div v-if="isLoginModalOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-				<div class="z-0 p-6 bg-white rounded shadow-md w-96 md:w-96">
-					<div class="flex justify-end">
-						<button @click="closeloginmodal" type="button" class="p-2 text-black">
-							X
-						</button>
-					</div>
-					<h2 class="flex justify-center mb-4 text-3xl text-black font-bold">
-						FINVER
-					</h2>
-					<!-- Your login form goes here -->
-					<form @submit.prevent="login">
-						<div class="mb-4">
-							<label for="username" class="block text-sm font-semibold text-gray-600">Username:</label>
-							<input type="text" id="username" v-model.trim="username"
-								class="w-full p-2 bg-white border border-gray-300 rounded placeholder:italic placeholder:text-slate-400 text-black"
-								placeholder="Enter Your Username" />
-						</div>
-						<button @click="openLoginModal" type="button" class="p-2 text-white bg-blue-500 rounded">
-							Login
-						</button>
-					</form>
-				</div>
-			</div>
-		</div>
-		<!-- Profile Modal -->
-		<div>
-			<div v-if="isShowProfileModal"
-				class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-				<div class="z-0 p-6 bg-white rounded shadow-md w-96">
-					<div class="flex justify-end">
-						<button @click="openProfileModal" type="button" class="p-2 text-black">
-							X
-						</button>
-					</div>
-					<h2 class="flex justify-center mb-4 text-3xl font-bold text-black">
-						Profile
-					</h2>
+  <!-- Navbar 1 -->
+  <div
+    class="sticky top-0 z-50 pt-3 navbar gap-3"
+    :class="{
+      hidden: !mobileView1 && !showNav,
+      'bg-pink-300': isNavbarWhite,
+      'bg-gray-800': !isNavbarWhite,
+    }"
+  >
+    <!-- Music Icon -->
+    <div class="absolute top-0 right-0 mr-4 mt-4">
+      <label class="swap swap-rotate mr-2 mb-4" @change="getMusic">
+        <input type="checkbox" />
+        <svg
+          class="swap-off fill-current"
+          :class="{
+            'text-gray-800': isNavbarWhite,
+            'text-white': !isNavbarWhite,
+          }"
+          xmlns="http://www.w3.org/2000/svg"
+          width="2.5em"
+          height="2.5em"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.42Z"
+          />
+          <path
+            d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12m11-9.5A9.5 9.5 0 0 0 2.5 12a9.5 9.5 0 0 0 9.5 9.5a9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5"
+          />
+        </svg>
+        <svg
+          class="swap-on fill-current"
+          :class="{
+            'text-gray-800': isNavbarWhite,
+            'text-white': !isNavbarWhite,
+          }"
+          xmlns="http://www.w3.org/2000/svg"
+          width="2.6em"
+          height="2.6em"
+          viewBox="0 0 32 32"
+        >
+          <path d="M14 10h-2v12h2zm6 0h-2v12h2z" />
+          <path
+            d="M16 4A12 12 0 1 1 4 16A12 12 0 0 1 16 4m0-2a14 14 0 1 0 14 14A14 14 0 0 0 16 2"
+          />
+        </svg>
+      </label>
+      <audio controls class="hidden" ref="player">
+        <source src="./assets/music/cute_music.mp3" />
+      </audio>
+      <!-- toggle BG Change -->
+      <div class="flex justify-end mr-2 mb-4">
+        <label class="swap swap-rotate">
+          <input type="checkbox" class="theme-controller" value="dracula" />
+          <!-- sun icon -->
+          <svg
+            class="w-10 h-10 fill-current swap-off"
+            :class="{
+              'text-gray-800': isNavbarWhite,
+              'text-white': !isNavbarWhite,
+            }"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"
+            />
+          </svg>
+          <!-- moon icon -->
+          <svg
+            class="w-10 h-10 fill-current swap-on"
+            :class="{
+              'text-gray-800': isNavbarWhite,
+              'text-white': !isNavbarWhite,
+            }"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"
+            />
+          </svg>
+        </label>
+      </div>
+      <!-- Account Icon -->
+      <div>
+        <div
+          @click="toggleDropdown"
+          tabIndex="0"
+          role="button"
+          class="btn btn-ghost btn-circle avatar mr-2 mb-4"
+        >
+          <div class="w-10 rounded-full">
+            <img
+              alt="Tailwind CSS Navbar component"
+              src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+            />
+          </div>
+        </div>
+        <ul
+          v-show="isDropdownVisible"
+          @click.away="closeDropdown"
+          tabIndex="0"
+          class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a class="justify-between" @click="isShowProfileModal = true">
+              Profile
+              <span class="badge">{{ username }}</span>
+            </a>
+          </li>
+          <li><a>Settings</a></li>
+          <li><a @click="isLoginModalOpen = true">Logout</a></li>
+        </ul>
+      </div>
+      <!-- Login Modal -->
+      <div
+        v-if="isLoginModalOpen"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      >
+        <div class="z-0 p-6 bg-white rounded shadow-md w-96 md:w-96">
+          <div class="flex justify-end">
+            <button
+              @click="closeloginmodal"
+              type="button"
+              class="p-2 text-black"
+            >
+              X
+            </button>
+          </div>
+          <h2 class="flex justify-center mb-4 text-3xl text-black font-bold">
+            FINVER
+          </h2>
+          <!-- Your login form goes here -->
+          <form @submit.prevent="login">
+            <div class="mb-4">
+              <label
+                for="username"
+                class="block text-sm font-semibold text-gray-600"
+                >Username:</label
+              >
+              <input
+                type="text"
+                id="username"
+                v-model.trim="username"
+                class="w-full p-2 bg-white border border-gray-300 rounded placeholder:italic placeholder:text-slate-400 text-black"
+                placeholder="Enter Your Username"
+              />
+            </div>
+            <button
+              @click="openLoginModal"
+              type="button"
+              class="p-2 text-white bg-blue-500 rounded"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Profile Modal -->
+    <div>
+      <div
+        v-if="isShowProfileModal"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      >
+        <div class="z-0 p-6 bg-white rounded shadow-md w-96">
+          <div class="flex justify-end">
+            <button
+              @click="openProfileModal"
+              type="button"
+              class="p-2 text-black"
+            >
+              X
+            </button>
+          </div>
+          <h2 class="flex justify-center mb-4 text-3xl font-bold text-black">
+            Profile
+          </h2>
 
-					<div class="w-28 mx-auto">
-						<img alt="Tailwind CSS Navbar component"
-							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-							class="rounded-full" />
-					</div>
-					<div class="mb-4">
-						<label for="username" class="block text-center text-sm font-semibold text-gray-600 pt-3">Username:
-							{{ username }}</label>
-					</div>
-				</div>
-			</div>
-		</div>
+          <div class="w-28 mx-auto">
+            <img
+              alt="Tailwind CSS Navbar component"
+              src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+              class="rounded-full"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              for="username"
+              class="block text-center text-sm font-semibold text-gray-600 pt-3"
+              >Username: {{ username }}</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+	
+    <div class="flex justify-between items-center">
+      <button @click="toggleNav" class="focus:outline-none">
+        <!-- Hamburger Icon -->
+        <svg
+          class="cursor-pointer m-3 sticky top-0 z-50"
+          :class="{
+            'text-gray-800': isNavbarWhite,
+            'text-white': !isNavbarWhite,
+          }"
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5em"
+          height="1.5em"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5"
+          />
+        </svg>
+      </button>
+      <div
+        @click="refreshPage"
+        class="flex justify-center items-center flex-grow"
+      >
+        <a
+          class="text-3xl btn btn-ghost"
+          :class="{
+            'text-gray-900': isNavbarWhite,
+            'text-gray-100': !isNavbarWhite,
+          }"
+          >FINVER</a
+        >
+      </div>
+    </div>
+    <!-- Dropdown Menu -->
+    <transition name="fade">
+      <div
+        v-show="showNav && mobileView2"
+        class="absolute top-16 left-0 w-full flex justify-center items-center"
+        :class="{
+          'text-gray-800 bg-pink-300': isNavbarWhite,
+          'text-white bg-gray-800': !isNavbarWhite,
+        }"
+      >
+        <ul class="py-4 px-2 text-center">
+          <li>
+            <a href="#home" class="block py-2 text-xl">Home</a>
+          </li>
+          <li>
+            <a href="#features" class="block py-2 text-xl">Feature</a>
+          </li>
+          <li>
+            <a href="#Team" class="block py-2 text-xl">Our Team</a>
+          </li>
+          <li>
+            <a href="#FAQ" class="block py-2 text-xl">FAQ</a>
+          </li>
+        </ul>
+      </div>
+    </transition>
+  </div>
+  <!-- Navbar 2-->
+  <div
+    class="sticky top-0 z-50 pt-3 navbar"
+    :class="{ 'bg-pink-300': isNavbarWhite,
+      'bg-gray-800': !isNavbarWhite,}"
+    v-show="!mobileView1 && !showNav"
+  >
+    <div @click="refreshPage" class="flex-1">
+      <a
+        class="text-3xl btn btn-ghost"
+        :class="{
+          ' text-gray-900': isNavbarWhite,
+          'text-white': !isNavbarWhite,
+        }"
+        >FINVER</a
+      >
+    </div>
 
-		<div class="flex justify-between items-center">
-			<button @click="toggleNav" class="focus:outline-none">
-				<!-- Hamburger Icon -->
-				<svg class="cursor-pointer m-3 sticky top-0 z-50" xmlns="http://www.w3.org/2000/svg" width="1.5em"
-					height="1.5em" viewBox="0 0 16 16">
-					<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-						stroke-width="1.5" d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5" />
-				</svg>
-			</button>
-			<div @click="refreshPage" class="flex justify-center items-center flex-grow">
-				<a class="text-3xl text-pink-900 btn btn-ghost">FINVER</a>
-			</div>
-		</div>
-		<!-- Dropdown Menu -->
-		<transition name="fade">
-			<div v-show="showNav && mobileView2" class="absolute top-16 left-0 w-full flex justify-center items-center"
-				:class="{
-					'bg-fuchsia-200': isNavbarWhite,
-					'bg-pink-200': !isNavbarWhite,
-				}">
-				<ul class="py-4 px-2 text-center">
-					<li>
-						<a href="#home" class="block py-2 text-xl">Home</a>
-					</li>
-					<li>
-						<a href="#features" class="block py-2 text-xl">Feature</a>
-					</li>
-					<li>
-						<a href="#Team" class="block py-2 text-xl">Our Team</a>
-					</li>
-					<li>
-						<a href="#FAQ" class="block py-2 text-xl">FAQ</a>
-					</li>
-				</ul>
-			</div>
-		</transition>
-	</div>
-	<!-- Navbar 2-->
-	<div class="sticky top-0 z-50 pt-3 navbar" :class="{ '': isNavbarWhite, 'bg-pink-300': !isNavbarWhite }"
-		v-show="!mobileView1 && !showNav">
-		<div @click="refreshPage" class="flex-1">
-			<a class="text-3xl text-pink-600 btn btn-ghost">FINVER</a>
-		</div>
+    <!-- Responsive Navigation Links -->
+    <div class="flex gap-5">
+      <div>
+        <ul class="flex gap-10 text-xl font-semibold"
+		:class="{
+          ' text-gray-900': isNavbarWhite,
+          'text-white': !isNavbarWhite,
+        }"
+		>
+          <li class="cursor-pointer"><a href="#home">Home</a></li>
+          <li class="cursor-pointer"><a href="#features">Feature</a></li>
+          <li class="cursor-pointer"><a href="#Team">OurTeam</a></li>
+          <li class="cursor-pointer"><a href="#FAQ">FAQ</a></li>
+        </ul>
+      </div>
+      <!-- toggle Music On/Off-->
+      <div class="flex justify-end">
+        <label class="swap swap-rotate" @change="getMusic">
+          <input type="checkbox" />
+          <svg
+            class="swap-off ml-1 mt-[7px] fill-current"
+			:class="{
+          ' text-gray-900': isNavbarWhite,
+          'text-white': !isNavbarWhite,
+        }"
+            xmlns="http://www.w3.org/2000/svg"
+            width="2.5em"
+            height="2.5em"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.42Z"
+            />
+            <path
+              d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12m11-9.5A9.5 9.5 0 0 0 2.5 12a9.5 9.5 0 0 0 9.5 9.5a9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5"
+            />
+          </svg>
+          <svg
+            class="swap-on ml-1 mt-[10px] fill-current"
+			:class="{
+          ' text-gray-900': isNavbarWhite,
+          'text-white': !isNavbarWhite,
+        }"
+            xmlns="http://www.w3.org/2000/svg"
+            width="2.6em"
+            height="2.6em"
+            viewBox="0 0 32 32"
+          >
+            <path d="M14 10h-2v12h2zm6 0h-2v12h2z" />
+            <path
+              d="M16 4A12 12 0 1 1 4 16A12 12 0 0 1 16 4m0-2a14 14 0 1 0 14 14A14 14 0 0 0 16 2"
+            />
+          </svg>
+        </label>
+        <audio controls class="hidden" ref="player">
+          <source src="./assets/music/cute_music.mp3" />
+        </audio>
+      </div>
+      <!-- toggle BG Change -->
+      <div class="flex justify-end">
+        <label class="swap swap-rotate">
+          <input type="checkbox" class="theme-controller" value="dracula" />
+          <!-- sun icon -->
+          <svg
+            class="w-10 h-10 fill-current swap-off"
+			:class="{
+          ' text-gray-900': isNavbarWhite,
+          'text-white': !isNavbarWhite,
+        }"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"
+            />
+          </svg>
+          <!-- moon icon -->
+          <svg
+            class="w-10 h-10 fill-current swap-on"
+			:class="{
+          ' text-gray-900': isNavbarWhite,
+          'text-white': !isNavbarWhite,
+        }"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"
+            />
+          </svg>
+        </label>
+      </div>
 
-		<!-- Responsive Navigation Links -->
-		<div class="flex gap-5">
-			<div>
-				<ul class="flex gap-10 text-xl font-semibold text-pink-600">
-					<li class="cursor-pointer"><a href="#home">Home</a></li>
-					<li class="cursor-pointer"><a href="#features">Feature</a></li>
-					<li class="cursor-pointer"><a href="#Team">OurTeam</a></li>
-					<li class="cursor-pointer"><a href="#FAQ">FAQ</a></li>
-				</ul>
-			</div>
-			<!-- toggle Music On/Off-->
-			<div class="flex justify-end">
-				<label class="swap swap-rotate" @change="getMusic">
-					<input type="checkbox" />
-					<svg class="swap-off ml-1 mt-[7px]" xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em"
-						viewBox="0 0 24 24">
-						<path fill="currentColor"
-							d="M9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.42Z" />
-						<path fill="currentColor"
-							d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12m11-9.5A9.5 9.5 0 0 0 2.5 12a9.5 9.5 0 0 0 9.5 9.5a9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5" />
-					</svg>
-					<svg class="swap-on ml-1 mt-[7px]" xmlns="http://www.w3.org/2000/svg" width="2.6em" height="2.6em"
-						viewBox="0 0 32 32">
-						<path fill="currentColor" d="M14 10h-2v12h2zm6 0h-2v12h2z" />
-						<path fill="currentColor"
-							d="M16 4A12 12 0 1 1 4 16A12 12 0 0 1 16 4m0-2a14 14 0 1 0 14 14A14 14 0 0 0 16 2" />
-					</svg>
-				</label>
-				<audio controls class="hidden" ref="player">
-					<source src="./assets/music/cute_music.mp3" />
-				</audio>
-			</div>
-			<!-- toggle BG Change -->
-			<div class="flex justify-end">
-				<label class="swap swap-rotate">
-					<input type="checkbox" class="theme-controller" value="dracula" />
-					<!-- sun icon -->
-					<svg class="w-10 h-10 text-orange-400 fill-current swap-off" xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24">
-						<path
-							d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
-					</svg>
-					<!-- moon icon -->
-					<svg class="w-10 h-10 fill-current swap-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-						<path
-							d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
-					</svg>
-				</label>
-			</div>
+      <!-- Account Icon -->
+      <div>
+        <div
+          @click="toggleDropdown"
+          tabIndex="0"
+          role="button"
+          class="btn btn-ghost btn-circle avatar"
+        >
+          <div class="w-10 rounded-full">
+            <img
+              alt="Tailwind CSS Navbar component"
+              src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+            />
+          </div>
+        </div>
+        <ul
+          v-show="isDropdownVisible"
+          @click.away="closeDropdown"
+          tabIndex="0"
+          class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a class="justify-between" @click="isShowProfileModal = true">
+              Profile
+              <span class="badge">{{ username }}</span>
+            </a>
+          </li>
+          <li><a>Settings</a></li>
+          <li><a @click="isLoginModalOpen = true">Logout</a></li>
+        </ul>
+      </div>
+      <div>
+        <!-- Login Modal -->
+        <div
+          v-if="isLoginModalOpen"
+          class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+        >
+          <div class="z-0 p-6 bg-white rounded shadow-md w-96 md:w-96">
+            <div class="flex justify-end">
+              <button
+                @click="closeloginmodal"
+                type="button"
+                class="p-2 text-black"
+              >
+                X
+              </button>
+            </div>
+            <h2 class="flex justify-center mb-4 text-3xl text-black font-bold">
+              FINVER
+            </h2>
+            <!-- Your login form goes here -->
+            <form @submit.prevent="login">
+              <div class="mb-4">
+                <label
+                  for="username"
+                  class="block text-sm font-semibold text-gray-600"
+                  >Username:</label
+                >
+                <input
+                  type="text"
+                  id="username"
+                  v-model.trim="username"
+                  class="w-full p-2 bg-white border border-gray-300 rounded placeholder:italic placeholder:text-slate-400 text-black"
+                  placeholder="Enter Your Username"
+                />
+              </div>
+              <button
+                @click="openLoginModal"
+                type="button"
+                class="p-2 text-white bg-blue-500 rounded"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Profile Modal -->
+      <div>
+        <div
+          v-if="isShowProfileModal"
+          class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+        >
+          <div class="z-0 p-6 bg-white rounded shadow-md w-96">
+            <div class="flex justify-end">
+              <button
+                @click="openProfileModal"
+                type="button"
+                class="p-2 text-black"
+              >
+                X
+              </button>
+            </div>
+            <h2 class="flex justify-center mb-4 text-3xl font-bold text-black">
+              Profile
+            </h2>
 
-			<!-- Account Icon -->
-			<div>
-				<div @click="toggleDropdown" tabIndex="0" role="button" class="btn btn-ghost btn-circle avatar">
-					<div class="w-10 rounded-full">
-						<img alt="Tailwind CSS Navbar component"
-							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-					</div>
-				</div>
-				<ul v-show="isDropdownVisible" @click.away="closeDropdown" tabIndex="0"
-					class="absolute mt-3 right-0 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-					<li>
-						<a class="justify-between" @click="isShowProfileModal = true">
-							Profile
-							<span class="badge">{{ username }}</span>
-						</a>
-					</li>
-					<li><a>Settings</a></li>
-					<li><a @click="isLoginModalOpen = true">Logout</a></li>
-				</ul>
-			</div>
-			<div>
-				<!-- Login Modal -->
-				<div v-if="isLoginModalOpen"
-					class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-					<div class="z-0 p-6 bg-white rounded shadow-md w-96 md:w-96">
-						<div class="flex justify-end">
-							<button @click="closeloginmodal" type="button" class="p-2 text-black">
-								X
-							</button>
-						</div>
-						<h2 class="flex justify-center mb-4 text-3xl text-black font-bold">
-							FINVER
-						</h2>
-						<!-- Your login form goes here -->
-						<form @submit.prevent="login">
-							<div class="mb-4">
-								<label for="username" class="block text-sm font-semibold text-gray-600">Username:</label>
-								<input type="text" id="username" v-model.trim="username"
-									class="w-full p-2 bg-white border border-gray-300 rounded placeholder:italic placeholder:text-slate-400 text-black"
-									placeholder="Enter Your Username" />
-							</div>
-							<button @click="openLoginModal" type="button" class="p-2 text-white bg-blue-500 rounded">
-								Login
-							</button>
-
-						</form>
-					</div>
-				</div>
-			</div>
-			<!-- Profile Modal -->
-			<div>
-				<div v-if="isShowProfileModal"
-					class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-					<div class="z-0 p-6 bg-white rounded shadow-md w-96">
-						<div class="flex justify-end">
-							<button @click="openProfileModal" type="button" class="p-2 text-black">
-								X
-							</button>
-						</div>
-						<h2 class="flex justify-center mb-4 text-3xl font-bold text-black">
-							Profile
-						</h2>
-
-						<div class="w-28 mx-auto">
-							<img alt="Tailwind CSS Navbar component"
-								src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-								class="rounded-full" />
-						</div>
-						<div class="mb-4">
-							<label for="username"
-								class="block text-center text-sm font-semibold text-gray-600 pt-3">Username: {{ username
-								}}</label>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="w-28 mx-auto">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                class="rounded-full"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                for="username"
+                class="block text-center text-sm font-semibold text-gray-600 pt-3"
+                >Username: {{ username }}</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 	<!-- Section Landing Page -->
 	<section class="px-6 pt-8 pb-12 sm:pt-10 md:pb-16 lg:pb-0 2xl:pt-28" id="home">
@@ -879,10 +1082,6 @@ onMounted(() => {
 					<li>Click the <span class="font-bold	">green heart</span> to like someone.</li>
 					<li>Click the <span class="font-bold	">red heart</span> to pass on someone.</li>
 					<li>Click the <span class="font-bold	">pink heart</span> to see who you likes</li>
-
-
-
-
 				</div>
 			</div>
 			<div class="border collapse collapse-arrow join-item border-base-300">
@@ -905,46 +1104,47 @@ onMounted(() => {
 			</div>
 		</div>
 	</section>
+
 </template>
 
 <style scoped>
 .button {
-	transition: transform 0.25s ease-in-out;
-	cursor: pointer;
+  transition: transform 0.25s ease-in-out;
+  cursor: pointer;
 }
 
 .button:hover {
-	transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .content {
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.5s ease;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
 }
 
 .show {
-	max-height: 200px;
+  max-height: 200px;
 }
 
 /* CSS for chat */
 .chats {
-	width: 100%;
+  width: 100%;
 }
 
 .chat-bubbles {
-	display: flex;
-	align-items: center;
-	width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .profile-pic {
-	border-radius: 50%;
-	width: 3em;
+  border-radius: 50%;
+  width: 3em;
 }
 
 .chat-text {
-	padding: 10px;
-	border-radius: 10px;
+  padding: 10px;
+  border-radius: 10px;
 }
 </style>
