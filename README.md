@@ -36,6 +36,7 @@
    * UserIcon When you click on the user icon, it displays the user's information.
   ![Nav_Feature](/src/assets/imgReadme/navbar.png)
    * *__Before__* clicking the sun icon:
+   
   ![Light_Mode](/src/assets/imgReadme/lightmode.png)
    * *__After__* clicking the sun icon:
   ![Dark_Mode](/src/assets/imgReadme/darkmode.png)
@@ -58,9 +59,9 @@
     ![Mouse Scrolling](src/assets/imgReadme/scrolling.png)
     * *__Chat__*: You can click on the names of the people you like to start chatting with them right away!
     ![Chat](src/assets/imgReadme/Chat.png)
-- When you've finished scrolling through the dating profiles, don't forget to leave a star rating and comment on our app!
+- When you've finished scrolling through the dating profiles, don't forget to leave a star rating and comment!
 ![Rating_App](src/assets/imgReadme/Rating.png)
-
+*************
 ## Reference
 ### [TinderApplication](https://tinder.com/th) : The main inspiration for creating the pages and features of the FINVER app came from you. Thank you.
 ### [Character.ai](https://beta.character.ai/) : Used in the project to enhance the chat feature, which will link to the character.ai page. Thank You.
