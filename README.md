@@ -34,32 +34,32 @@
  
    * The *__sun icon__* allows you to change the background color when clicked.
    * UserIcon When you click on the user icon, it displays the user's information.
-  ![Nav_Feature](src\assets\imgReadme\navbar.png)
+  ![Nav_Feature](/src/assets/imgReadme/navbar.png)
    * *__Before__* clicking the sun icon:
-  ![Light_Mode](src\assets\imgReadme\lightmode.png)
+  ![Light_Mode](/src/assets/imgReadme/lightmode.png)
    * *__After__* clicking the sun icon:
-  ![Dark_Mode](src\assets\imgReadme\darkmode.png)
+  ![Dark_Mode](/src/assets/imgReadme/darkmode.png)
 
 - Click on *__"Get Started"__* to begin your journey to find your date!
-![Get-Started](src\assets\imgReadme\started.png)
+![Get-Started](src/assets/imgReadme/started.png)
 
 
 - After clicking "Get Started," you will be directed to the user's dating profile page. Here, you will find:
- ![Main_Content](src\assets\imgReadme\Maincontent.png)
+ ![Main_Content](src/assets/imgReadme/Maincontent.png)
     * *__Green Heart__*: Click to like them and move on to the next person.
-    ![Green Heart](src\assets\imgReadme\g-heart.png)
+    ![Green Heart](src/assets/imgReadme/g-heart.png)
     * *__Red Heart__*: Click to skip to the next person.
-    ![Red Heart](src\assets\imgReadme\r-heart.png)
+    ![Red Heart](src/assets/imgReadme/r-heart.png)
     * *__Pink Heart__*: Shows who you've liked and how many people you've liked.
-    ![Pink Heart](src\assets\imgReadme\p-heart.png)
+    ![Pink Heart](src/assets/imgReadme/p-heart.png)
     * *__Dropdown__*: You can also click on the triangle icon to view more information about that person.
-    ![Dropdown](src\assets\imgReadme\dropdown.png)
+    ![Dropdown](src/assets/imgReadme/dropdown.png)
     * *__Mouse Scrolling__*: You can scroll the photos by hovering your mouse over the photo and scrolling.
-    ![Mouse Scrolling](src\assets\imgReadme\scrolling.png)
+    ![Mouse Scrolling](src/assets/imgReadme/scrolling.png)
     * *__Chat__*: You can click on the names of the people you like to start chatting with them right away!
-    ![Chat](src\assets\imgReadme\Chat.png)
+    ![Chat](src/assets/imgReadme/Chat.png)
 - When you've finished scrolling through the dating profiles, don't forget to leave a star rating and comment on our app!
-![Rating_App](src\assets\imgReadme\Rating.png)
+![Rating_App](src/assets/imgReadme/Rating.png)
 
 ## Reference
 ### [TinderApplication](https://tinder.com/th) : The main inspiration for creating the pages and features of the FINVER app came from you. Thank you.
