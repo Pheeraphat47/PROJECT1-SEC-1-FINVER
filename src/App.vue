@@ -871,7 +871,7 @@ const toggleAccordion = (index) => {
       <!-- Main Content -->
       <div
         v-if="Profiles.length === 0"
-        class="flex items-center justify-center"
+        class="flex items-center justify-center m-2"
       >
         <div class="card w-96 shadow-xl h-">
           <div
