@@ -29,6 +29,7 @@ const openLoginModal = () => {
 
 const closeloginmodal = () => {
   isLoginModalOpen.value = false
+  username.value = ""
 }
 
 const isShowProfileModal = ref(false)
