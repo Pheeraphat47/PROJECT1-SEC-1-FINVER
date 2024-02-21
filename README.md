@@ -69,7 +69,23 @@
 *************
 ## TEAM MEMBER
 - ###  65130500003 Kittichai Chimchai (13%)
+   * ทำระบบ Login เบื้องต้นสำหรับใส่ username ของผู้ใช้และแสดงผลในหน้าเว็บ
+   * ทำตัว Dropdown ข้างบนตรง Navigation bar
+   * ทำไฟล์ Readme สำหรับอธิบายตัว Project
 - ###  65130500011 Jiraplus Chanpong (17%)
+   * ทำ Responsive Navigaiton Bar
+   * เป็น UI Design หลักของโปรเจค ออกแบบสี Font ที่จะใช้ 
+   * เพิ่ม Feature เล่นเพลงใน Chat 
 - ###  65130500027 Taned Thanyapanich (20%)
+   * ตกแต่งและจัดวางองค์ประกอบต่างๆในหน้าเว็บ
+   * ทำระบบการนับจำนวนการไลค์
+   * คอยช่วยปรับปรุงแก้ไข Code ให้กับเพื่อนๆให้ Code ดีขึ้น และมี Structure
 - ###  65130500031 Nateetarn Likitwiwatphong (20%)
+   * ทำ Feature Like และ Dislike 
+   * ทำระบบ Review ให้กับผู้ใช้งาน
+   * ร่วมช่วยทำระบบ Login เบื้องต้น
 - ###  65130500053 Pheeraphat Dherachaisuphakij (30%)
+   * ทำ Json file สำหรับใช้ในหน้าเว็บและดูเรื่องการแสดงผลข้อมูลในเว็บ (Text , Image , Icon)
+   * เพิ่มระบบในการจดจำคนที่เรากดไลค์ไปแล้วได้
+   * รับผิดชอบในการทำ UI Responsive ของเว็บทั้งหมด
+   * เป็นที่ปรึกษาหลักของเพื่อนในกลุ่ม และคอยรวม code จากเพื่อนคนอื่นและปรับปรุงแก้ไขจัดเรียงและ coding 
