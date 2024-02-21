@@ -567,17 +567,18 @@ const toggleAccordion = (index) => {
           v-if="isLoginModalOpen"
           class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
         >
-          <div class="z-0 p-6 bg-white rounded shadow-md w-96 md:w-96">
-            <div class="flex justify-end">
-              <button
-                @click="closeloginmodal"
-                type="button"
-                class="p-2 text-black"
-              >
-                X
-              </button>
+          <div class="z-0 p-6 bg-white rounded shadow-md w-96 md:w-96 scale-150">
+            <div class="relative">
+		<div class="absolute top-0 right-0">
+	              <button
+	                @click="closeloginmodal"
+	                class="btn btn-ghost btn-sm btn-circle hover:bg-red-400"
+	              >
+	                X
+	              </button>
+		</div>
             </div>
-            <h2 class="flex justify-center mb-4 text-3xl text-black font-bold">
+            <h2 class="mb-4 text-3xl text-black font-bold">
               FINVER
             </h2>
             <!-- Your login form goes here -->
