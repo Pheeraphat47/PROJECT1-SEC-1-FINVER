@@ -1,8 +1,8 @@
 # FINVER - A Dating App Simulator
 ******
-   ## *FINVER* is a DatingApp Simulator project for INT203 Clientside Web programming II Subject This is our first group project build by using
+   ## *FINVER* is a DatingApp Simulator project for INT203 Clientside Web programming II Subject This is our first group project built by using
    ### Our Tech Stack that we use 😘
-   [![My Skills](https://skillicons.dev/icons?i=vue,tailwind,vercel,git,vite)](https://skillicons.dev)[![Additional](https://img.shields.io/badge/daisyUI-1ad1a5?style=for-the-badge&logo=daisyui&logoColor=white)
+   [![My Skills](https://skillicons.dev/icons?i=vue,tailwind,vercel,git,vite)](https://skillicons.dev)  ![Additional](https://img.shields.io/badge/daisyUI-1ad1a5?style=for-the-badge&logo=daisyui&logoColor=white)
      <br>  
 ## Click here [FinverWebDemo](https://project-1-sec-1-finver.vercel.app/)
    ***************
@@ -30,7 +30,7 @@
 - On the homepage, you will find the navigation bar at the top, which can take you to various sections of the app.
 ![Home_Page](/src/assets/imgReadme/homepage.png)
 
-   * There is a *__music player button__* if you click on it, you will hear music theme  playing as you use the app.
+   * There is a *__music player button__* if you click on it, you will hear a music theme  playing as you use the app.
  
    * The *__sun icon__* allows you to change the background color when clicked.
    * UserIcon When you click on the user icon, it displays the user's information.
