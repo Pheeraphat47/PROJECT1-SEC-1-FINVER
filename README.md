@@ -3,8 +3,8 @@
    ## *FINVER* is a DatingApp Simulator project for INT203 Clientside Web programming II Subject This is our first group project build by using
    ## [Vuejs3](https://vuejs.org/) , [tailwindcss](https://tailwindcss.com/) , [JavaScript](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics) and [Daisy UI](https://daisyui.com/)
    [![My Skills](https://skillicons.dev/icons?i=vue,tailwind,js&perline=4)](https://skillicons.dev)
-   
-
+     <br>  
+## Click here [FinverWebDemo](https://project-1-sec-1-finver.vercel.app/)
    ***************
 ## Features
 ### The features of our app are as follows:
@@ -66,11 +66,10 @@
 ### [TinderApplication](https://tinder.com/th) : The main inspiration for creating the pages and features of the FINVER app came from you. Thank you.
 ### [Character.ai](https://beta.character.ai/) : Used in the project to enhance the chat feature, which will link to the character.ai page. Thank You.
 
-
-
+*************
 ## TEAM MEMBER
-- ###  65130500003 Kittichai Chimchai
-- ###  65130500011 Jiraplus Chanpong
-- ###  65130500027 Taned Thanyapanich
-- ###  65130500031 Nateetarn Likitwiwatphong
-- ###  65130500053 Pheeraphat Dherachaisuphakij
+- ###  65130500003 Kittichai Chimchai (13%)
+- ###  65130500011 Jiraplus Chanpong (17%)
+- ###  65130500027 Taned Thanyapanich (20%)
+- ###  65130500031 Nateetarn Likitwiwatphong (20%)
+- ###  65130500053 Pheeraphat Dherachaisuphakij (30%)
