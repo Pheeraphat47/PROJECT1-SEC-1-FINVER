@@ -529,6 +529,12 @@ onMounted(() => {
 							Dark Mode: An optional dark mode feature that users can toggle for
 							a different visual experience.
 						</li>
+						<li>
+						 	Responsive: Our app is responsive and supports playing on different screen sizes.
+						</li>
+						<li>
+							Background music: if you click on it, you will hear music theme  playing as you use the app.
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -868,7 +874,7 @@ onMounted(() => {
 				<input type="radio" name="my-accordion-4" checked="checked" />
 				<div class="text-xl font-medium collapse-title">How can I Play?</div>
 				<div class="collapse-content">
-					<ul class="font-bold">Navbar</ul>
+					<ul class="font-bold">Navigation Bar</ul>
 					<li>You can play music by clicking on the icon at the top right corner of our website.</li>
 					<li>You can change the theme color on the sun icon.</li>
 					<li>You can click on the user icon to view your profile or logout.</li>
