@@ -68,7 +68,7 @@
 
 *************
 ## TEAM MEMBER
-- ### 65130500003 Kittichai Chimchai (13%)
+- ### 65130500003 Kittichai Chimchai (15%)
    * Develop a basic login system allowing users to input their username and display the result on the webpage
    * Implement a dropdown menu on the top navigation bar
    * Create a README file to explain the project
@@ -84,7 +84,7 @@
    * Implement Like and Dislike features
    * Develop a system to count the number of likes
    * Collaborate on creating a basic login system
-- ### 65130500053 Pheeraphat Dherachaisuphakij (30%)
+- ### 65130500053 Pheeraphat Dherachaisuphakij (28%)
    * Create a JSON file for use on the webpage and demonstrate data presentation (Text, Image, Icon).
    * Introduce a system to remember individuals we have liked.
    * Take responsibility for ensuring the overall web UI responsiveness.
