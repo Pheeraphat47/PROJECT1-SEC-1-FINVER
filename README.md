@@ -2,7 +2,7 @@
 ******
    ## *FINVER* is a DatingApp Simulator project for INT203 Clientside Web programming II Subject This is our first group project build by using
    ### Our Tech Stack that we use 😘
-   [![My Skills](https://skillicons.dev/icons?i=vue,tailwind,vercel,git,vite)](https://skillicons.dev)
+   [![My Skills](https://skillicons.dev/icons?i=vue,tailwind,vercel,git,vite)](https://skillicons.dev)[![Additional](https://img.shields.io/badge/daisyUI-1ad1a5?style=for-the-badge&logo=daisyui&logoColor=white)
      <br>  
 ## Click here [FinverWebDemo](https://project-1-sec-1-finver.vercel.app/)
    ***************
