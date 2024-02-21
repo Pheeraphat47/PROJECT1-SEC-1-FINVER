@@ -1,8 +1,8 @@
 # FINVER - A Dating App Simulator
 ******
    ## *FINVER* is a DatingApp Simulator project for INT203 Clientside Web programming II Subject This is our first group project build by using
-   ## [Vuejs3](https://vuejs.org/) , [tailwindcss](https://tailwindcss.com/) , [JavaScript](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics) and [Daisy UI](https://daisyui.com/)
-   [![My Skills](https://skillicons.dev/icons?i=vue,tailwind,js&perline=4)](https://skillicons.dev)
+   ### Our Tech Stack that we use 😘
+   [![My Skills](https://skillicons.dev/icons?i=vue,tailwind,vercel,git,vite)](https://skillicons.dev)
      <br>  
 ## Click here [FinverWebDemo](https://project-1-sec-1-finver.vercel.app/)
    ***************
